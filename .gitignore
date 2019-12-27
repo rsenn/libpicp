@@ -72,3 +72,6 @@ dkms.conf
 /build/mplabx-pic16/libpicp-16f876a-sdcc/build/default/
 /build/mplabx-pic16/libpicp-16f876a-sdcc/dist/default/
 /build/mplabx-pic12/libpicp-12f1840-xc8.X/dist/default/
+/build/mplabx-pic16/libpicp-16f876a-xc8.X/nbproject/private/
+/build/mplabx-pic16/libpicp-16f876a-xc8.X/build/default/
+/build/mplabx-pic16/libpicp-16f876a-xc8.X/dist/default/
