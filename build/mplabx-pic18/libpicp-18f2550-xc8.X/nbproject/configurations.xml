@@ -106,6 +106,14 @@
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
+      <item path="/home/roman/Dokumente/Sources/libpicp/midi.c"
+            ex="true"
+            overriding="false">
+      </item>
+      <item path="/home/roman/Dokumente/Sources/libpicp/uart.c"
+            ex="true"
+            overriding="false">
+      </item>
       <HI-TECH-COMP>
         <property key="asmlist" value="true"/>
         <property key="define-macros" value=""/>
