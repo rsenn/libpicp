@@ -57,7 +57,8 @@ ds18b20_temperature(uint16_t value, uint8_t shift) {
 
   t = (double)value;
 
-  if(shift) t /= (1 << shift);
+  if(shift)
+    t /= (1 << shift);
 
   if(t >= 0)
     t = (t + 8) / 16;

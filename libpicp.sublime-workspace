@@ -60,10 +60,27 @@
 	"buffers":
 	[
 		{
-			"file": "buffer.h",
+			"file": "libpicp.sublime-project",
 			"settings":
 			{
-				"buffer_size": 868,
+				"buffer_size": 484,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "format.h",
+			"settings":
+			{
+				"buffer_size": 230,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "format.c",
+			"settings":
+			{
+				"buffer_size": 2015,
 				"line_ending": "Unix"
 			}
 		}
@@ -469,16 +486,72 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "buffer.h",
+					"file": "libpicp.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 484,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								33,
+								33
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JSON (JavaScriptNext).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "format.h",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 868,
+						"buffer_size": 230,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								230,
+								230
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C99/C99.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "format.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2015,
 						"regions":
 						{
 						},
@@ -491,13 +564,15 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/C99/C99.tmLanguage"
+							"syntax": "Packages/C99/C99.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -566,7 +641,7 @@
 	{
 		"height": 96.0
 	},
-	"pinned_build_system": "Rebuild CTags",
+	"pinned_build_system": "clang-format",
 	"project": "libpicp.sublime-project",
 	"replace":
 	{
