@@ -1,0 +1,53 @@
+     1: #include "7segment.h"
+     2: #include "stdlib.h"
+     3: 
+     4: volatile uint8_t button_state, button_flags;
+     5: #ifdef USE_7SEGMENT
+     6: 
+     7: volatile uint8_t display_buffer[DISPLAY_DIGITS];
+     8: volatile uint8_t display_multiplex = 0;
+     9: 
+    10: static const uint8_t display_digits[] = {
+    11:     DISPLAY_DIGIT_0,
+    12:     DISPLAY_DIGIT_1,
+    13:     DISPLAY_DIGIT_2,
+    14:     DISPLAY_DIGIT_3,
+    15:     DISPLAY_DIGIT_4,
+    16:     DISPLAY_DIGIT_5,
+    17:     DISPLAY_DIGIT_6,
+    18:     DISPLAY_DIGIT_7,
+    19:     DISPLAY_DIGIT_8,
+    20:     DISPLAY_DIGIT_9,
+    21:     DISPLAY_LETTER_A,
+    22:     DISPLAY_LETTER_B,
+    23:     DISPLAY_LETTER_C,
+    24:     DISPLAY_LETTER_D,
+    25:     DISPLAY_LETTER_E,
+    26:     DISPLAY_LETTER_F,
+    27: };
+    28: 
+    29: void
+    30: display_init() {
+    31:   DISPLAY_SELECT_TRIS &= ~DISPLAY_SELECT_MASK;
+    32:   DISPLAY_DATA_TRIS &= ~DISPLAY_DATA_MASK;
+    33:   DISPLAY_DATA_PORT &= ~DISPLAY_DATA_MASK;
+    34:   // BUTTON_TRIS = 1;
+    35:   // button_state = 0;
+    36:   // button_flags = 0;
+    37: }
+    38: 
+    39: void
+    40: display_set(uint8_t index, uint8_t segs) {
+    41:   display_buffer[index] = segs;
+    42: }
+    43: void
+    44: display_number(int16_t n) {
+    45:   int8_t i;
+    46: 
+    47:   for(i = DISPLAY_DIGITS - 1; i >= 0; --i) {
+    48:     display_set(i, display_digits[n & 0x0f]);
+    49:     n >>= 4;
+    50:   }
+    51: }
+    52: 
+    53: #endif

@@ -1,0 +1,106 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC IEEE_DBL PIC14 PICREGULAR PICMID SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F876A ]
+[d frameptr 6 ]
+"36 /opt/microchip/xc8/v1.34/sources/common/altofl.c
+[v ___altofl __altofl `(d  1 e 4 0 ]
+"31 /opt/microchip/xc8/v1.34/sources/common/awtofl.c
+[v ___awtofl __awtofl `(d  1 e 4 0 ]
+"63 /opt/microchip/xc8/v1.34/sources/common/double.c
+[v ___flpack __flpack `(d  1 e 4 0 ]
+"4 /opt/microchip/xc8/v1.34/sources/common/evalpoly.c
+[v _eval_poly eval_poly `(d  1 e 4 0 ]
+"12 /opt/microchip/xc8/v1.34/sources/common/exp.c
+[v _exp exp `(d  1 e 4 0 ]
+"88 /opt/microchip/xc8/v1.34/sources/common/fladd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"56 /opt/microchip/xc8/v1.34/sources/common/fldiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"4 /opt/microchip/xc8/v1.34/sources/common/flge.c
+[v ___flge __flge `(b  1 e 0 0 ]
+"62 /opt/microchip/xc8/v1.34/sources/common/flmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 /opt/microchip/xc8/v1.34/sources/common/flneg.c
+[v ___flneg __flneg `(d  1 e 4 0 ]
+"62 /opt/microchip/xc8/v1.34/sources/common/float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"13 /opt/microchip/xc8/v1.34/sources/common/floor.c
+[v _floor floor `(d  1 e 4 0 ]
+"18 /opt/microchip/xc8/v1.34/sources/common/flsub.c
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"43 /opt/microchip/xc8/v1.34/sources/common/fltol.c
+[v ___fltol __fltol `(l  1 e 4 0 ]
+"254 /opt/microchip/xc8/v1.34/sources/common/frexp.c
+[v _frexp frexp `(d  1 e 4 0 ]
+"277
+[v _ldexp ldexp `(d  1 e 4 0 ]
+"86 /opt/microchip/xc8/v1.34/sources/common/ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"56 /opt/microchip/xc8/v1.34/sources/common/ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 3 0 ]
+"62 /opt/microchip/xc8/v1.34/sources/common/ftmul.c
+[v ___ftmul __ftmul `(f  1 e 3 0 ]
+"18 /opt/microchip/xc8/v1.34/sources/common/ftsub.c
+[v ___ftsub __ftsub `(f  1 e 3 0 ]
+"27 /opt/microchip/xc8/v1.34/sources/common/lbtoft.c
+[v ___lbtoft __lbtoft `(f  1 e 3 0 ]
+"30 /opt/microchip/xc8/v1.34/sources/common/lltofl.c
+[v ___lltofl __lltofl `(d  1 e 4 0 ]
+"5 /opt/microchip/xc8/v1.34/sources/common/log.c
+[v _log log `(d  1 e 4 0 ]
+"39
+[v _log10 log10 `(d  1 e 4 0 ]
+"6 /opt/microchip/xc8/v1.34/sources/common/lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"6 /opt/microchip/xc8/v1.34/sources/common/lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"28 /opt/microchip/xc8/v1.34/sources/common/lwtofl.c
+[v ___lwtofl __lwtofl `(d  1 e 4 0 ]
+"5 /opt/microchip/xc8/v1.34/sources/common/pow.c
+[v _pow pow `(d  1 e 4 0 ]
+"6 /opt/microchip/xc8/v1.34/sources/pic/eeprom.c
+[v _eecpymem eecpymem `(v  1 e 0 0 ]
+"24
+[v _memcpyee memcpyee `(v  1 e 0 0 ]
+"30 /home/roman/Dokumente/Sources/libpicp/buffer.c
+[v _buffer_putch buffer_putch `(uc  1 e 1 0 ]
+"2 /home/roman/Dokumente/Sources/libpicp/examples/ex01.c
+[v _main main `(i  1 e 2 0 ]
+"15 /home/roman/Dokumente/Sources/libpicp/format.c
+[v _format_number format_number `(v  1 e 0 0 ]
+"47 /home/roman/Dokumente/Sources/libpicp/onewire.c
+[v _ow_reset ow_reset `(uc  1 e 1 0 ]
+"69
+[v _ow_read_bit ow_read_bit `(uc  1 e 1 0 ]
+"84
+[v _ow_write_bit ow_write_bit `(v  1 e 0 0 ]
+"101
+[v _ow_read_byte ow_read_byte `(uc  1 e 1 0 ]
+"119
+[v _ow_write_byte ow_write_byte `(v  1 e 0 0 ]
+"147
+[v _ow_crc ow_crc `(uc  1 e 1 0 ]
+"158
+[v _ow_next ow_next `(uc  1 e 1 0 ]
+"250
+[v _ow_first ow_first `(uc  1 e 1 0 ]
+"10 /home/roman/Dokumente/Sources/libpicp/shell.c
+[v _putbinary putbinary `(v  1 e 0 0 ]
+"30
+[v _stricmp stricmp `(i  1 e 2 0 ]
+"55
+[v _shell_puts shell_puts `(v  1 e 0 0 ]
+"109
+[v _cmd_set cmd_set `(i  1 s 2 cmd_set ]
+"113
+[v _cmd_get cmd_get `(i  1 s 2 cmd_get ]
+"117
+[v _cmd_bitop cmd_bitop `(i  1 s 2 cmd_bitop ]
+"4 /home/roman/Dokumente/Sources/libpicp/7segment.c
+[v _button_state button_state `VEuc  1 e 1 0 ]
+[v _button_flags button_flags `VEuc  1 e 1 0 ]
+"2 /home/roman/Dokumente/Sources/libpicp/examples/ex01.c
+[v _main main `(i  1 e 2 0 ]
+{
+} 0

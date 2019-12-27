@@ -1,0 +1,1393 @@
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE  1
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00001 ;--------------------------------------------------------
+                      00002 ; File Created by SDCC : free open source ANSI-C Compiler
+                      00003 ; Version 3.9.0 #11195 (Linux)
+                      00004 ;--------------------------------------------------------
+                      00005 ; PIC port for the 14-bit core
+                      00006 ;--------------------------------------------------------
+                      00007 ;       .file   "ds18b20.c"
+                      00008         list    p=16f876a
+                      00009         radix dec
+                      00010         include "p16f876a.inc"
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Oct 21 2015
+                      00005 ;  MPASM PIC16F876A processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2015 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+                      00525         LIST
+                      00011 ;--------------------------------------------------------
+                      00012 ; external declarations
+                      00013 ;--------------------------------------------------------
+  0000                00014         extern  ___uchar2fs
+  0000                00015         extern  ___schar2fs
+  0000                00016         extern  ___uint2fs
+  0000                00017         extern  ___sint2fs
+  0000                00018         extern  ___ulong2fs
+  0000                00019         extern  ___slong2fs
+  0000                00020         extern  ___fs2uchar
+  0000                00021         extern  ___fs2schar
+  0000                00022         extern  ___fs2uint
+  0000                00023         extern  ___fs2sint
+  0000                00024         extern  ___fs2ulong
+  0000                00025         extern  ___fs2slong
+  0000                00026         extern  ___fsadd
+  0000                00027         extern  ___fssub
+  0000                00028         extern  ___fsmul
+  0000                00029         extern  ___fsdiv
+  0000                00030         extern  ___fslt
+  0000                00031         extern  ___fseq
+  0000                00032         extern  ___fsneq
+  0000                00033         extern  ___fsgt
+  0000                00034         extern  _ow_search
+  0000                00035         extern  _ow_reset
+  0000                00036         extern  _ow_crc
+  0000                00037         extern  _ow_next
+  0000                00038         extern  _ow_read_byte
+  0000                00039         extern  _ow_write_byte
+  0000                00040         extern  _ow_access
+  0000                00041         extern  _STATUSbits
+  0000                00042         extern  _PORTAbits
+  0000                00043         extern  _PORTBbits
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE  2
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+  0000                00044         extern  _PORTCbits
+  0000                00045         extern  _INTCONbits
+  0000                00046         extern  _PIR1bits
+  0000                00047         extern  _PIR2bits
+  0000                00048         extern  _T1CONbits
+  0000                00049         extern  _T2CONbits
+  0000                00050         extern  _SSPCONbits
+  0000                00051         extern  _CCP1CONbits
+  0000                00052         extern  _RCSTAbits
+  0000                00053         extern  _CCP2CONbits
+  0000                00054         extern  _ADCON0bits
+  0000                00055         extern  _OPTION_REGbits
+  0000                00056         extern  _TRISAbits
+  0000                00057         extern  _TRISBbits
+  0000                00058         extern  _TRISCbits
+  0000                00059         extern  _PIE1bits
+  0000                00060         extern  _PIE2bits
+  0000                00061         extern  _PCONbits
+  0000                00062         extern  _SSPCON2bits
+  0000                00063         extern  _SSPSTATbits
+  0000                00064         extern  _TXSTAbits
+  0000                00065         extern  _CMCONbits
+  0000                00066         extern  _CVRCONbits
+  0000                00067         extern  _ADCON1bits
+  0000                00068         extern  _EECON1bits
+  0000                00069         extern  _INDF
+  0000                00070         extern  _TMR0
+  0000                00071         extern  _PCL
+  0000                00072         extern  _STATUS
+  0000                00073         extern  _FSR
+  0000                00074         extern  _PORTA
+  0000                00075         extern  _PORTB
+  0000                00076         extern  _PORTC
+  0000                00077         extern  _PCLATH
+  0000                00078         extern  _INTCON
+  0000                00079         extern  _PIR1
+  0000                00080         extern  _PIR2
+  0000                00081         extern  _TMR1
+  0000                00082         extern  _TMR1L
+  0000                00083         extern  _TMR1H
+  0000                00084         extern  _T1CON
+  0000                00085         extern  _TMR2
+  0000                00086         extern  _T2CON
+  0000                00087         extern  _SSPBUF
+  0000                00088         extern  _SSPCON
+  0000                00089         extern  _CCPR1
+  0000                00090         extern  _CCPR1L
+  0000                00091         extern  _CCPR1H
+  0000                00092         extern  _CCP1CON
+  0000                00093         extern  _RCSTA
+  0000                00094         extern  _TXREG
+  0000                00095         extern  _RCREG
+  0000                00096         extern  _CCPR2
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE  3
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+  0000                00097         extern  _CCPR2L
+  0000                00098         extern  _CCPR2H
+  0000                00099         extern  _CCP2CON
+  0000                00100         extern  _ADRESH
+  0000                00101         extern  _ADCON0
+  0000                00102         extern  _OPTION_REG
+  0000                00103         extern  _TRISA
+  0000                00104         extern  _TRISB
+  0000                00105         extern  _TRISC
+  0000                00106         extern  _PIE1
+  0000                00107         extern  _PIE2
+  0000                00108         extern  _PCON
+  0000                00109         extern  _SSPCON2
+  0000                00110         extern  _PR2
+  0000                00111         extern  _SSPADD
+  0000                00112         extern  _SSPSTAT
+  0000                00113         extern  _TXSTA
+  0000                00114         extern  _SPBRG
+  0000                00115         extern  _CMCON
+  0000                00116         extern  _CVRCON
+  0000                00117         extern  _ADRESL
+  0000                00118         extern  _ADCON1
+  0000                00119         extern  _EEDATA
+  0000                00120         extern  _EEADR
+  0000                00121         extern  _EEDATH
+  0000                00122         extern  _EEADRH
+  0000                00123         extern  _EECON1
+  0000                00124         extern  _EECON2
+                      00125 
+  0000                00126         extern PSAVE
+  0000                00127         extern SSAVE
+  0000                00128         extern WSAVE
+  0000                00129         extern STK12
+  0000                00130         extern STK11
+  0000                00131         extern STK10
+  0000                00132         extern STK09
+  0000                00133         extern STK08
+  0000                00134         extern STK07
+  0000                00135         extern STK06
+  0000                00136         extern STK05
+  0000                00137         extern STK04
+  0000                00138         extern STK03
+  0000                00139         extern STK02
+  0000                00140         extern STK01
+  0000                00141         extern STK00
+                      00142 ;--------------------------------------------------------
+                      00143 ; global declarations
+                      00144 ;--------------------------------------------------------
+  0000                00145         global  _ds18b20_temperature
+  0000                00146         global  _ds18b20_value
+  0000                00147         global  _ds18b20_start_conversion
+                      00148 
+                      00149 ;--------------------------------------------------------
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE  4
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00150 ; global definitions
+                      00151 ;--------------------------------------------------------
+                      00152 ;--------------------------------------------------------
+                      00153 ; absolute symbol definitions
+                      00154 ;--------------------------------------------------------
+                      00155 ;--------------------------------------------------------
+                      00156 ; compiler-defined variables
+                      00157 ;--------------------------------------------------------
+                      00158 UDL_ds18b20_0   udata
+0000                  00159 r0x1017 res     1
+0001                  00160 r0x1018 res     1
+0002                  00161 r0x1011 res     1
+0003                  00162 r0x1012 res     1
+0004                  00163 r0x1013 res     1
+0005                  00164 r0x1014 res     1
+0006                  00165 r0x1015 res     1
+0007                  00166 r0x100A res     1
+0008                  00167 r0x1009 res     1
+0009                  00168 r0x100B res     1
+000A                  00169 r0x100D res     1
+000B                  00170 r0x100C res     1
+000C                  00171 r0x100F res     1
+000D                  00172 r0x100E res     1
+000E                  00173 r0x1010 res     1
+000F                  00174 _ds18b20_value_scratch_65536_35 res     9
+                      00175 ;--------------------------------------------------------
+                      00176 ; initialized data
+                      00177 ;--------------------------------------------------------
+                      00178 ;--------------------------------------------------------
+                      00179 ; overlayable items in internal ram 
+                      00180 ;--------------------------------------------------------
+                      00181 ;       udata_ovr
+                      00182 ;--------------------------------------------------------
+                      00183 ; code
+                      00184 ;--------------------------------------------------------
+                      00185 code_ds18b20    code
+                      00186 ;***
+                      00187 ;  pBlock Stats: dbName = C
+                      00188 ;***
+                      00189 ;has an exit
+                      00190 ;functions called:
+                      00191 ;   ___uint2fs
+                      00192 ;   ___sint2fs
+                      00193 ;   ___fsdiv
+                      00194 ;   ___fslt
+                      00195 ;   ___fsadd
+                      00196 ;   ___fsdiv
+                      00197 ;   ___fssub
+                      00198 ;   ___fsdiv
+                      00199 ;   ___fssub
+                      00200 ;   ___uint2fs
+                      00201 ;   ___sint2fs
+                      00202 ;   ___fsdiv
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE  5
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00203 ;   ___fslt
+                      00204 ;   ___fsadd
+                      00205 ;   ___fsdiv
+                      00206 ;   ___fssub
+                      00207 ;   ___fsdiv
+                      00208 ;   ___fssub
+                      00209 ;15 compiler assigned registers:
+                      00210 ;   r0x1009
+                      00211 ;   STK00
+                      00212 ;   r0x100A
+                      00213 ;   STK01
+                      00214 ;   r0x100B
+                      00215 ;   r0x100C
+                      00216 ;   r0x100D
+                      00217 ;   STK02
+                      00218 ;   r0x100E
+                      00219 ;   r0x100F
+                      00220 ;   r0x1010
+                      00221 ;   STK06
+                      00222 ;   STK05
+                      00223 ;   STK04
+                      00224 ;   STK03
+                      00225 ;; Starting pCode block
+                      00226 S_ds18b20__ds18b20_temperature  code
+0000                  00227 _ds18b20_temperature:
+                      00228 ; 2 exit points
+                      00229 ;       .line   55; "ds18b20.c" ds18b20_temperature(uint16_t value, uint8_t shift) {
+0000   0??? 0???      00230         BANKSEL r0x1009
+0002   00??           00231         MOVWF   r0x1009
+0003   08??           00232         MOVF    STK00,W
+0004   00??           00233         MOVWF   r0x100A
+0005   08??           00234         MOVF    STK01,W
+0006   00??           00235         MOVWF   r0x100B
+                      00236 ;       .line   58; "ds18b20.c" t = (double)value;
+0007   08??           00237         MOVF    r0x100A,W
+0008   00??           00238         MOVWF   STK00
+0009   08??           00239         MOVF    r0x1009,W
+000A   0??? 0???      00240         PAGESEL ___uint2fs
+000C   2???           00241         CALL    ___uint2fs
+000D   0??? 0???      00242         PAGESEL $
+000F   0??? 0???      00243         BANKSEL r0x100C
+0011   00??           00244         MOVWF   r0x100C
+0012   08??           00245         MOVF    STK00,W
+0013   00??           00246         MOVWF   r0x100D
+0014   08??           00247         MOVF    STK01,W
+0015   00??           00248         MOVWF   r0x1009
+0016   08??           00249         MOVF    STK02,W
+0017   00??           00250         MOVWF   r0x100A
+                      00251 ;       .line   60; "ds18b20.c" if(shift)
+0018   08??           00252         MOVF    r0x100B,W
+0019   1903           00253         BTFSC   STATUS,2
+001A   2???           00254         GOTO    _00132_DS_
+                      00255 ;       .line   61; "ds18b20.c" t /= (1 << shift);
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE  6
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+001B   3000           00256         MOVLW   0x00
+001C   00??           00257         MOVWF   r0x100E
+001D   3001           00258         MOVLW   0x01
+001E   00??           00259         MOVWF   r0x100F
+001F   08??           00260         MOVF    r0x100B,W
+0020   3C00           00261         SUBLW   0x00
+0021   1903           00262         BTFSC   STATUS,2
+0022   2???           00263         GOTO    _00149_DS_
+0023                  00264 _00148_DS_:
+0023   0??? 0???      00265         BANKSEL r0x100F
+0025   0D??           00266         RLF     r0x100F,F
+0026   0D??           00267         RLF     r0x100E,F
+0027   3E01           00268         ADDLW   0x01
+0028   1C03           00269         BTFSS   STATUS,0
+0029   2???           00270         GOTO    _00148_DS_
+002A                  00271 _00149_DS_:
+002A   0??? 0???      00272         BANKSEL r0x100F
+002C   08??           00273         MOVF    r0x100F,W
+002D   00??           00274         MOVWF   STK00
+002E   08??           00275         MOVF    r0x100E,W
+002F   0??? 0???      00276         PAGESEL ___sint2fs
+0031   2???           00277         CALL    ___sint2fs
+0032   0??? 0???      00278         PAGESEL $
+0034   0??? 0???      00279         BANKSEL r0x1010
+0036   00??           00280         MOVWF   r0x1010
+0037   08??           00281         MOVF    STK00,W
+0038   00??           00282         MOVWF   r0x100E
+0039   08??           00283         MOVF    STK01,W
+003A   00??           00284         MOVWF   r0x100F
+003B   08??           00285         MOVF    STK02,W
+003C   00??           00286         MOVWF   r0x100B
+003D   08??           00287         MOVF    r0x100A,W
+003E   00??           00288         MOVWF   STK06
+003F   08??           00289         MOVF    r0x1009,W
+0040   00??           00290         MOVWF   STK05
+0041   08??           00291         MOVF    r0x100D,W
+0042   00??           00292         MOVWF   STK04
+0043   08??           00293         MOVF    r0x100C,W
+0044   00??           00294         MOVWF   STK03
+0045   08??           00295         MOVF    r0x100B,W
+0046   00??           00296         MOVWF   STK02
+0047   08??           00297         MOVF    r0x100F,W
+0048   00??           00298         MOVWF   STK01
+0049   08??           00299         MOVF    r0x100E,W
+004A   00??           00300         MOVWF   STK00
+004B   08??           00301         MOVF    r0x1010,W
+004C   0??? 0???      00302         PAGESEL ___fsdiv
+004E   2???           00303         CALL    ___fsdiv
+004F   0??? 0???      00304         PAGESEL $
+0051   0??? 0???      00305         BANKSEL r0x100C
+0053   00??           00306         MOVWF   r0x100C
+0054   08??           00307         MOVF    STK00,W
+0055   00??           00308         MOVWF   r0x100D
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE  7
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+0056   08??           00309         MOVF    STK01,W
+0057   00??           00310         MOVWF   r0x1009
+0058   08??           00311         MOVF    STK02,W
+0059   00??           00312         MOVWF   r0x100A
+005A                  00313 _00132_DS_:
+                      00314 ;       .line   63; "ds18b20.c" if(t >= 0)
+005A   0??? 0???      00315         BANKSEL r0x100A
+005C   08??           00316         MOVF    r0x100A,W
+005D   00??           00317         MOVWF   STK06
+005E   08??           00318         MOVF    r0x1009,W
+005F   00??           00319         MOVWF   STK05
+0060   08??           00320         MOVF    r0x100D,W
+0061   00??           00321         MOVWF   STK04
+0062   08??           00322         MOVF    r0x100C,W
+0063   00??           00323         MOVWF   STK03
+0064   3000           00324         MOVLW   0x00
+0065   00??           00325         MOVWF   STK02
+0066   3000           00326         MOVLW   0x00
+0067   00??           00327         MOVWF   STK01
+0068   3000           00328         MOVLW   0x00
+0069   00??           00329         MOVWF   STK00
+006A   3000           00330         MOVLW   0x00
+006B   0??? 0???      00331         PAGESEL ___fslt
+006D   2???           00332         CALL    ___fslt
+006E   0??? 0???      00333         PAGESEL $
+0070   0??? 0???      00334         BANKSEL r0x100B
+0072   00??           00335         MOVWF   r0x100B
+0073   08??           00336         MOVF    r0x100B,W
+0074   1D03           00337         BTFSS   STATUS,2
+0075   2???           00338         GOTO    _00134_DS_
+                      00339 ;       .line   64; "ds18b20.c" t = (t + 8) / 16;
+0076   08??           00340         MOVF    r0x100A,W
+0077   00??           00341         MOVWF   STK06
+0078   08??           00342         MOVF    r0x1009,W
+0079   00??           00343         MOVWF   STK05
+007A   08??           00344         MOVF    r0x100D,W
+007B   00??           00345         MOVWF   STK04
+007C   08??           00346         MOVF    r0x100C,W
+007D   00??           00347         MOVWF   STK03
+007E   3000           00348         MOVLW   0x00
+007F   00??           00349         MOVWF   STK02
+0080   3000           00350         MOVLW   0x00
+0081   00??           00351         MOVWF   STK01
+0082   3000           00352         MOVLW   0x00
+0083   00??           00353         MOVWF   STK00
+0084   3041           00354         MOVLW   0x41
+0085   0??? 0???      00355         PAGESEL ___fsadd
+0087   2???           00356         CALL    ___fsadd
+0088   0??? 0???      00357         PAGESEL $
+008A   0??? 0???      00358         BANKSEL r0x1010
+008C   00??           00359         MOVWF   r0x1010
+008D   08??           00360         MOVF    STK00,W
+008E   00??           00361         MOVWF   r0x100E
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE  8
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+008F   08??           00362         MOVF    STK01,W
+0090   00??           00363         MOVWF   r0x100F
+0091   08??           00364         MOVF    STK02,W
+0092   00??           00365         MOVWF   r0x100B
+0093   00??           00366         MOVWF   STK06
+0094   08??           00367         MOVF    r0x100F,W
+0095   00??           00368         MOVWF   STK05
+0096   08??           00369         MOVF    r0x100E,W
+0097   00??           00370         MOVWF   STK04
+0098   08??           00371         MOVF    r0x1010,W
+0099   00??           00372         MOVWF   STK03
+009A   3000           00373         MOVLW   0x00
+009B   00??           00374         MOVWF   STK02
+009C   3000           00375         MOVLW   0x00
+009D   00??           00376         MOVWF   STK01
+009E   3080           00377         MOVLW   0x80
+009F   00??           00378         MOVWF   STK00
+00A0   3041           00379         MOVLW   0x41
+00A1   0??? 0???      00380         PAGESEL ___fsdiv
+00A3   2???           00381         CALL    ___fsdiv
+00A4   0??? 0???      00382         PAGESEL $
+00A6   0??? 0???      00383         BANKSEL r0x1010
+00A8   00??           00384         MOVWF   r0x1010
+00A9   08??           00385         MOVF    STK00,W
+00AA   00??           00386         MOVWF   r0x100E
+00AB   08??           00387         MOVF    STK01,W
+00AC   00??           00388         MOVWF   r0x100F
+00AD   08??           00389         MOVF    STK02,W
+00AE   00??           00390         MOVWF   r0x100B
+00AF   2???           00391         GOTO    _00135_DS_
+00B0                  00392 _00134_DS_:
+                      00393 ;       .line   67; "ds18b20.c" t = (t - 8) / 16;
+00B0   0??? 0???      00394         BANKSEL r0x100A
+00B2   08??           00395         MOVF    r0x100A,W
+00B3   00??           00396         MOVWF   STK06
+00B4   08??           00397         MOVF    r0x1009,W
+00B5   00??           00398         MOVWF   STK05
+00B6   08??           00399         MOVF    r0x100D,W
+00B7   00??           00400         MOVWF   STK04
+00B8   08??           00401         MOVF    r0x100C,W
+00B9   00??           00402         MOVWF   STK03
+00BA   3000           00403         MOVLW   0x00
+00BB   00??           00404         MOVWF   STK02
+00BC   3000           00405         MOVLW   0x00
+00BD   00??           00406         MOVWF   STK01
+00BE   3000           00407         MOVLW   0x00
+00BF   00??           00408         MOVWF   STK00
+00C0   3041           00409         MOVLW   0x41
+00C1   0??? 0???      00410         PAGESEL ___fssub
+00C3   2???           00411         CALL    ___fssub
+00C4   0??? 0???      00412         PAGESEL $
+00C6   0??? 0???      00413         BANKSEL r0x100C
+00C8   00??           00414         MOVWF   r0x100C
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE  9
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+00C9   08??           00415         MOVF    STK00,W
+00CA   00??           00416         MOVWF   r0x100D
+00CB   08??           00417         MOVF    STK01,W
+00CC   00??           00418         MOVWF   r0x1009
+00CD   08??           00419         MOVF    STK02,W
+00CE   00??           00420         MOVWF   r0x100A
+00CF   00??           00421         MOVWF   STK06
+00D0   08??           00422         MOVF    r0x1009,W
+00D1   00??           00423         MOVWF   STK05
+00D2   08??           00424         MOVF    r0x100D,W
+00D3   00??           00425         MOVWF   STK04
+00D4   08??           00426         MOVF    r0x100C,W
+00D5   00??           00427         MOVWF   STK03
+00D6   3000           00428         MOVLW   0x00
+00D7   00??           00429         MOVWF   STK02
+00D8   3000           00430         MOVLW   0x00
+00D9   00??           00431         MOVWF   STK01
+00DA   3080           00432         MOVLW   0x80
+00DB   00??           00433         MOVWF   STK00
+00DC   3041           00434         MOVLW   0x41
+00DD   0??? 0???      00435         PAGESEL ___fsdiv
+00DF   2???           00436         CALL    ___fsdiv
+00E0   0??? 0???      00437         PAGESEL $
+00E2   0??? 0???      00438         BANKSEL r0x1010
+00E4   00??           00439         MOVWF   r0x1010
+00E5   08??           00440         MOVF    STK00,W
+00E6   00??           00441         MOVWF   r0x100E
+00E7   08??           00442         MOVF    STK01,W
+00E8   00??           00443         MOVWF   r0x100F
+00E9   08??           00444         MOVF    STK02,W
+00EA   00??           00445         MOVWF   r0x100B
+00EB                  00446 _00135_DS_:
+                      00447 ;       .line   69; "ds18b20.c" t -= 0.5;
+00EB   0??? 0???      00448         BANKSEL r0x100B
+00ED   08??           00449         MOVF    r0x100B,W
+00EE   00??           00450         MOVWF   STK06
+00EF   08??           00451         MOVF    r0x100F,W
+00F0   00??           00452         MOVWF   STK05
+00F1   08??           00453         MOVF    r0x100E,W
+00F2   00??           00454         MOVWF   STK04
+00F3   08??           00455         MOVF    r0x1010,W
+00F4   00??           00456         MOVWF   STK03
+00F5   3000           00457         MOVLW   0x00
+00F6   00??           00458         MOVWF   STK02
+00F7   3000           00459         MOVLW   0x00
+00F8   00??           00460         MOVWF   STK01
+00F9   3000           00461         MOVLW   0x00
+00FA   00??           00462         MOVWF   STK00
+00FB   303F           00463         MOVLW   0x3f
+00FC   0??? 0???      00464         PAGESEL ___fssub
+00FE   2???           00465         CALL    ___fssub
+00FF   0??? 0???      00466         PAGESEL $
+0101   0??? 0???      00467         BANKSEL r0x100D
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE 10
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+0103   00??           00468         MOVWF   r0x100D
+0104   08??           00469         MOVF    STK00,W
+0105   00??           00470         MOVWF   r0x100B
+0106   08??           00471         MOVF    STK01,W
+0107   00??           00472         MOVWF   r0x1009
+0108   08??           00473         MOVF    STK02,W
+                      00474 ;       .line   71; "ds18b20.c" return t;
+0109   00??           00475         MOVWF   r0x100A
+010A   00??           00476         MOVWF   STK02
+010B   08??           00477         MOVF    r0x1009,W
+010C   00??           00478         MOVWF   STK01
+010D   08??           00479         MOVF    r0x100B,W
+010E   00??           00480         MOVWF   STK00
+010F   08??           00481         MOVF    r0x100D,W
+                      00482 ;       .line   72; "ds18b20.c" }
+0110   0008           00483         RETURN  
+                      00484 ; exit point of _ds18b20_temperature
+                      00485 
+                      00486 ;***
+                      00487 ;  pBlock Stats: dbName = C
+                      00488 ;***
+                      00489 ;has an exit
+                      00490 ;functions called:
+                      00491 ;   _ow_reset
+                      00492 ;   _ow_write_byte
+                      00493 ;   _ow_write_byte
+                      00494 ;   _ow_read_byte
+                      00495 ;   _ow_read_byte
+                      00496 ;   _ow_reset
+                      00497 ;   _ow_reset
+                      00498 ;   _ow_write_byte
+                      00499 ;   _ow_write_byte
+                      00500 ;   _ow_read_byte
+                      00501 ;   _ow_read_byte
+                      00502 ;   _ow_reset
+                      00503 ;7 compiler assigned registers:
+                      00504 ;   STK00
+                      00505 ;   r0x1011
+                      00506 ;   r0x1012
+                      00507 ;   r0x1013
+                      00508 ;   r0x1014
+                      00509 ;   r0x1015
+                      00510 ;   r0x1016
+                      00511 ;; Starting pCode block
+                      00512 S_ds18b20__ds18b20_value        code
+0000                  00513 _ds18b20_value:
+                      00514 ; 2 exit points
+                      00515 ;       .line   25; "ds18b20.c" ow_reset(); /*if(ow_reset())
+0000   0??? 0???      00516         PAGESEL _ow_reset
+0002   2???           00517         CALL    _ow_reset
+0003   0??? 0???      00518         PAGESEL $
+                      00519 ;       .line   31; "ds18b20.c" ow_write_byte(OW_SKIP_ROM, 0);
+0005   3000           00520         MOVLW   0x00
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE 11
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+0006   00??           00521         MOVWF   STK00
+0007   30CC           00522         MOVLW   0xcc
+0008   0??? 0???      00523         PAGESEL _ow_write_byte
+000A   2???           00524         CALL    _ow_write_byte
+000B   0??? 0???      00525         PAGESEL $
+                      00526 ;       .line   32; "ds18b20.c" ow_write_byte(DS18B20_READ_SCRATCHPAD, 0); // Read scratch pad command
+000D   3000           00527         MOVLW   0x00
+000E   00??           00528         MOVWF   STK00
+000F   30BE           00529         MOVLW   0xbe
+0010   0??? 0???      00530         PAGESEL _ow_write_byte
+0012   2???           00531         CALL    _ow_write_byte
+0013   0??? 0???      00532         PAGESEL $
+                      00533 ;       .line   36; "ds18b20.c" for(i = 0; i <= 7; i++) {
+0015   0??? 0???      00534         BANKSEL r0x1011
+0017   01??           00535         CLRF    r0x1011
+0018   01??           00536         CLRF    r0x1012
+0019                  00537 _00113_DS_:
+                      00538 ;       .line   37; "ds18b20.c" scratch[i] = ow_read_byte();
+0019   0??? 0???      00539         BANKSEL r0x1011
+001B   08??           00540         MOVF    r0x1011,W
+001C   3E??           00541         ADDLW   (_ds18b20_value_scratch_65536_35 + 0)
+001D   00??           00542         MOVWF   r0x1013
+001E   30??           00543         MOVLW   high (_ds18b20_value_scratch_65536_35 + 0)
+001F   00??           00544         MOVWF   r0x1014
+0020   08??           00545         MOVF    r0x1012,W
+0021   1803           00546         BTFSC   STATUS,0
+0022   0F??           00547         INCFSZ  r0x1012,W
+0023   07??           00548         ADDWF   r0x1014,F
+0024   0??? 0???      00549         PAGESEL _ow_read_byte
+0026   2???           00550         CALL    _ow_read_byte
+0027   0??? 0???      00551         PAGESEL $
+0029   0??? 0???      00552         BANKSEL r0x1015
+002B   00??           00553         MOVWF   r0x1015
+002C   08??           00554         MOVF    r0x1013,W
+002D   1283 1303      00555         BANKSEL FSR
+002F   0084           00556         MOVWF   FSR
+0030   1383           00557         BCF     STATUS,7
+0031   0??? 0???      00558         BANKSEL r0x1014
+0033   18??           00559         BTFSC   r0x1014,0
+0034   1783           00560         BSF     STATUS,7
+0035   08??           00561         MOVF    r0x1015,W
+0036   1283 1303      00562         BANKSEL INDF
+0038   0080           00563         MOVWF   INDF
+                      00564 ;       .line   36; "ds18b20.c" for(i = 0; i <= 7; i++) {
+0039   0??? 0???      00565         BANKSEL r0x1011
+003B   0A??           00566         INCF    r0x1011,F
+003C   1903           00567         BTFSC   STATUS,2
+003D   0A??           00568         INCF    r0x1012,F
+                      00569 ;;swapping arguments (AOP_TYPEs 1/2)
+                      00570 ;;signed compare: left >= lit(0x8=8), size=2, mask=ffff
+003E   08??           00571         MOVF    r0x1012,W
+003F   3E80           00572         ADDLW   0x80
+0040   3E80           00573         ADDLW   0x80
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE 12
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+0041   1D03           00574         BTFSS   STATUS,2
+0042   2???           00575         GOTO    _00126_DS_
+0043   3008           00576         MOVLW   0x08
+0044   02??           00577         SUBWF   r0x1011,W
+0045                  00578 _00126_DS_:
+0045   1C03           00579         BTFSS   STATUS,0
+0046   2???           00580         GOTO    _00113_DS_
+                      00581 ;;genSkipc:3257: created from rifx:0x7fffec5f8050
+                      00582 ;       .line   41; "ds18b20.c" scratch[8] = ow_read_byte(); // Get crc byte
+0047   0??? 0???      00583         PAGESEL _ow_read_byte
+0049   2???           00584         CALL    _ow_read_byte
+004A   0??? 0???      00585         PAGESEL $
+004C   0??? 0???      00586         BANKSEL r0x1011
+004E   00??           00587         MOVWF   r0x1011
+004F   0??? 0???      00588         BANKSEL _ds18b20_value_scratch_65536_35
+0051   00??           00589         MOVWF   (_ds18b20_value_scratch_65536_35 + 8)
+                      00590 ;       .line   42; "ds18b20.c" ow_reset();
+0052   0??? 0???      00591         PAGESEL _ow_reset
+0054   2???           00592         CALL    _ow_reset
+0055   0??? 0???      00593         PAGESEL $
+                      00594 ;       .line   48; "ds18b20.c" { v = (((uint16_t)(unsigned)scratch[1] << 8) | (unsigned)scratch[0]); }
+0057   0??? 0???      00595         BANKSEL _ds18b20_value_scratch_65536_35
+0059   08??           00596         MOVF    (_ds18b20_value_scratch_65536_35 + 1),W
+005A   0??? 0???      00597         BANKSEL r0x1011
+005C   00??           00598         MOVWF   r0x1011
+005D   00??           00599         MOVWF   r0x1014
+005E   00??           00600         MOVWF   r0x1012
+005F   01??           00601         CLRF    r0x1013
+                      00602 ;;99    MOVF    r0x1012,W
+0060   01??           00603         CLRF    r0x1011
+0061   0??? 0???      00604         BANKSEL _ds18b20_value_scratch_65536_35
+0063   08??           00605         MOVF    (_ds18b20_value_scratch_65536_35 + 0),W
+0064   0??? 0???      00606         BANKSEL r0x1012
+0066   00??           00607         MOVWF   r0x1012
+0067   00??           00608         MOVWF   r0x1015
+0068   04??           00609         IORWF   r0x1011,F
+0069   3000           00610         MOVLW   0x00
+006A   04??           00611         IORWF   r0x1014,F
+                      00612 ;       .line   50; "ds18b20.c" return v;
+006B   08??           00613         MOVF    r0x1011,W
+006C   00??           00614         MOVWF   STK00
+006D   08??           00615         MOVF    r0x1014,W
+                      00616 ;       .line   51; "ds18b20.c" }
+006E   0008           00617         RETURN  
+                      00618 ; exit point of _ds18b20_value
+                      00619 
+                      00620 ;***
+                      00621 ;  pBlock Stats: dbName = C
+                      00622 ;***
+                      00623 ;has an exit
+                      00624 ;functions called:
+                      00625 ;   _ow_reset
+                      00626 ;   _ow_write_byte
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE 13
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00627 ;   _ow_write_byte
+                      00628 ;   _ow_reset
+                      00629 ;   _ow_write_byte
+                      00630 ;   _ow_write_byte
+                      00631 ;3 compiler assigned registers:
+                      00632 ;   STK00
+                      00633 ;   r0x1017
+                      00634 ;   r0x1018
+                      00635 ;; Starting pCode block
+                      00636 S_ds18b20__ds18b20_start_conversion     code
+0000                  00637 _ds18b20_start_conversion:
+                      00638 ; 2 exit points
+                      00639 ;       .line   7; "ds18b20.c"  ds18b20_start_conversion(int8_t actNumROM, BOOL parasite_power) {
+0000   08??           00640         MOVF    STK00,W
+0001   0??? 0???      00641         BANKSEL r0x1017
+0003   00??           00642         MOVWF   r0x1017
+                      00643 ;       .line   8; "ds18b20.c"  if(!ow_reset()) {                                   // If a device is pr
+                            esent
+0004   0??? 0???      00644         PAGESEL _ow_reset
+0006   2???           00645         CALL    _ow_reset
+0007   0??? 0???      00646         PAGESEL $
+0009   0??? 0???      00647         BANKSEL r0x1018
+000B   00??           00648         MOVWF   r0x1018
+000C   08??           00649         MOVF    r0x1018,W
+000D   1D03           00650         BTFSS   STATUS,2
+000E   2???           00651         GOTO    _00106_DS_
+                      00652 ;       .line   9; "ds18b20.c"  ow_write_byte(OW_SKIP_ROM, 0);                    // Skip Rom command
+000F   3000           00653         MOVLW   0x00
+0010   00??           00654         MOVWF   STK00
+0011   30CC           00655         MOVLW   0xcc
+0012   0??? 0???      00656         PAGESEL _ow_write_byte
+0014   2???           00657         CALL    _ow_write_byte
+0015   0??? 0???      00658         PAGESEL $
+                      00659 ;       .line   10; "ds18b20.c" ow_write_byte(DS18B20_CONVERT_T, parasite_power); // Temperature convert
+                             command
+0017   0??? 0???      00660         BANKSEL r0x1017
+0019   08??           00661         MOVF    r0x1017,W
+001A   00??           00662         MOVWF   STK00
+001B   3044           00663         MOVLW   0x44
+001C   0??? 0???      00664         PAGESEL _ow_write_byte
+001E   2???           00665         CALL    _ow_write_byte
+001F   0??? 0???      00666         PAGESEL $
+                      00667 ;       .line   12; "ds18b20.c" return 1;
+0021   3001           00668         MOVLW   0x01
+0022   2???           00669         GOTO    _00107_DS_
+0023                  00670 _00106_DS_:
+                      00671 ;       .line   15; "ds18b20.c" return 0;
+0023   3000           00672         MOVLW   0x00
+0024                  00673 _00107_DS_:
+                      00674 ;       .line   16; "ds18b20.c" }
+0024   0008           00675         RETURN  
+                      00676 ; exit point of _ds18b20_start_conversion
+                      00677 
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE 14
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00678 
+                      00679 ;       code size estimation:
+                      00680 ;         287+   67 =   354 instructions (  842 byte)
+                      00681 
+                      00682         end
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE 15
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+ACKDT                             CONSTANT      00000005              5
+ACKEN                             CONSTANT      00000004              4
+ACKSTAT                           CONSTANT      00000006              6
+ADCON0                            CONSTANT      0000001F             31
+ADCON1                            CONSTANT      0000009F            159
+ADCS0                             CONSTANT      00000006              6
+ADCS1                             CONSTANT      00000007              7
+ADCS2                             CONSTANT      00000006              6
+ADDEN                             CONSTANT      00000003              3
+ADFM                              CONSTANT      00000007              7
+ADIE                              CONSTANT      00000006              6
+ADIF                              CONSTANT      00000006              6
+ADON                              CONSTANT      00000000              0
+ADRESH                            CONSTANT      0000001E             30
+ADRESL                            CONSTANT      0000009E            158
+BCLIE                             CONSTANT      00000003              3
+BCLIF                             CONSTANT      00000003              3
+BF                                CONSTANT      00000000              0
+BRGH                              CONSTANT      00000002              2
+C                                 CONSTANT      00000000              0
+C1INV                             CONSTANT      00000004              4
+C1OUT                             CONSTANT      00000006              6
+C2INV                             CONSTANT      00000005              5
+C2OUT                             CONSTANT      00000007              7
+CCP1CON                           CONSTANT      00000017             23
+CCP1IE                            CONSTANT      00000002              2
+CCP1IF                            CONSTANT      00000002              2
+CCP1M0                            CONSTANT      00000000              0
+CCP1M1                            CONSTANT      00000001              1
+CCP1M2                            CONSTANT      00000002              2
+CCP1M3                            CONSTANT      00000003              3
+CCP1X                             CONSTANT      00000005              5
+CCP1Y                             CONSTANT      00000004              4
+CCP2CON                           CONSTANT      0000001D             29
+CCP2IE                            CONSTANT      00000000              0
+CCP2IF                            CONSTANT      00000000              0
+CCP2M0                            CONSTANT      00000000              0
+CCP2M1                            CONSTANT      00000001              1
+CCP2M2                            CONSTANT      00000002              2
+CCP2M3                            CONSTANT      00000003              3
+CCP2X                             CONSTANT      00000005              5
+CCP2Y                             CONSTANT      00000004              4
+CCPR1                             CONSTANT      00000015             21
+CCPR1H                            CONSTANT      00000016             22
+CCPR1L                            CONSTANT      00000015             21
+CCPR2                             CONSTANT      0000001B             27
+CCPR2H                            CONSTANT      0000001C             28
+CCPR2L                            CONSTANT      0000001B             27
+CHS0                              CONSTANT      00000003              3
+CHS1                              CONSTANT      00000004              4
+CHS2                              CONSTANT      00000005              5
+CIS                               CONSTANT      00000003              3
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE 16
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+CKE                               CONSTANT      00000006              6
+CKP                               CONSTANT      00000004              4
+CM0                               CONSTANT      00000000              0
+CM1                               CONSTANT      00000001              1
+CM2                               CONSTANT      00000002              2
+CMCON                             CONSTANT      0000009C            156
+CMIE                              CONSTANT      00000006              6
+CMIF                              CONSTANT      00000006              6
+CREN                              CONSTANT      00000004              4
+CSRC                              CONSTANT      00000007              7
+CVR0                              CONSTANT      00000000              0
+CVR1                              CONSTANT      00000001              1
+CVR2                              CONSTANT      00000002              2
+CVR3                              CONSTANT      00000003              3
+CVRCON                            CONSTANT      0000009D            157
+CVREN                             CONSTANT      00000007              7
+CVROE                             CONSTANT      00000006              6
+CVRR                              CONSTANT      00000005              5
+D                                 CONSTANT      00000005              5
+DATA_ADDRESS                      CONSTANT      00000005              5
+DC                                CONSTANT      00000001              1
+D_A                               CONSTANT      00000005              5
+D_NOT_A                           CONSTANT      00000005              5
+EEADR                             CONSTANT      0000010D            269
+EEADRH                            CONSTANT      0000010F            271
+EECON1                            CONSTANT      0000018C            396
+EECON2                            CONSTANT      0000018D            397
+EEDATA                            CONSTANT      0000010C            268
+EEDATH                            CONSTANT      0000010E            270
+EEIE                              CONSTANT      00000004              4
+EEIF                              CONSTANT      00000004              4
+EEPGD                             CONSTANT      00000007              7
+F                                 CONSTANT      00000001              1
+FERR                              CONSTANT      00000002              2
+FSR                               CONSTANT      00000004              4
+GCEN                              CONSTANT      00000007              7
+GIE                               CONSTANT      00000007              7
+GO                                CONSTANT      00000002              2
+GO_DONE                           CONSTANT      00000002              2
+GO_NOT_DONE                       CONSTANT      00000002              2
+I2C_DATA                          CONSTANT      00000005              5
+I2C_READ                          CONSTANT      00000002              2
+I2C_START                         CONSTANT      00000003              3
+I2C_STOP                          CONSTANT      00000004              4
+INDF                              CONSTANT      00000000              0
+INTCON                            CONSTANT      0000000B             11
+INTE                              CONSTANT      00000004              4
+INTEDG                            CONSTANT      00000006              6
+INTF                              CONSTANT      00000001              1
+IRP                               CONSTANT      00000007              7
+NOT_A                             CONSTANT      00000005              5
+NOT_ADDRESS                       CONSTANT      00000005              5
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE 17
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+NOT_BO                            CONSTANT      00000000              0
+NOT_BOR                           CONSTANT      00000000              0
+NOT_DONE                          CONSTANT      00000002              2
+NOT_PD                            CONSTANT      00000003              3
+NOT_POR                           CONSTANT      00000001              1
+NOT_RBPU                          CONSTANT      00000007              7
+NOT_RC8                           CONSTANT      00000006              6
+NOT_T1SYNC                        CONSTANT      00000002              2
+NOT_TO                            CONSTANT      00000004              4
+NOT_TX8                           CONSTANT      00000006              6
+NOT_W                             CONSTANT      00000002              2
+NOT_WRITE                         CONSTANT      00000002              2
+OERR                              CONSTANT      00000001              1
+OPTION_REG                        CONSTANT      00000081            129
+P                                 CONSTANT      00000004              4
+PCFG0                             CONSTANT      00000000              0
+PCFG1                             CONSTANT      00000001              1
+PCFG2                             CONSTANT      00000002              2
+PCFG3                             CONSTANT      00000003              3
+PCL                               CONSTANT      00000002              2
+PCLATH                            CONSTANT      0000000A             10
+PCON                              CONSTANT      0000008E            142
+PEIE                              CONSTANT      00000006              6
+PEN                               CONSTANT      00000002              2
+PIE1                              CONSTANT      0000008C            140
+PIE2                              CONSTANT      0000008D            141
+PIR1                              CONSTANT      0000000C             12
+PIR2                              CONSTANT      0000000D             13
+PORTA                             CONSTANT      00000005              5
+PORTB                             CONSTANT      00000006              6
+PORTC                             CONSTANT      00000007              7
+PR2                               CONSTANT      00000092            146
+PS0                               CONSTANT      00000000              0
+PS1                               CONSTANT      00000001              1
+PS2                               CONSTANT      00000002              2
+PSA                               CONSTANT      00000003              3
+PSAVE                             EXTERNAL      00000000              0
+R                                 CONSTANT      00000002              2
+RA0                               CONSTANT      00000000              0
+RA1                               CONSTANT      00000001              1
+RA2                               CONSTANT      00000002              2
+RA3                               CONSTANT      00000003              3
+RA4                               CONSTANT      00000004              4
+RA5                               CONSTANT      00000005              5
+RB0                               CONSTANT      00000000              0
+RB1                               CONSTANT      00000001              1
+RB2                               CONSTANT      00000002              2
+RB3                               CONSTANT      00000003              3
+RB4                               CONSTANT      00000004              4
+RB5                               CONSTANT      00000005              5
+RB6                               CONSTANT      00000006              6
+RB7                               CONSTANT      00000007              7
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE 18
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+RBIE                              CONSTANT      00000003              3
+RBIF                              CONSTANT      00000000              0
+RC0                               CONSTANT      00000000              0
+RC1                               CONSTANT      00000001              1
+RC2                               CONSTANT      00000002              2
+RC3                               CONSTANT      00000003              3
+RC4                               CONSTANT      00000004              4
+RC5                               CONSTANT      00000005              5
+RC6                               CONSTANT      00000006              6
+RC7                               CONSTANT      00000007              7
+RC8_9                             CONSTANT      00000006              6
+RC9                               CONSTANT      00000006              6
+RCD8                              CONSTANT      00000000              0
+RCEN                              CONSTANT      00000003              3
+RCIE                              CONSTANT      00000005              5
+RCIF                              CONSTANT      00000005              5
+RCREG                             CONSTANT      0000001A             26
+RCSTA                             CONSTANT      00000018             24
+RD                                CONSTANT      00000000              0
+READ_WRITE                        CONSTANT      00000002              2
+RP0                               CONSTANT      00000005              5
+RP1                               CONSTANT      00000006              6
+RSEN                              CONSTANT      00000001              1
+RX9                               CONSTANT      00000006              6
+RX9D                              CONSTANT      00000000              0
+R_NOT_W                           CONSTANT      00000002              2
+R_W                               CONSTANT      00000002              2
+S                                 CONSTANT      00000003              3
+SEN                               CONSTANT      00000000              0
+SMP                               CONSTANT      00000007              7
+SPBRG                             CONSTANT      00000099            153
+SPEN                              CONSTANT      00000007              7
+SREN                              CONSTANT      00000005              5
+SSAVE                             EXTERNAL      00000000              0
+SSPADD                            CONSTANT      00000093            147
+SSPBUF                            CONSTANT      00000013             19
+SSPCON                            CONSTANT      00000014             20
+SSPCON2                           CONSTANT      00000091            145
+SSPEN                             CONSTANT      00000005              5
+SSPIE                             CONSTANT      00000003              3
+SSPIF                             CONSTANT      00000003              3
+SSPM0                             CONSTANT      00000000              0
+SSPM1                             CONSTANT      00000001              1
+SSPM2                             CONSTANT      00000002              2
+SSPM3                             CONSTANT      00000003              3
+SSPOV                             CONSTANT      00000006              6
+SSPSTAT                           CONSTANT      00000094            148
+STATUS                            CONSTANT      00000003              3
+STK00                             EXTERNAL      00000000              0
+STK01                             EXTERNAL      00000000              0
+STK02                             EXTERNAL      00000000              0
+STK03                             EXTERNAL      00000000              0
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE 19
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+STK04                             EXTERNAL      00000000              0
+STK05                             EXTERNAL      00000000              0
+STK06                             EXTERNAL      00000000              0
+STK07                             EXTERNAL      00000000              0
+STK08                             EXTERNAL      00000000              0
+STK09                             EXTERNAL      00000000              0
+STK10                             EXTERNAL      00000000              0
+STK11                             EXTERNAL      00000000              0
+STK12                             EXTERNAL      00000000              0
+SYNC                              CONSTANT      00000004              4
+T0CS                              CONSTANT      00000005              5
+T0IE                              CONSTANT      00000005              5
+T0IF                              CONSTANT      00000002              2
+T0SE                              CONSTANT      00000004              4
+T1CKPS0                           CONSTANT      00000004              4
+T1CKPS1                           CONSTANT      00000005              5
+T1CON                             CONSTANT      00000010             16
+T1INSYNC                          CONSTANT      00000002              2
+T1OSCEN                           CONSTANT      00000003              3
+T1SYNC                            CONSTANT      00000002              2
+T2CKPS0                           CONSTANT      00000000              0
+T2CKPS1                           CONSTANT      00000001              1
+T2CON                             CONSTANT      00000012             18
+TMR0                              CONSTANT      00000001              1
+TMR0IE                            CONSTANT      00000005              5
+TMR0IF                            CONSTANT      00000002              2
+TMR1                              CONSTANT      0000000E             14
+TMR1CS                            CONSTANT      00000001              1
+TMR1H                             CONSTANT      0000000F             15
+TMR1IE                            CONSTANT      00000000              0
+TMR1IF                            CONSTANT      00000000              0
+TMR1L                             CONSTANT      0000000E             14
+TMR1ON                            CONSTANT      00000000              0
+TMR2                              CONSTANT      00000011             17
+TMR2IE                            CONSTANT      00000001              1
+TMR2IF                            CONSTANT      00000001              1
+TMR2ON                            CONSTANT      00000002              2
+TOUTPS0                           CONSTANT      00000003              3
+TOUTPS1                           CONSTANT      00000004              4
+TOUTPS2                           CONSTANT      00000005              5
+TOUTPS3                           CONSTANT      00000006              6
+TRISA                             CONSTANT      00000085            133
+TRISA0                            CONSTANT      00000000              0
+TRISA1                            CONSTANT      00000001              1
+TRISA2                            CONSTANT      00000002              2
+TRISA3                            CONSTANT      00000003              3
+TRISA4                            CONSTANT      00000004              4
+TRISA5                            CONSTANT      00000005              5
+TRISB                             CONSTANT      00000086            134
+TRISB0                            CONSTANT      00000000              0
+TRISB1                            CONSTANT      00000001              1
+TRISB2                            CONSTANT      00000002              2
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE 20
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+TRISB3                            CONSTANT      00000003              3
+TRISB4                            CONSTANT      00000004              4
+TRISB5                            CONSTANT      00000005              5
+TRISB6                            CONSTANT      00000006              6
+TRISB7                            CONSTANT      00000007              7
+TRISC                             CONSTANT      00000087            135
+TRISC0                            CONSTANT      00000000              0
+TRISC1                            CONSTANT      00000001              1
+TRISC2                            CONSTANT      00000002              2
+TRISC3                            CONSTANT      00000003              3
+TRISC4                            CONSTANT      00000004              4
+TRISC5                            CONSTANT      00000005              5
+TRISC6                            CONSTANT      00000006              6
+TRISC7                            CONSTANT      00000007              7
+TRMT                              CONSTANT      00000001              1
+TX8_9                             CONSTANT      00000006              6
+TX9                               CONSTANT      00000006              6
+TX9D                              CONSTANT      00000000              0
+TXD8                              CONSTANT      00000000              0
+TXEN                              CONSTANT      00000005              5
+TXIE                              CONSTANT      00000004              4
+TXIF                              CONSTANT      00000004              4
+TXREG                             CONSTANT      00000019             25
+TXSTA                             CONSTANT      00000098            152
+UA                                CONSTANT      00000001              1
+W                                 CONSTANT      00000000              0
+WCOL                              CONSTANT      00000007              7
+WR                                CONSTANT      00000001              1
+WREN                              CONSTANT      00000002              2
+WRERR                             CONSTANT      00000003              3
+WSAVE                             EXTERNAL      00000000              0
+Z                                 CONSTANT      00000002              2
+_00106_DS_                        ADDRESS       00000023             35
+_00107_DS_                        ADDRESS       00000024             36
+_00113_DS_                        ADDRESS       00000019             25
+_00126_DS_                        ADDRESS       00000045             69
+_00132_DS_                        ADDRESS       0000005A             90
+_00134_DS_                        ADDRESS       000000B0            176
+_00135_DS_                        ADDRESS       000000EB            235
+_00148_DS_                        ADDRESS       00000023             35
+_00149_DS_                        ADDRESS       0000002A             42
+_ADCON0                           EXTERNAL      00000000              0
+_ADCON0bits                       EXTERNAL      00000000              0
+_ADCON1                           EXTERNAL      00000000              0
+_ADCON1bits                       EXTERNAL      00000000              0
+_ADRESH                           EXTERNAL      00000000              0
+_ADRESL                           EXTERNAL      00000000              0
+_BODEN_OFF                        CONSTANT      00003FBF          16319
+_BODEN_ON                         CONSTANT      00003FFF          16383
+_BOREN_OFF                        CONSTANT      00003FBF          16319
+_BOREN_ON                         CONSTANT      00003FFF          16383
+_CCP1CON                          EXTERNAL      00000000              0
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE 21
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+_CCP1CONbits                      EXTERNAL      00000000              0
+_CCP2CON                          EXTERNAL      00000000              0
+_CCP2CONbits                      EXTERNAL      00000000              0
+_CCPR1                            EXTERNAL      00000000              0
+_CCPR1H                           EXTERNAL      00000000              0
+_CCPR1L                           EXTERNAL      00000000              0
+_CCPR2                            EXTERNAL      00000000              0
+_CCPR2H                           EXTERNAL      00000000              0
+_CCPR2L                           EXTERNAL      00000000              0
+_CMCON                            EXTERNAL      00000000              0
+_CMCONbits                        EXTERNAL      00000000              0
+_CONFIG                           CONSTANT      00002007           8199
+_CPD_OFF                          CONSTANT      00003FFF          16383
+_CPD_ON                           CONSTANT      00003EFF          16127
+_CP_ALL                           CONSTANT      00001FFF           8191
+_CP_OFF                           CONSTANT      00003FFF          16383
+_CP_ON                            CONSTANT      00001FFF           8191
+_CVRCON                           EXTERNAL      00000000              0
+_CVRCONbits                       EXTERNAL      00000000              0
+_DEBUG_OFF                        CONSTANT      00003FFF          16383
+_DEBUG_ON                         CONSTANT      000037FF          14335
+_DEVID1                           CONSTANT      00002006           8198
+_EEADR                            EXTERNAL      00000000              0
+_EEADRH                           EXTERNAL      00000000              0
+_EECON1                           EXTERNAL      00000000              0
+_EECON1bits                       EXTERNAL      00000000              0
+_EECON2                           EXTERNAL      00000000              0
+_EEDATA                           EXTERNAL      00000000              0
+_EEDATH                           EXTERNAL      00000000              0
+_FOSC_EXTRC                       CONSTANT      00003FFF          16383
+_FOSC_HS                          CONSTANT      00003FFE          16382
+_FOSC_LP                          CONSTANT      00003FFC          16380
+_FOSC_XT                          CONSTANT      00003FFD          16381
+_FSR                              EXTERNAL      00000000              0
+_HS_OSC                           CONSTANT      00003FFE          16382
+_IDLOC0                           CONSTANT      00002000           8192
+_IDLOC1                           CONSTANT      00002001           8193
+_IDLOC2                           CONSTANT      00002002           8194
+_IDLOC3                           CONSTANT      00002003           8195
+_INDF                             EXTERNAL      00000000              0
+_INTCON                           EXTERNAL      00000000              0
+_INTCONbits                       EXTERNAL      00000000              0
+_LP_OSC                           CONSTANT      00003FFC          16380
+_LVP_OFF                          CONSTANT      00003F7F          16255
+_LVP_ON                           CONSTANT      00003FFF          16383
+_OPTION_REG                       EXTERNAL      00000000              0
+_OPTION_REGbits                   EXTERNAL      00000000              0
+_PCL                              EXTERNAL      00000000              0
+_PCLATH                           EXTERNAL      00000000              0
+_PCON                             EXTERNAL      00000000              0
+_PCONbits                         EXTERNAL      00000000              0
+_PIE1                             EXTERNAL      00000000              0
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE 22
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+_PIE1bits                         EXTERNAL      00000000              0
+_PIE2                             EXTERNAL      00000000              0
+_PIE2bits                         EXTERNAL      00000000              0
+_PIR1                             EXTERNAL      00000000              0
+_PIR1bits                         EXTERNAL      00000000              0
+_PIR2                             EXTERNAL      00000000              0
+_PIR2bits                         EXTERNAL      00000000              0
+_PORTA                            EXTERNAL      00000000              0
+_PORTAbits                        EXTERNAL      00000000              0
+_PORTB                            EXTERNAL      00000000              0
+_PORTBbits                        EXTERNAL      00000000              0
+_PORTC                            EXTERNAL      00000000              0
+_PORTCbits                        EXTERNAL      00000000              0
+_PR2                              EXTERNAL      00000000              0
+_PWRTE_OFF                        CONSTANT      00003FFF          16383
+_PWRTE_ON                         CONSTANT      00003FF7          16375
+_RCREG                            EXTERNAL      00000000              0
+_RCSTA                            EXTERNAL      00000000              0
+_RCSTAbits                        EXTERNAL      00000000              0
+_RC_OSC                           CONSTANT      00003FFF          16383
+_SPBRG                            EXTERNAL      00000000              0
+_SSPADD                           EXTERNAL      00000000              0
+_SSPBUF                           EXTERNAL      00000000              0
+_SSPCON                           EXTERNAL      00000000              0
+_SSPCON2                          EXTERNAL      00000000              0
+_SSPCON2bits                      EXTERNAL      00000000              0
+_SSPCONbits                       EXTERNAL      00000000              0
+_SSPSTAT                          EXTERNAL      00000000              0
+_SSPSTATbits                      EXTERNAL      00000000              0
+_STATUS                           EXTERNAL      00000000              0
+_STATUSbits                       EXTERNAL      00000000              0
+_S_ds18b20__ds18b20_start_conversion_0007  ADDRESS       00000007              7
+_S_ds18b20__ds18b20_start_conversion_0015  ADDRESS       00000015             21
+_S_ds18b20__ds18b20_start_conversion_001F  ADDRESS       0000001F             31
+_S_ds18b20__ds18b20_temperature_000D  ADDRESS       0000000D             13
+_S_ds18b20__ds18b20_temperature_0032  ADDRESS       00000032             50
+_S_ds18b20__ds18b20_temperature_004F  ADDRESS       0000004F             79
+_S_ds18b20__ds18b20_temperature_006E  ADDRESS       0000006E            110
+_S_ds18b20__ds18b20_temperature_0088  ADDRESS       00000088            136
+_S_ds18b20__ds18b20_temperature_00A4  ADDRESS       000000A4            164
+_S_ds18b20__ds18b20_temperature_00C4  ADDRESS       000000C4            196
+_S_ds18b20__ds18b20_temperature_00E0  ADDRESS       000000E0            224
+_S_ds18b20__ds18b20_temperature_00FF  ADDRESS       000000FF            255
+_S_ds18b20__ds18b20_value_0003    ADDRESS       00000003              3
+_S_ds18b20__ds18b20_value_000B    ADDRESS       0000000B             11
+_S_ds18b20__ds18b20_value_0013    ADDRESS       00000013             19
+_S_ds18b20__ds18b20_value_0027    ADDRESS       00000027             39
+_S_ds18b20__ds18b20_value_004A    ADDRESS       0000004A             74
+_S_ds18b20__ds18b20_value_0055    ADDRESS       00000055             85
+_T1CON                            EXTERNAL      00000000              0
+_T1CONbits                        EXTERNAL      00000000              0
+_T2CON                            EXTERNAL      00000000              0
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE 23
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+_T2CONbits                        EXTERNAL      00000000              0
+_TMR0                             EXTERNAL      00000000              0
+_TMR1                             EXTERNAL      00000000              0
+_TMR1H                            EXTERNAL      00000000              0
+_TMR1L                            EXTERNAL      00000000              0
+_TMR2                             EXTERNAL      00000000              0
+_TRISA                            EXTERNAL      00000000              0
+_TRISAbits                        EXTERNAL      00000000              0
+_TRISB                            EXTERNAL      00000000              0
+_TRISBbits                        EXTERNAL      00000000              0
+_TRISC                            EXTERNAL      00000000              0
+_TRISCbits                        EXTERNAL      00000000              0
+_TXREG                            EXTERNAL      00000000              0
+_TXSTA                            EXTERNAL      00000000              0
+_TXSTAbits                        EXTERNAL      00000000              0
+_WDTE_OFF                         CONSTANT      00003FFB          16379
+_WDTE_ON                          CONSTANT      00003FFF          16383
+_WDT_OFF                          CONSTANT      00003FFB          16379
+_WDT_ON                           CONSTANT      00003FFF          16383
+_WRT_1FOURTH                      CONSTANT      00003BFF          15359
+_WRT_256                          CONSTANT      00003DFF          15871
+_WRT_HALF                         CONSTANT      000039FF          14847
+_WRT_OFF                          CONSTANT      00003FFF          16383
+_XT_OSC                           CONSTANT      00003FFD          16381
+__14_BIT                          CONSTANT      00000001              1
+__16F876A                         CONSTANT      00000001              1
+__ACTIVE_BANK_ADDR                VARIABLE      FFFFFFFF             -1
+__ACTIVE_PAGE_ADDR                VARIABLE      FFFFFFFF             -1
+__ASSUMED_BANK_ADDR               VARIABLE      FFFFFFFF             -1
+__BANK_0                          CONSTANT      00000000              0
+__BANK_1                          CONSTANT      00000080            128
+__BANK_2                          CONSTANT      00000100            256
+__BANK_3                          CONSTANT      00000180            384
+__BANK_BITS                       CONSTANT      00000180            384
+__BANK_FIRST                      CONSTANT      00000000              0
+__BANK_INV                        CONSTANT      FFFFFFFF             -1
+__BANK_LAST                       CONSTANT      00000180            384
+__BANK_MASK                       CONSTANT      0000007F            127
+__BANK_SHIFT                      CONSTANT      00000007              7
+__BANK_SIZE                       CONSTANT      00000080            128
+__CODE_END                        CONSTANT      00001FFF           8191
+__CODE_START                      CONSTANT      00000000              0
+__COMMON_RAM_END                  CONSTANT      0000007F            127
+__COMMON_RAM_START                CONSTANT      00000070            112
+__CONFIG_END                      CONSTANT      00002007           8199
+__CONFIG_START                    CONSTANT      00002007           8199
+__EEPROM_END                      CONSTANT      000021FF           8703
+__EEPROM_START                    CONSTANT      00002100           8448
+__GPUTILS_SVN_VERSION             CONSTANT      00000000              0
+__GPUTILS_VERSION_MAJOR           CONSTANT      00000001              1
+__GPUTILS_VERSION_MICRO           CONSTANT      00000002              2
+__GPUTILS_VERSION_MINOR           CONSTANT      00000005              5
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE 24
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+__IDLOCS_END                      CONSTANT      00002003           8195
+__IDLOCS_START                    CONSTANT      00002000           8192
+__NUM_BANKS                       CONSTANT      00000004              4
+__NUM_PAGES                       CONSTANT      00000004              4
+__PAGE_0                          CONSTANT      00000000              0
+__PAGE_1                          CONSTANT      00000800           2048
+__PAGE_2                          CONSTANT      00001000           4096
+__PAGE_3                          CONSTANT      00001800           6144
+__PAGE_BITS                       CONSTANT      00001800           6144
+__PAGE_FIRST                      CONSTANT      00000000              0
+__PAGE_INV                        CONSTANT      FFFFFFFF             -1
+__PAGE_LAST                       CONSTANT      00001800           6144
+__PAGE_MASK                       CONSTANT      000007FF           2047
+__PAGE_SHIFT                      CONSTANT      0000000B             11
+__PAGE_SIZE                       CONSTANT      00000800           2048
+__VECTOR_INT                      CONSTANT      00000004              4
+__VECTOR_RESET                    CONSTANT      00000000              0
+__WHILE_LOOP_COUNT_MAX            CONSTANT      000000FF            255
+___fs2schar                       EXTERNAL      00000000              0
+___fs2sint                        EXTERNAL      00000000              0
+___fs2slong                       EXTERNAL      00000000              0
+___fs2uchar                       EXTERNAL      00000000              0
+___fs2uint                        EXTERNAL      00000000              0
+___fs2ulong                       EXTERNAL      00000000              0
+___fsadd                          EXTERNAL      00000000              0
+___fsdiv                          EXTERNAL      00000000              0
+___fseq                           EXTERNAL      00000000              0
+___fsgt                           EXTERNAL      00000000              0
+___fslt                           EXTERNAL      00000000              0
+___fsmul                          EXTERNAL      00000000              0
+___fsneq                          EXTERNAL      00000000              0
+___fssub                          EXTERNAL      00000000              0
+___schar2fs                       EXTERNAL      00000000              0
+___sint2fs                        EXTERNAL      00000000              0
+___slong2fs                       EXTERNAL      00000000              0
+___uchar2fs                       EXTERNAL      00000000              0
+___uint2fs                        EXTERNAL      00000000              0
+___ulong2fs                       EXTERNAL      00000000              0
+_ds18b20_start_conversion         GLOBAL        00000000              0
+_ds18b20_temperature              GLOBAL        00000000              0
+_ds18b20_value                    GLOBAL        00000000              0
+_ds18b20_value_scratch_65536_35   STATIC        0000000F             15
+_ow_access                        EXTERNAL      00000000              0
+_ow_crc                           EXTERNAL      00000000              0
+_ow_next                          EXTERNAL      00000000              0
+_ow_read_byte                     EXTERNAL      00000000              0
+_ow_reset                         EXTERNAL      00000000              0
+_ow_search                        EXTERNAL      00000000              0
+_ow_write_byte                    EXTERNAL      00000000              0
+r0x100A                           STATIC        00000007              7
+r0x100B                           STATIC        00000009              9
+r0x100C                           STATIC        0000000B             11
+gpasm-1.5.2 #0 (Dec 27 2019) build/sdcc-16f87   27.12.2019  16:44:22        PAGE 25
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+r0x100D                           STATIC        0000000A             10
+r0x100E                           STATIC        0000000D             13
+r0x100F                           STATIC        0000000C             12
+r0x1009                           STATIC        00000008              8
+r0x1010                           STATIC        0000000E             14
+r0x1011                           STATIC        00000002              2
+r0x1012                           STATIC        00000003              3
+r0x1013                           STATIC        00000004              4
+r0x1014                           STATIC        00000005              5
+r0x1015                           STATIC        00000006              6
+r0x1017                           STATIC        00000000              0
+r0x1018                           STATIC        00000001              1
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

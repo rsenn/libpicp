@@ -1,0 +1,1532 @@
+Version 3.2 HI-TECH Software Intermediate Code
+"82 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _INDF `Vuc  1 e@0 ]
+"86 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TMR0 `Vuc  1 e@1 ]
+"90 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PCL `Vuc  1 e@2 ]
+"94 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _STATUS `Vuc  1 e@3 ]
+"96 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CARRY `Vb  1 e@24 ]
+"97 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _DC `Vb  1 e@25 ]
+"98 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ZERO `Vb  1 e@26 ]
+"99 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _nPD `Vb  1 e@27 ]
+"100 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _nTO `Vb  1 e@28 ]
+"101 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _IRP `Vb  1 e@31 ]
+"102 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RP0 `Vb  1 e@29 ]
+"103 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RP1 `Vb  1 e@30 ]
+[s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S2 . C DC Z nPD nTO RP IRP ]
+[s S3 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S3 . . RP0 RP1 ]
+[u S1 `S2 1 `S3 1 ]
+[n S1 . . . ]
+"120 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _STATUSbits `VS1  1 e@3 ]
+"124 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _FSR `Vuc  1 e@4 ]
+"128 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PORTA `Vuc  1 e@5 ]
+"130 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RA0 `Vb  1 e@40 ]
+"131 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RA1 `Vb  1 e@41 ]
+"132 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RA2 `Vb  1 e@42 ]
+"133 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RA3 `Vb  1 e@43 ]
+"134 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RA4 `Vb  1 e@44 ]
+"135 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RA5 `Vb  1 e@45 ]
+[s S5 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S5 . RA0 RA1 RA2 RA3 RA4 RA5 ]
+[u S4 `S5 1 ]
+[n S4 . . ]
+"146 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PORTAbits `VS4  1 e@5 ]
+"150 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PORTB `Vuc  1 e@6 ]
+"152 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RB0 `Vb  1 e@48 ]
+"153 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RB1 `Vb  1 e@49 ]
+"154 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RB2 `Vb  1 e@50 ]
+"155 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RB3 `Vb  1 e@51 ]
+"156 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RB4 `Vb  1 e@52 ]
+"157 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RB5 `Vb  1 e@53 ]
+"158 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RB6 `Vb  1 e@54 ]
+"159 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RB7 `Vb  1 e@55 ]
+[s S7 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S7 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
+[u S6 `S7 1 ]
+[n S6 . . ]
+"172 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PORTBbits `VS6  1 e@6 ]
+"176 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PORTC `Vuc  1 e@7 ]
+"178 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RC0 `Vb  1 e@56 ]
+"179 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RC1 `Vb  1 e@57 ]
+"180 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RC2 `Vb  1 e@58 ]
+"181 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RC3 `Vb  1 e@59 ]
+"182 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RC4 `Vb  1 e@60 ]
+"183 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RC5 `Vb  1 e@61 ]
+"184 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RC6 `Vb  1 e@62 ]
+"185 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RC7 `Vb  1 e@63 ]
+[s S9 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S9 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
+[u S8 `S9 1 ]
+[n S8 . . ]
+"198 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PORTCbits `VS8  1 e@7 ]
+"202 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PCLATH `Vuc  1 e@10 ]
+[s S11 :5 `uc 1 ]
+[n S11 . PCLATH ]
+[u S10 `S11 1 ]
+[n S10 . . ]
+"209 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PCLATHbits `VS10  1 e@10 ]
+"213 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _INTCON `Vuc  1 e@11 ]
+"215 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RBIF `Vb  1 e@88 ]
+"216 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _INTF `Vb  1 e@89 ]
+"217 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TMR0IF `Vb  1 e@90 ]
+"218 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RBIE `Vb  1 e@91 ]
+"219 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _INTE `Vb  1 e@92 ]
+"220 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TMR0IE `Vb  1 e@93 ]
+"221 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PEIE `Vb  1 e@94 ]
+"222 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _GIE `Vb  1 e@95 ]
+"223 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _T0IF `Vb  1 e@90 ]
+"224 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _T0IE `Vb  1 e@93 ]
+[s S13 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S13 . RBIF INTF TMR0IF RBIE INTE TMR0IE PEIE GIE ]
+[s S14 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S14 . . T0IF . T0IE ]
+[u S12 `S13 1 `S14 1 ]
+[n S12 . . . ]
+"243 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _INTCONbits `VS12  1 e@11 ]
+"247 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PIR1 `Vuc  1 e@12 ]
+"249 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TMR1IF `Vb  1 e@96 ]
+"250 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TMR2IF `Vb  1 e@97 ]
+"251 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP1IF `Vb  1 e@98 ]
+"252 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SSPIF `Vb  1 e@99 ]
+"253 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TXIF `Vb  1 e@100 ]
+"254 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RCIF `Vb  1 e@101 ]
+"255 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ADIF `Vb  1 e@102 ]
+[s S16 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S16 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF ]
+[s S17 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S17 . . . . . . . ]
+[u S15 `S16 1 `S17 1 ]
+[n S15 . . . ]
+"275 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PIR1bits `VS15  1 e@12 ]
+"279 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PIR2 `Vuc  1 e@13 ]
+"281 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP2IF `Vb  1 e@104 ]
+"282 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _BCLIF `Vb  1 e@107 ]
+"283 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _EEIF `Vb  1 e@108 ]
+"284 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CMIF `Vb  1 e@110 ]
+[s S19 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S19 . CCP2IF . BCLIF EEIF . CMIF ]
+[u S18 `S19 1 ]
+[n S18 . . ]
+"295 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PIR2bits `VS18  1 e@13 ]
+"300 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TMR1L `Vuc  1 e@14 ]
+"304 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TMR1H `Vuc  1 e@15 ]
+"308 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TMR1 `Vui  1 e@14 ]
+"311 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _T1CON `Vuc  1 e@16 ]
+"313 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TMR1ON `Vb  1 e@128 ]
+"314 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TMR1CS `Vb  1 e@129 ]
+"315 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _nT1SYNC `Vb  1 e@130 ]
+"316 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _T1OSCEN `Vb  1 e@131 ]
+"317 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _T1SYNC `Vb  1 e@130 ]
+"318 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _T1CKPS0 `Vb  1 e@132 ]
+"319 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _T1CKPS1 `Vb  1 e@133 ]
+"320 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _T1INSYNC `Vb  1 e@130 ]
+[s S21 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 ]
+[n S21 . TMR1ON TMR1CS nT1SYNC T1OSCEN T1CKPS ]
+[s S22 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S22 . . T1SYNC . T1CKPS0 T1CKPS1 ]
+[s S23 :2 `uc 1 :1 `uc 1 ]
+[n S23 . . T1INSYNC ]
+[u S20 `S21 1 `S22 1 `S23 1 ]
+[n S20 . . . . ]
+"341 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _T1CONbits `VS20  1 e@16 ]
+"345 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TMR2 `Vuc  1 e@17 ]
+"349 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _T2CON `Vuc  1 e@18 ]
+"351 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TMR2ON `Vb  1 e@146 ]
+"352 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _T2CKPS0 `Vb  1 e@144 ]
+"353 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _T2CKPS1 `Vb  1 e@145 ]
+"354 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TOUTPS0 `Vb  1 e@147 ]
+"355 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TOUTPS1 `Vb  1 e@148 ]
+"356 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TOUTPS2 `Vb  1 e@149 ]
+"357 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TOUTPS3 `Vb  1 e@150 ]
+[s S25 :2 `uc 1 :1 `uc 1 :4 `uc 1 ]
+[n S25 . T2CKPS TMR2ON TOUTPS ]
+[s S26 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S26 . T2CKPS0 T2CKPS1 . TOUTPS0 TOUTPS1 TOUTPS2 TOUTPS3 ]
+[u S24 `S25 1 `S26 1 ]
+[n S24 . . . ]
+"374 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _T2CONbits `VS24  1 e@18 ]
+"378 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SSPBUF `Vuc  1 e@19 ]
+"382 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SSPCON `Vuc  1 e@20 ]
+"384 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CKP `Vb  1 e@164 ]
+"385 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SSPEN `Vb  1 e@165 ]
+"386 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SSPOV `Vb  1 e@166 ]
+"387 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _WCOL `Vb  1 e@167 ]
+"388 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SSPM0 `Vb  1 e@160 ]
+"389 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SSPM1 `Vb  1 e@161 ]
+"390 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SSPM2 `Vb  1 e@162 ]
+"391 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SSPM3 `Vb  1 e@163 ]
+[s S28 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S28 . SSPM CKP SSPEN SSPOV WCOL ]
+[s S29 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S29 . SSPM0 SSPM1 SSPM2 SSPM3 ]
+[u S27 `S28 1 `S29 1 ]
+[n S27 . . . ]
+"407 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SSPCONbits `VS27  1 e@20 ]
+"412 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCPR1L `Vuc  1 e@21 ]
+"416 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCPR1H `Vuc  1 e@22 ]
+"420 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCPR1 `Vui  1 e@21 ]
+"423 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP1CON `Vuc  1 e@23 ]
+"425 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP1Y `Vb  1 e@188 ]
+"426 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP1X `Vb  1 e@189 ]
+"427 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP1M0 `Vb  1 e@184 ]
+"428 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP1M1 `Vb  1 e@185 ]
+"429 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP1M2 `Vb  1 e@186 ]
+"430 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP1M3 `Vb  1 e@187 ]
+[s S31 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S31 . CCP1M CCP1Y CCP1X ]
+[s S32 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S32 . CCP1M0 CCP1M1 CCP1M2 CCP1M3 ]
+[u S30 `S31 1 `S32 1 ]
+[n S30 . . . ]
+"444 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP1CONbits `VS30  1 e@23 ]
+"448 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RCSTA `Vuc  1 e@24 ]
+"450 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RX9D `Vb  1 e@192 ]
+"451 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _OERR `Vb  1 e@193 ]
+"452 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _FERR `Vb  1 e@194 ]
+"453 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ADDEN `Vb  1 e@195 ]
+"454 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CREN `Vb  1 e@196 ]
+"455 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SREN `Vb  1 e@197 ]
+"456 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RX9 `Vb  1 e@198 ]
+"457 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SPEN `Vb  1 e@199 ]
+"458 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RCD8 `Vb  1 e@192 ]
+"459 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RC9 `Vb  1 e@198 ]
+"460 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _nRC8 `Vb  1 e@198 ]
+"461 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RC8_9 `Vb  1 e@198 ]
+[s S34 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S34 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
+[s S35 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
+[n S35 . RCD8 . RC9 ]
+[s S36 :6 `uc 1 :1 `uc 1 ]
+[n S36 . . nRC8 ]
+[s S37 :6 `uc 1 :1 `uc 1 ]
+[n S37 . . RC8_9 ]
+[u S33 `S34 1 `S35 1 `S36 1 `S37 1 ]
+[n S33 . . . . . ]
+"487 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RCSTAbits `VS33  1 e@24 ]
+"491 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TXREG `Vuc  1 e@25 ]
+"495 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RCREG `Vuc  1 e@26 ]
+"500 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCPR2L `Vuc  1 e@27 ]
+"504 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCPR2H `Vuc  1 e@28 ]
+"508 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCPR2 `Vui  1 e@27 ]
+"511 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP2CON `Vuc  1 e@29 ]
+"513 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP2Y `Vb  1 e@236 ]
+"514 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP2X `Vb  1 e@237 ]
+"515 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP2M0 `Vb  1 e@232 ]
+"516 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP2M1 `Vb  1 e@233 ]
+"517 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP2M2 `Vb  1 e@234 ]
+"518 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP2M3 `Vb  1 e@235 ]
+[s S39 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S39 . CCP2M CCP2Y CCP2X ]
+[s S40 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S40 . CCP2M0 CCP2M1 CCP2M2 CCP2M3 ]
+[u S38 `S39 1 `S40 1 ]
+[n S38 . . . ]
+"532 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP2CONbits `VS38  1 e@29 ]
+"536 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ADRESH `Vuc  1 e@30 ]
+"540 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ADCON0 `Vuc  1 e@31 ]
+"542 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ADON `Vb  1 e@248 ]
+"543 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _GO_nDONE `Vb  1 e@250 ]
+"544 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _GO `Vb  1 e@250 ]
+"545 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CHS0 `Vb  1 e@251 ]
+"546 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CHS1 `Vb  1 e@252 ]
+"547 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CHS2 `Vb  1 e@253 ]
+"548 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ADCS0 `Vb  1 e@254 ]
+"549 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ADCS1 `Vb  1 e@255 ]
+"550 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _nDONE `Vb  1 e@250 ]
+"551 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _GO_DONE `Vb  1 e@250 ]
+[s S42 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :2 `uc 1 ]
+[n S42 . ADON . GO_nDONE CHS ADCS ]
+[s S43 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :2 `uc 1 ]
+[n S43 . . . . . . ]
+[s S44 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S44 . . GO CHS0 CHS1 CHS2 ADCS0 ADCS1 ]
+[s S45 :2 `uc 1 :1 `uc 1 ]
+[n S45 . . nDONE ]
+[s S46 :2 `uc 1 :1 `uc 1 ]
+[n S46 . . GO_DONE ]
+[u S41 `S42 1 `S43 1 `S44 1 `S45 1 `S46 1 ]
+[n S41 . . . . . . ]
+"585 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ADCON0bits `VS41  1 e@31 ]
+"594 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _OPTION_REG `Vuc  1 e@129 ]
+"596 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PSA `Vb  1 e@1035 ]
+"597 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _T0SE `Vb  1 e@1036 ]
+"598 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _T0CS `Vb  1 e@1037 ]
+"599 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _INTEDG `Vb  1 e@1038 ]
+"600 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _nRBPU `Vb  1 e@1039 ]
+"601 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PS0 `Vb  1 e@1032 ]
+"602 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PS1 `Vb  1 e@1033 ]
+"603 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PS2 `Vb  1 e@1034 ]
+[s S48 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S48 . PS PSA T0SE T0CS INTEDG nRBPU ]
+[s S49 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S49 . PS0 PS1 PS2 ]
+[u S47 `S48 1 `S49 1 ]
+[n S47 . . . ]
+"619 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _OPTION_REGbits `VS47  1 e@129 ]
+"623 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISA `Vuc  1 e@133 ]
+"625 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISA0 `Vb  1 e@1064 ]
+"626 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISA1 `Vb  1 e@1065 ]
+"627 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISA2 `Vb  1 e@1066 ]
+"628 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISA3 `Vb  1 e@1067 ]
+"629 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISA4 `Vb  1 e@1068 ]
+"630 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISA5 `Vb  1 e@1069 ]
+[s S51 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S51 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 ]
+[u S50 `S51 1 ]
+[n S50 . . ]
+"641 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISAbits `VS50  1 e@133 ]
+"645 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISB `Vuc  1 e@134 ]
+"647 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISB0 `Vb  1 e@1072 ]
+"648 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISB1 `Vb  1 e@1073 ]
+"649 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISB2 `Vb  1 e@1074 ]
+"650 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISB3 `Vb  1 e@1075 ]
+"651 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISB4 `Vb  1 e@1076 ]
+"652 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISB5 `Vb  1 e@1077 ]
+"653 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISB6 `Vb  1 e@1078 ]
+"654 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISB7 `Vb  1 e@1079 ]
+[s S53 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S53 . TRISB0 TRISB1 TRISB2 TRISB3 TRISB4 TRISB5 TRISB6 TRISB7 ]
+[u S52 `S53 1 ]
+[n S52 . . ]
+"667 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISBbits `VS52  1 e@134 ]
+"671 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISC `Vuc  1 e@135 ]
+"673 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISC0 `Vb  1 e@1080 ]
+"674 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISC1 `Vb  1 e@1081 ]
+"675 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISC2 `Vb  1 e@1082 ]
+"676 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISC3 `Vb  1 e@1083 ]
+"677 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISC4 `Vb  1 e@1084 ]
+"678 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISC5 `Vb  1 e@1085 ]
+"679 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISC6 `Vb  1 e@1086 ]
+"680 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISC7 `Vb  1 e@1087 ]
+[s S55 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S55 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
+[u S54 `S55 1 ]
+[n S54 . . ]
+"693 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRISCbits `VS54  1 e@135 ]
+"697 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PIE1 `Vuc  1 e@140 ]
+"699 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TMR1IE `Vb  1 e@1120 ]
+"700 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TMR2IE `Vb  1 e@1121 ]
+"701 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP1IE `Vb  1 e@1122 ]
+"702 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SSPIE `Vb  1 e@1123 ]
+"703 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TXIE `Vb  1 e@1124 ]
+"704 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RCIE `Vb  1 e@1125 ]
+"705 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ADIE `Vb  1 e@1126 ]
+[s S57 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S57 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE ]
+[u S56 `S57 1 ]
+[n S56 . . ]
+"717 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PIE1bits `VS56  1 e@140 ]
+"721 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PIE2 `Vuc  1 e@141 ]
+"723 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CCP2IE `Vb  1 e@1128 ]
+"724 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _BCLIE `Vb  1 e@1131 ]
+"725 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _EEIE `Vb  1 e@1132 ]
+"726 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CMIE `Vb  1 e@1134 ]
+[s S59 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S59 . CCP2IE . BCLIE EEIE . CMIE ]
+[u S58 `S59 1 ]
+[n S58 . . ]
+"737 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PIE2bits `VS58  1 e@141 ]
+"741 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PCON `Vuc  1 e@142 ]
+"743 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _nBOR `Vb  1 e@1136 ]
+"744 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _nPOR `Vb  1 e@1137 ]
+"745 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _nBO `Vb  1 e@1136 ]
+[s S61 :1 `uc 1 :1 `uc 1 ]
+[n S61 . nBOR nPOR ]
+[s S62 :1 `uc 1 ]
+[n S62 . nBO ]
+[u S60 `S61 1 `S62 1 ]
+[n S60 . . . ]
+"755 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PCONbits `VS60  1 e@142 ]
+"759 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SSPCON2 `Vuc  1 e@145 ]
+"761 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SEN `Vb  1 e@1160 ]
+"762 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RSEN `Vb  1 e@1161 ]
+"763 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PEN `Vb  1 e@1162 ]
+"764 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RCEN `Vb  1 e@1163 ]
+"765 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ACKEN `Vb  1 e@1164 ]
+"766 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ACKDT `Vb  1 e@1165 ]
+"767 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ACKSTAT `Vb  1 e@1166 ]
+"768 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _GCEN `Vb  1 e@1167 ]
+[s S64 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S64 . SEN RSEN PEN RCEN ACKEN ACKDT ACKSTAT GCEN ]
+[u S63 `S64 1 ]
+[n S63 . . ]
+"781 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SSPCON2bits `VS63  1 e@145 ]
+"785 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PR2 `Vuc  1 e@146 ]
+"789 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SSPADD `Vuc  1 e@147 ]
+"793 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SSPSTAT `Vuc  1 e@148 ]
+"795 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _BF `Vb  1 e@1184 ]
+"796 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _UA `Vb  1 e@1185 ]
+"797 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _R_nW `Vb  1 e@1186 ]
+"798 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _S `Vb  1 e@1187 ]
+"799 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _P `Vb  1 e@1188 ]
+"800 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _D_nA `Vb  1 e@1189 ]
+"801 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CKE `Vb  1 e@1190 ]
+"802 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SMP `Vb  1 e@1191 ]
+"803 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _R `Vb  1 e@1186 ]
+"804 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _D `Vb  1 e@1189 ]
+"805 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _I2C_READ `Vb  1 e@1186 ]
+"806 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _I2C_START `Vb  1 e@1187 ]
+"807 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _I2C_STOP `Vb  1 e@1188 ]
+"808 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _I2C_DATA `Vb  1 e@1189 ]
+"809 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _nW `Vb  1 e@1186 ]
+"810 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _nA `Vb  1 e@1189 ]
+"811 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _nWRITE `Vb  1 e@1186 ]
+"812 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _nADDRESS `Vb  1 e@1189 ]
+"813 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _R_W `Vb  1 e@1186 ]
+"814 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _D_A `Vb  1 e@1189 ]
+"815 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _READ_WRITE `Vb  1 e@1186 ]
+"816 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _DATA_ADDRESS `Vb  1 e@1189 ]
+[s S66 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S66 . BF UA R_nW S P D_nA CKE SMP ]
+[s S67 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S67 . . . . . . . . . ]
+[s S68 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S68 . . R . D ]
+[s S69 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S69 . . I2C_READ I2C_START I2C_STOP I2C_DATA ]
+[s S70 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S70 . . nW . nA ]
+[s S71 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S71 . . nWRITE . nADDRESS ]
+[s S72 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S72 . . R_W . D_A ]
+[s S73 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S73 . . READ_WRITE . DATA_ADDRESS ]
+[u S65 `S66 1 `S67 1 `S68 1 `S69 1 `S70 1 `S71 1 `S72 1 `S73 1 ]
+[n S65 . . . . . . . . . ]
+"876 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SSPSTATbits `VS65  1 e@148 ]
+"880 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TXSTA `Vuc  1 e@152 ]
+"882 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TX9D `Vb  1 e@1216 ]
+"883 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TRMT `Vb  1 e@1217 ]
+"884 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _BRGH `Vb  1 e@1218 ]
+"885 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SYNC `Vb  1 e@1220 ]
+"886 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TXEN `Vb  1 e@1221 ]
+"887 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TX9 `Vb  1 e@1222 ]
+"888 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CSRC `Vb  1 e@1223 ]
+"889 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TXD8 `Vb  1 e@1216 ]
+"890 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _nTX8 `Vb  1 e@1222 ]
+"891 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TX8_9 `Vb  1 e@1222 ]
+[s S75 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S75 . TX9D TRMT BRGH . SYNC TXEN TX9 CSRC ]
+[s S76 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
+[n S76 . TXD8 . nTX8 ]
+[s S77 :6 `uc 1 :1 `uc 1 ]
+[n S77 . . TX8_9 ]
+[u S74 `S75 1 `S76 1 `S77 1 ]
+[n S74 . . . . ]
+"913 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _TXSTAbits `VS74  1 e@152 ]
+"917 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _SPBRG `Vuc  1 e@153 ]
+"921 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CMCON `Vuc  1 e@156 ]
+"923 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CIS `Vb  1 e@1251 ]
+"924 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _C1INV `Vb  1 e@1252 ]
+"925 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _C2INV `Vb  1 e@1253 ]
+"926 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _C1OUT `Vb  1 e@1254 ]
+"927 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _C2OUT `Vb  1 e@1255 ]
+"928 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CM0 `Vb  1 e@1248 ]
+"929 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CM1 `Vb  1 e@1249 ]
+"930 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CM2 `Vb  1 e@1250 ]
+[s S79 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S79 . CM CIS C1INV C2INV C1OUT C2OUT ]
+[s S80 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S80 . CM0 CM1 CM2 ]
+[u S78 `S79 1 `S80 1 ]
+[n S78 . . . ]
+"946 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CMCONbits `VS78  1 e@156 ]
+"950 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CVRCON `Vuc  1 e@157 ]
+"952 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CVRR `Vb  1 e@1261 ]
+"953 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CVROE `Vb  1 e@1262 ]
+"954 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CVREN `Vb  1 e@1263 ]
+"955 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CVR0 `Vb  1 e@1256 ]
+"956 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CVR1 `Vb  1 e@1257 ]
+"957 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CVR2 `Vb  1 e@1258 ]
+"958 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CVR3 `Vb  1 e@1259 ]
+[s S82 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S82 . CVR . CVRR CVROE CVREN ]
+[s S83 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S83 . CVR0 CVR1 CVR2 CVR3 ]
+[u S81 `S82 1 `S83 1 ]
+[n S81 . . . ]
+"974 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _CVRCONbits `VS81  1 e@157 ]
+"978 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ADRESL `Vuc  1 e@158 ]
+"982 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ADCON1 `Vuc  1 e@159 ]
+"984 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ADCS2 `Vb  1 e@1278 ]
+"985 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ADFM `Vb  1 e@1279 ]
+"986 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PCFG0 `Vb  1 e@1272 ]
+"987 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PCFG1 `Vb  1 e@1273 ]
+"988 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PCFG2 `Vb  1 e@1274 ]
+"989 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _PCFG3 `Vb  1 e@1275 ]
+[s S85 :4 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S85 . PCFG . ADCS2 ADFM ]
+[s S86 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S86 . PCFG0 PCFG1 PCFG2 PCFG3 ]
+[u S84 `S85 1 `S86 1 ]
+[n S84 . . . ]
+"1004 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _ADCON1bits `VS84  1 e@159 ]
+"1013 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _EEDATA `Vuc  1 e@268 ]
+"1017 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _EEADR `Vuc  1 e@269 ]
+"1021 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _EEDATH `Vuc  1 e@270 ]
+[s S88 :6 `uc 1 ]
+[n S88 . . ]
+[u S87 `S88 1 ]
+[n S87 . . ]
+"1028 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _EEDATHbits `VS87  1 e@270 ]
+"1032 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _EEADRH `Vuc  1 e@271 ]
+[s S90 :5 `uc 1 ]
+[n S90 . . ]
+[u S89 `S90 1 ]
+[n S89 . . ]
+"1039 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _EEADRHbits `VS89  1 e@271 ]
+"1048 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _EECON1 `Vuc  1 e@396 ]
+"1050 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _RD `Vb  1 e@3168 ]
+"1051 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _WR `Vb  1 e@3169 ]
+"1052 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _WREN `Vb  1 e@3170 ]
+"1053 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _WRERR `Vb  1 e@3171 ]
+"1054 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _EEPGD `Vb  1 e@3175 ]
+[s S92 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S92 . RD WR WREN WRERR . EEPGD ]
+[u S91 `S92 1 ]
+[n S91 . . ]
+"1065 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _EECON1bits `VS91  1 e@396 ]
+"1069 /opt/hitech/picc/9.83/include/pic16f876a.h
+[v _EECON2 `Vuc  1 e@397 ]
+"18 onewire.c
+[v _RomBytes `uc  -> 8 `i s ]
+"19 onewire.c
+[v _lastDiscrep `c  1 s ]
+"20 onewire.c
+[v _doneFlag `uc  1 s ]
+"21 onewire.c
+[v F1049 `uc  -> 8 `i t ]
+"21 onewire.c
+[v _FoundROM `F1049  -> 12 `i s ]
+"22 onewire.c
+[v _numROMs `uc  1 s ]
+"23 onewire.c
+[v _ow_dowcrc `c  1 s ]
+"27 onewire.c
+[v _ow_crctable `Cuc  -> 0 `x e ]
+"154 /opt/hitech/picc/9.83/include/pic.h
+[v __delay `(v  0 ef1`ul ]
+[p i __delay ]
+"19 onewire.c
+[i _lastDiscrep
+-> -> 0 `i `c
+]
+"20
+[i _doneFlag
+-> -> 0 `i `uc
+]
+"27
+[i _ow_crctable
+:U ..
+"28
+-> -> 0 `i `uc
+-> -> 94 `i `uc
+-> -> 188 `i `uc
+-> -> 226 `i `uc
+-> -> 97 `i `uc
+-> -> 63 `i `uc
+-> -> 221 `i `uc
+-> -> 131 `i `uc
+-> -> 194 `i `uc
+-> -> 156 `i `uc
+-> -> 126 `i `uc
+-> -> 32 `i `uc
+-> -> 163 `i `uc
+-> -> 253 `i `uc
+-> -> 31 `i `uc
+-> -> 65 `i `uc
+-> -> 157 `i `uc
+-> -> 195 `i `uc
+-> -> 33 `i `uc
+"29
+-> -> 127 `i `uc
+-> -> 252 `i `uc
+-> -> 162 `i `uc
+-> -> 64 `i `uc
+-> -> 30 `i `uc
+-> -> 95 `i `uc
+-> -> 1 `i `uc
+-> -> 227 `i `uc
+-> -> 189 `i `uc
+-> -> 62 `i `uc
+-> -> 96 `i `uc
+-> -> 130 `i `uc
+-> -> 220 `i `uc
+-> -> 35 `i `uc
+-> -> 125 `i `uc
+-> -> 159 `i `uc
+-> -> 193 `i `uc
+-> -> 66 `i `uc
+-> -> 28 `i `uc
+"30
+-> -> 254 `i `uc
+-> -> 160 `i `uc
+-> -> 225 `i `uc
+-> -> 191 `i `uc
+-> -> 93 `i `uc
+-> -> 3 `i `uc
+-> -> 128 `i `uc
+-> -> 222 `i `uc
+-> -> 60 `i `uc
+-> -> 98 `i `uc
+-> -> 190 `i `uc
+-> -> 224 `i `uc
+-> -> 2 `i `uc
+-> -> 92 `i `uc
+-> -> 223 `i `uc
+-> -> 129 `i `uc
+-> -> 99 `i `uc
+-> -> 61 `i `uc
+-> -> 124 `i `uc
+"31
+-> -> 34 `i `uc
+-> -> 192 `i `uc
+-> -> 158 `i `uc
+-> -> 29 `i `uc
+-> -> 67 `i `uc
+-> -> 161 `i `uc
+-> -> 255 `i `uc
+-> -> 70 `i `uc
+-> -> 24 `i `uc
+-> -> 250 `i `uc
+-> -> 164 `i `uc
+-> -> 39 `i `uc
+-> -> 121 `i `uc
+-> -> 155 `i `uc
+-> -> 197 `i `uc
+-> -> 132 `i `uc
+-> -> 218 `i `uc
+-> -> 56 `i `uc
+-> -> 102 `i `uc
+"32
+-> -> 229 `i `uc
+-> -> 187 `i `uc
+-> -> 89 `i `uc
+-> -> 7 `i `uc
+-> -> 219 `i `uc
+-> -> 133 `i `uc
+-> -> 103 `i `uc
+-> -> 57 `i `uc
+-> -> 186 `i `uc
+-> -> 228 `i `uc
+-> -> 6 `i `uc
+-> -> 88 `i `uc
+-> -> 25 `i `uc
+-> -> 71 `i `uc
+-> -> 165 `i `uc
+-> -> 251 `i `uc
+-> -> 120 `i `uc
+-> -> 38 `i `uc
+-> -> 196 `i `uc
+"33
+-> -> 154 `i `uc
+-> -> 101 `i `uc
+-> -> 59 `i `uc
+-> -> 217 `i `uc
+-> -> 135 `i `uc
+-> -> 4 `i `uc
+-> -> 90 `i `uc
+-> -> 184 `i `uc
+-> -> 230 `i `uc
+-> -> 167 `i `uc
+-> -> 249 `i `uc
+-> -> 27 `i `uc
+-> -> 69 `i `uc
+-> -> 198 `i `uc
+-> -> 152 `i `uc
+-> -> 122 `i `uc
+-> -> 36 `i `uc
+-> -> 248 `i `uc
+-> -> 166 `i `uc
+"34
+-> -> 68 `i `uc
+-> -> 26 `i `uc
+-> -> 153 `i `uc
+-> -> 199 `i `uc
+-> -> 37 `i `uc
+-> -> 123 `i `uc
+-> -> 58 `i `uc
+-> -> 100 `i `uc
+-> -> 134 `i `uc
+-> -> 216 `i `uc
+-> -> 91 `i `uc
+-> -> 5 `i `uc
+-> -> 231 `i `uc
+-> -> 185 `i `uc
+-> -> 140 `i `uc
+-> -> 210 `i `uc
+-> -> 48 `i `uc
+-> -> 110 `i `uc
+-> -> 237 `i `uc
+"35
+-> -> 179 `i `uc
+-> -> 81 `i `uc
+-> -> 15 `i `uc
+-> -> 78 `i `uc
+-> -> 16 `i `uc
+-> -> 242 `i `uc
+-> -> 172 `i `uc
+-> -> 47 `i `uc
+-> -> 113 `i `uc
+-> -> 147 `i `uc
+-> -> 205 `i `uc
+-> -> 17 `i `uc
+-> -> 79 `i `uc
+-> -> 173 `i `uc
+-> -> 243 `i `uc
+-> -> 112 `i `uc
+-> -> 46 `i `uc
+-> -> 204 `i `uc
+-> -> 146 `i `uc
+"36
+-> -> 211 `i `uc
+-> -> 141 `i `uc
+-> -> 111 `i `uc
+-> -> 49 `i `uc
+-> -> 178 `i `uc
+-> -> 236 `i `uc
+-> -> 14 `i `uc
+-> -> 80 `i `uc
+-> -> 175 `i `uc
+-> -> 241 `i `uc
+-> -> 19 `i `uc
+-> -> 77 `i `uc
+-> -> 206 `i `uc
+-> -> 144 `i `uc
+-> -> 114 `i `uc
+-> -> 44 `i `uc
+-> -> 109 `i `uc
+-> -> 51 `i `uc
+-> -> 209 `i `uc
+"37
+-> -> 143 `i `uc
+-> -> 12 `i `uc
+-> -> 82 `i `uc
+-> -> 176 `i `uc
+-> -> 238 `i `uc
+-> -> 50 `i `uc
+-> -> 108 `i `uc
+-> -> 142 `i `uc
+-> -> 208 `i `uc
+-> -> 83 `i `uc
+-> -> 13 `i `uc
+-> -> 239 `i `uc
+-> -> 177 `i `uc
+-> -> 240 `i `uc
+-> -> 174 `i `uc
+-> -> 76 `i `uc
+-> -> 18 `i `uc
+-> -> 145 `i `uc
+-> -> 207 `i `uc
+"38
+-> -> 45 `i `uc
+-> -> 115 `i `uc
+-> -> 202 `i `uc
+-> -> 148 `i `uc
+-> -> 118 `i `uc
+-> -> 40 `i `uc
+-> -> 171 `i `uc
+-> -> 245 `i `uc
+-> -> 23 `i `uc
+-> -> 73 `i `uc
+-> -> 8 `i `uc
+-> -> 86 `i `uc
+-> -> 180 `i `uc
+-> -> 234 `i `uc
+-> -> 105 `i `uc
+-> -> 55 `i `uc
+-> -> 213 `i `uc
+-> -> 139 `i `uc
+-> -> 87 `i `uc
+"39
+-> -> 9 `i `uc
+-> -> 235 `i `uc
+-> -> 181 `i `uc
+-> -> 54 `i `uc
+-> -> 104 `i `uc
+-> -> 138 `i `uc
+-> -> 212 `i `uc
+-> -> 149 `i `uc
+-> -> 203 `i `uc
+-> -> 41 `i `uc
+-> -> 119 `i `uc
+-> -> 244 `i `uc
+-> -> 170 `i `uc
+-> -> 72 `i `uc
+-> -> 22 `i `uc
+-> -> 233 `i `uc
+-> -> 183 `i `uc
+-> -> 85 `i `uc
+-> -> 11 `i `uc
+"40
+-> -> 136 `i `uc
+-> -> 214 `i `uc
+-> -> 52 `i `uc
+-> -> 106 `i `uc
+-> -> 43 `i `uc
+-> -> 117 `i `uc
+-> -> 151 `i `uc
+-> -> 201 `i `uc
+-> -> 74 `i `uc
+-> -> 20 `i `uc
+-> -> 246 `i `uc
+-> -> 168 `i `uc
+-> -> 116 `i `uc
+-> -> 42 `i `uc
+-> -> 200 `i `uc
+-> -> 150 `i `uc
+-> -> 21 `i `uc
+-> -> 75 `i `uc
+-> -> 169 `i `uc
+"41
+-> -> 247 `i `uc
+-> -> 182 `i `uc
+-> -> 232 `i `uc
+-> -> 10 `i `uc
+-> -> 84 `i `uc
+-> -> 215 `i `uc
+-> -> 137 `i `uc
+-> -> 107 `i `uc
+-> -> 53 `i `uc
+..
+]
+"47
+[v _ow_reset `(uc  1 ef ]
+{
+[e :U _ow_reset ]
+[f ]
+"48
+[v _presence `c  1 a ]
+"50
+[e = _RC3 -> -> 0 `i `b ]
+"51
+[e = _TRISC3 -> -> 0 `i `b ]
+"53
+[e ( __delay (1 -> * -> -> 488 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"55
+[e = _TRISC3 -> -> 1 `i `b ]
+"57
+[e ( __delay (1 -> * -> -> 72 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"59
+[e = _presence -> -> _RC3 `i `c ]
+"61
+[e ( __delay (1 -> * -> -> 424 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"63
+[e ) -> _presence `uc ]
+[e $UE 94  ]
+"64
+[e :UE 94 ]
+}
+"69
+[v _ow_read_bit `(uc  1 ef ]
+{
+[e :U _ow_read_bit ]
+[f ]
+"70
+[e = _RC3 -> -> 0 `i `b ]
+"71
+[e = _TRISC3 -> -> 0 `i `b ]
+"73
+[e ( __delay (1 -> * -> -> 3 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"75
+[e = _TRISC3 -> -> 1 `i `b ]
+"77
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"79
+[e ) -> -> _RC3 `i `uc ]
+[e $UE 95  ]
+"80
+[e :UE 95 ]
+}
+"84
+[v _ow_write_bit `(v  1 ef1`uc ]
+{
+[e :U _ow_write_bit ]
+[v _bitval `uc  1 r1 ]
+[f ]
+"85
+[e = _RC3 -> -> 0 `i `b ]
+"86
+[e = _TRISC3 -> -> 0 `i `b ]
+"88
+[e $ ! == -> _bitval `i -> 1 `i 97  ]
+{
+"89
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"91
+[e = _TRISC3 -> -> 1 `i `b ]
+"92
+}
+[e :U 97 ]
+"94
+[e ( __delay (1 -> * -> -> 105 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"96
+[e = _TRISC3 -> -> 1 `i `b ]
+"97
+[e :UE 96 ]
+}
+"101
+[v _ow_read_byte `(uc  1 ef ]
+{
+[e :U _ow_read_byte ]
+[f ]
+"102
+[v _i `uc  1 a ]
+"103
+[v _val `uc  1 a ]
+[e = _val -> -> 0 `i `uc ]
+"105
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 8 `i 99  ]
+[e $U 100  ]
+[e :U 99 ]
+{
+"106
+[e $ ! != -> ( _ow_read_bit ..  `i -> -> -> 0 `i `uc `i 102  ]
+"107
+[e =| _val -> << -> 1 `i _i `uc ]
+[e :U 102 ]
+"109
+[e ( __delay (1 -> * -> -> 120 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"110
+}
+"105
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 8 `i 99  ]
+[e :U 100 ]
+"110
+}
+"112
+[e ) _val ]
+[e $UE 98  ]
+"113
+[e :UE 98 ]
+}
+"119
+[v _ow_write_byte `(v  1 ef2`uc`uc ]
+{
+[e :U _ow_write_byte ]
+[v _val `uc  1 r1 ]
+[v _power_on `uc  1 r2 ]
+[f ]
+"120
+[v _i `i  1 a ]
+"122
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 8 `i 104  ]
+[e $U 105  ]
+[e :U 104 ]
+{
+"123
+[e = _RC3 -> -> 0 `i `b ]
+"124
+[e = _TRISC3 -> -> 0 `i `b ]
+"126
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"128
+[e = _RC3 -> & -> _val `i -> 1 `i `b ]
+"129
+[e =>> _val -> 1 `i ]
+"131
+[e ( __delay (1 -> * -> -> 60 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"133
+[e $ ! && == _i -> 7 `i == -> _power_on `i -> 1 `i 107  ]
+{
+"134
+[e = _RC3 -> -> 1 `i `b ]
+"135
+}
+[e $U 108  ]
+[e :U 107 ]
+{
+"136
+[e = _TRISC3 -> -> 1 `i `b ]
+"138
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"139
+}
+[e :U 108 ]
+"140
+}
+"122
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 8 `i 104  ]
+[e :U 105 ]
+"140
+}
+"141
+[e :UE 103 ]
+}
+"147
+[v _ow_crc `(uc  1 ef1`uc ]
+{
+[e :U _ow_crc ]
+[v _x `uc  1 r1 ]
+[f ]
+"148
+[e = _ow_dowcrc -> *U + &U _ow_crctable * -> -> ^ -> _ow_dowcrc `i -> _x `i `ui `ux -> -> # *U &U _ow_crctable `ui `ux `c ]
+"150
+[e ) -> _ow_dowcrc `uc ]
+[e $UE 109  ]
+"151
+[e :UE 109 ]
+}
+"158
+[v _ow_next `(uc  1 ef ]
+{
+[e :U _ow_next ]
+[f ]
+"159
+[v _m `c  1 a ]
+[e = _m -> -> 1 `i `c ]
+"160
+[v _n `uc  1 a ]
+[e = _n -> -> 0 `i `uc ]
+"161
+[v _k `uc  1 a ]
+[e = _k -> -> 1 `i `uc ]
+"162
+[v _x `uc  1 a ]
+[e = _x -> -> 0 `i `uc ]
+"163
+[v _discrepMarker `uc  1 a ]
+[e = _discrepMarker -> -> 0 `i `uc ]
+"164
+[v _g `uc  1 a ]
+"165
+[v _nxt `uc  1 a ]
+"166
+[v _flag `c  1 a ]
+"168
+[e = _nxt -> -> 0 `i `uc ]
+"170
+[e = _ow_dowcrc -> -> 0 `i `c ]
+"172
+[e = _flag -> ( _ow_reset ..  `c ]
+"174
+[e $ ! || != -> _flag `i -> -> -> 0 `i `c `i != -> _doneFlag `i -> -> -> 0 `i `uc `i 111  ]
+{
+"175
+[e = _lastDiscrep -> -> 0 `i `c ]
+"176
+[e ) -> -> 0 `i `uc ]
+[e $UE 110  ]
+"177
+}
+[e :U 111 ]
+"179
+[e ( _ow_write_byte (2 , -> -> 240 `i `uc -> -> 0 `i `uc ]
+"181
+[e :U 114 ]
+{
+"182
+[e = _x -> -> 0 `i `uc ]
+"184
+[e $ ! == -> ( _ow_read_bit ..  `i -> 1 `i 115  ]
+"185
+[e = _x -> -> 2 `i `uc ]
+[e :U 115 ]
+"187
+[e ( __delay (1 -> * -> -> 120 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"189
+[e $ ! == -> ( _ow_read_bit ..  `i -> 1 `i 116  ]
+"190
+[e =| _x -> -> 1 `i `uc ]
+[e :U 116 ]
+"192
+[e $ ! == -> _x `i -> 3 `i 117  ]
+"193
+[e $U 113  ]
+[e $U 118  ]
+"194
+[e :U 117 ]
+{
+"195
+[e $ ! > -> _x `i -> 0 `i 119  ]
+"196
+[e = _g -> >> -> _x `i -> 1 `i `uc ]
+[e $U 120  ]
+"200
+[e :U 119 ]
+{
+"201
+[e $ ! < -> _m `i -> _lastDiscrep `i 121  ]
+"202
+[e = _g -> -> > & -> *U + &U _RomBytes * -> _n `ux -> -> # *U &U _RomBytes `ui `ux `i -> _k `i -> 0 `i `i `uc ]
+[e $U 122  ]
+"204
+[e :U 121 ]
+"205
+[e = _g -> -> == -> _m `i -> _lastDiscrep `i `i `uc ]
+[e :U 122 ]
+"208
+[e $ ! == -> _g `i -> 0 `i 123  ]
+"209
+[e = _discrepMarker -> _m `uc ]
+[e :U 123 ]
+"210
+}
+[e :U 120 ]
+"213
+[e $ ! == -> _g `i -> 1 `i 124  ]
+"214
+[e =| *U + &U _RomBytes * -> _n `ux -> -> # *U &U _RomBytes `ui `ux _k ]
+[e $U 125  ]
+"215
+[e :U 124 ]
+"216
+[e =& *U + &U _RomBytes * -> _n `ux -> -> # *U &U _RomBytes `ui `ux -> ~ -> _k `i `uc ]
+[e :U 125 ]
+"218
+[e ( _ow_write_bit (1 _g ]
+"220
+[e ++ _m -> -> 1 `i `c ]
+"221
+[e = _k -> << -> _k `i -> 1 `i `uc ]
+"224
+[e $ ! == -> _k `i -> 0 `i 126  ]
+{
+"226
+[e ( _ow_crc (1 *U + &U _RomBytes * -> _n `ux -> -> # *U &U _RomBytes `ui `ux ]
+"227
+[e ++ _n -> -> 1 `i `uc ]
+"228
+[e ++ _k -> -> 1 `i `uc ]
+"229
+}
+[e :U 126 ]
+"230
+}
+[e :U 118 ]
+"231
+}
+[e $ < -> _n `i -> 8 `i 114  ]
+[e :U 113 ]
+"233
+[e $ ! || < -> _m `i -> 65 `i != -> _ow_dowcrc `i -> -> -> 0 `i `c `i 127  ]
+"234
+[e = _lastDiscrep -> -> 0 `i `c ]
+[e $U 128  ]
+"236
+[e :U 127 ]
+{
+"237
+[e = _lastDiscrep -> _discrepMarker `c ]
+"238
+[e = _doneFlag -> -> == -> _lastDiscrep `i -> 0 `i `i `uc ]
+"239
+[e = _nxt -> -> 1 `i `uc ]
+"240
+}
+[e :U 128 ]
+"242
+[e ) _nxt ]
+[e $UE 110  ]
+"243
+[e :UE 110 ]
+}
+"250
+[v _ow_first `(uc  1 ef ]
+{
+[e :U _ow_first ]
+[f ]
+"251
+[e = _lastDiscrep -> -> 0 `i `c ]
+"252
+[e = _doneFlag -> -> 0 `i `uc ]
+"254
+[e ) ( _ow_next ..  ]
+[e $UE 129  ]
+"255
+[e :UE 129 ]
+}
+"259
+[v _ow_search `(v  1 ef ]
+{
+[e :U _ow_search ]
+[f ]
+"260
+[v _m `uc  1 a ]
+"262
+[e $ ! ! != -> ( _ow_reset ..  `i -> -> -> 0 `i `uc `i 131  ]
+{
+"263
+[e $ ! != -> ( _ow_first ..  `i -> -> -> 0 `i `uc `i 132  ]
+{
+"264
+[e = _numROMs -> -> 0 `i `uc ]
+"266
+[e :U 135 ]
+{
+"267
+[e ++ _numROMs -> -> 1 `i `uc ]
+"269
+{
+[e = _m -> -> 0 `i `uc ]
+[e $ < -> _m `i -> 8 `i 136  ]
+[e $U 137  ]
+[e :U 136 ]
+{
+"270
+[e = *U + &U *U + &U _FoundROM * -> _numROMs `ux -> * -> # *U &U *U &U _FoundROM `ui -> -> 8 `i `ui `ux * -> _m `ux -> -> # *U &U *U + &U _FoundROM * -> _numROMs `ux -> * -> # *U &U *U &U _FoundROM `ui -> -> 8 `i `ui `ux `ui `ux *U + &U _RomBytes * -> _m `ux -> -> # *U &U _RomBytes `ui `ux ]
+"271
+}
+"269
+[e ++ _m -> -> 1 `i `uc ]
+[e $ < -> _m `i -> 8 `i 136  ]
+[e :U 137 ]
+"271
+}
+"283
+}
+[e $ && != -> ( _ow_next ..  `i -> -> -> 0 `i `uc `i < -> _numROMs `i -> 10 `i 135  ]
+[e :U 134 ]
+"286
+}
+[e :U 132 ]
+"287
+}
+[e :U 131 ]
+"290
+[e :UE 130 ]
+}
+"296
+[v _ow_access `(uc  1 ef1`uc ]
+{
+[e :U _ow_access ]
+[v _actNumROM `uc  1 r1 ]
+[f ]
+"297
+[v _i `uc  1 a ]
+"299
+[e $ ! != -> ( _ow_reset ..  `i -> -> -> 0 `i `uc `i 140  ]
+"300
+[e ) -> -> 0 `i `uc ]
+[e $UE 139  ]
+[e :U 140 ]
+"302
+[e ( _ow_write_byte (2 , -> -> 85 `i `uc -> -> 0 `i `uc ]
+"304
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 8 `i 141  ]
+[e $U 142  ]
+[e :U 141 ]
+[e ( _ow_write_byte (2 , *U + &U *U + &U _FoundROM * -> _actNumROM `ux -> * -> # *U &U *U &U _FoundROM `ui -> -> 8 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _FoundROM * -> _actNumROM `ux -> * -> # *U &U *U &U _FoundROM `ui -> -> 8 `i `ui `ux `ui `ux -> -> 0 `i `uc ]
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 8 `i 141  ]
+[e :U 142 ]
+}
+"306
+[e ) -> -> 1 `i `uc ]
+[e $UE 139  ]
+"307
+[e :UE 139 ]
+}

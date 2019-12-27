@@ -1,0 +1,10 @@
+     1: #include "midi.h"
+     2: #include "uart.h"
+     3: 
+     4: // -------------------------------------------------------------------------
+     5: void
+     6: midi_send(const putch_ptr putch, uint8_t cmd, uint8_t d1, uint8_t d2, uint8_t chan) {
+     7:   putch((cmd & 0b11110000) | (chan & 0b1111));
+     8:   putch(d1);
+     9:   putch(d2);
+    10: }

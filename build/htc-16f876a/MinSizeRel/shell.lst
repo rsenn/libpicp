@@ -1,0 +1,119 @@
+     1: #include "shell.h"
+     2: #include "softser.h"
+     3: #include "uart.h"
+     4: 
+     5: #include <string.h>
+     6: 
+     7: #define TOUPPER(CH) (((CH) >= 'a' && (CH) <= 'z') ? ((CH) - 'a' + 'A') : (CH))
+     8: 
+     9: void
+    10: putbinary(void (*putch)(char), uint8_t b) {
+    11:   uint8_t test = 0x80;
+    12:   putch((b & test) ? '1' : '0');
+    13:   test >>= 1;
+    14:   putch((b & test) ? '1' : '0');
+    15:   test >>= 1;
+    16:   putch((b & test) ? '1' : '0');
+    17:   test >>= 1;
+    18:   putch((b & test) ? '1' : '0');
+    19:   test >>= 1;
+    20:   putch((b & test) ? '1' : '0');
+    21:   test >>= 1;
+    22:   putch((b & test) ? '1' : '0');
+    23:   test >>= 1;
+    24:   putch((b & test) ? '1' : '0');
+    25:   test >>= 1;
+    26:   putch((b & test) ? '1' : '0');
+    27: }
+    28: 
+    29: int
+    30: stricmp(const char* s1, const char* s2) {
+    31:   while(*s2 != 0 && TOUPPER(*s1) == TOUPPER(*s2)) s1++, s2++;
+    32:   return (int)(TOUPPER(*s1) - TOUPPER(*s2));
+    33: }
+    34: 
+    35: struct cmd;
+    36: 
+    37: typedef int(cmdfn)(const struct cmd*, char*);
+    38: 
+    39: typedef const struct cmd {
+    40:   const char* name;
+    41:   cmdfn* fn;
+    42: } cmd_t;
+    43: 
+    44: static int cmd_set(const cmd_t*, char* arg);
+    45: static int cmd_get(const cmd_t*, char* arg);
+    46: static int cmd_bitop(const cmd_t*, char* arg);
+    47: 
+    48: const cmd_t cmds[] = {
+    49:     {"set", &cmd_set},
+    50:     {"get", &cmd_get},
+    51:     {"bitop", &cmd_bitop},
+    52: };
+    53: 
+    54: void
+    55: shell_puts(shell_t* sh, const char* s) {
+    56:   while(*s) {
+    57:     sh->putch(*s++);
+    58:   }
+    59: }
+    60: 
+    61: void
+    62: shell_init(shell_t* sh, get_fn* get, put_fn* put) {
+    63:   sh->pos = sh->len = 0;
+    64:   sh->getch = get;
+    65:   sh->putch = put;
+    66: 
+    67:   shell_puts(sh, "pictest shell v1.0\n");
+    68: }
+    69: 
+    70: void
+    71: shell_read(shell_t* sh, uint16_t timeout) {
+    72:   char* p;
+    73:   int ch;
+    74:   uint8_t i;
+    75:   while((ch = sh->getch(timeout)) >= 0) {
+    76: 
+    77:     sh->putch(0x0d);
+    78:     sh->putch(0x0a);
+    79:     putbinary(sh->putch, ch);
+    80: 
+    81:     if(ch == '\r' || ch == '\n') {
+    82: 
+    83:       shell_puts(sh, "-- ok --\n");
+    84: 
+    85:       sh->buf[sh->pos] = '\0';
+    86: 
+    87:       p = sh->buf;
+    88:       while(*p != '\0' && *p != ' ') ++p;
+    89: 
+    90:       for(i = 0; i < sizeof(cmds) / sizeof(cmds[0]); ++i) {
+    91: 
+    92:         if(!stricmp((const char*)sh->buf, cmds[i].name)) {
+    93:           cmds[i].fn(&cmds[i], p);
+    94:           break;
+    95:         }
+    96:       }
+    97: 
+    98:       shell_puts(sh, "no such command: ");
+    99:       shell_puts(sh, sh->buf);
+   100:       sh->putch('\n');
+   101:       break;
+   102:     }
+   103: 
+   104:     sh->buf[sh->pos++] = (uint8_t)ch;
+   105:   }
+   106: }
+   107: 
+   108: static int
+   109: cmd_set(const cmd_t* cmd, char* arg) {
+   110:   return 0;
+   111: }
+   112: static int
+   113: cmd_get(const cmd_t* cmd, char* arg) {
+   114:   return 0;
+   115: }
+   116: static int
+   117: cmd_bitop(const cmd_t* cmd, char* arg) {
+   118:   return 0;
+   119: }

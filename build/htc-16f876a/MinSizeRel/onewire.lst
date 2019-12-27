@@ -1,0 +1,307 @@
+     1: // One Wire bus functions - from Dallas publication AN162
+     2: // "Interfacing DS18x20/DS1822 1-wire Temperature Sensor in a Microcontroller
+     3: // Environment". Delays calculated from values given for 8051.
+     4: // Changed variable name ROM[] to RomBytes[] because ROM is a reserved word
+     5: // in version 4 of the CCS compiler.
+     6: 
+     7: #include "delay.h"
+     8: #include "onewire.h"
+     9: 
+    10: #ifdef HI_TECH_C
+    11: #include <htc.h>
+    12: #else
+    13: #if defined(__PCM__) || defined(__PCH__)
+    14: #include "ccs.h"
+    15: #endif
+    16: #endif
+    17: 
+    18: static uint8_t RomBytes[8];
+    19: static int8_t lastDiscrep = 0;
+    20: static BOOL doneFlag = 0;
+    21: static uint8_t FoundROM[12][8]; // Table of found ROM codes, 8 bytes for each
+    22: static uint8_t numROMs;
+    23: static int8_t ow_dowcrc; // crc is accumulated in this variable
+    24: 
+    25: // crc lookup table
+    26: // ---------------------------------------------------------------------------
+    27: uint8_t const ow_crctable[] = {
+    28:     0x00, 0x5e, 0xbc, 0xe2, 0x61, 0x3f, 0xdd, 0x83, 0xc2, 0x9c, 0x7e, 0x20, 0xa3, 0xfd, 0x1f, 0x41, 0x9d, 0xc3, 0x21,
+    29:     0x7f, 0xfc, 0xa2, 0x40, 0x1e, 0x5f, 0x01, 0xe3, 0xbd, 0x3e, 0x60, 0x82, 0xdc, 0x23, 0x7d, 0x9f, 0xc1, 0x42, 0x1c,
+    30:     0xfe, 0xa0, 0xe1, 0xbf, 0x5d, 0x03, 0x80, 0xde, 0x3c, 0x62, 0xbe, 0xe0, 0x02, 0x5c, 0xdf, 0x81, 0x63, 0x3d, 0x7c,
+    31:     0x22, 0xc0, 0x9e, 0x1d, 0x43, 0xa1, 0xff, 0x46, 0x18, 0xfa, 0xa4, 0x27, 0x79, 0x9b, 0xc5, 0x84, 0xda, 0x38, 0x66,
+    32:     0xe5, 0xbb, 0x59, 0x07, 0xdb, 0x85, 0x67, 0x39, 0xba, 0xe4, 0x06, 0x58, 0x19, 0x47, 0xa5, 0xfb, 0x78, 0x26, 0xc4,
+    33:     0x9a, 0x65, 0x3b, 0xd9, 0x87, 0x04, 0x5a, 0xb8, 0xe6, 0xa7, 0xf9, 0x1b, 0x45, 0xc6, 0x98, 0x7a, 0x24, 0xf8, 0xa6,
+    34:     0x44, 0x1a, 0x99, 0xc7, 0x25, 0x7b, 0x3a, 0x64, 0x86, 0xd8, 0x5b, 0x05, 0xe7, 0xb9, 0x8c, 0xd2, 0x30, 0x6e, 0xed,
+    35:     0xb3, 0x51, 0x0f, 0x4e, 0x10, 0xf2, 0xac, 0x2f, 0x71, 0x93, 0xcd, 0x11, 0x4f, 0xad, 0xf3, 0x70, 0x2e, 0xcc, 0x92,
+    36:     0xd3, 0x8d, 0x6f, 0x31, 0xb2, 0xec, 0x0e, 0x50, 0xaf, 0xf1, 0x13, 0x4d, 0xce, 0x90, 0x72, 0x2c, 0x6d, 0x33, 0xd1,
+    37:     0x8f, 0x0c, 0x52, 0xb0, 0xee, 0x32, 0x6c, 0x8e, 0xd0, 0x53, 0x0d, 0xef, 0xb1, 0xf0, 0xae, 0x4c, 0x12, 0x91, 0xcf,
+    38:     0x2d, 0x73, 0xca, 0x94, 0x76, 0x28, 0xab, 0xf5, 0x17, 0x49, 0x08, 0x56, 0xb4, 0xea, 0x69, 0x37, 0xd5, 0x8b, 0x57,
+    39:     0x09, 0xeb, 0xb5, 0x36, 0x68, 0x8a, 0xd4, 0x95, 0xcb, 0x29, 0x77, 0xf4, 0xaa, 0x48, 0x16, 0xe9, 0xb7, 0x55, 0x0b,
+    40:     0x88, 0xd6, 0x34, 0x6a, 0x2b, 0x75, 0x97, 0xc9, 0x4a, 0x14, 0xf6, 0xa8, 0x74, 0x2a, 0xc8, 0x96, 0x15, 0x4b, 0xa9,
+    41:     0xf7, 0xb6, 0xe8, 0x0a, 0x54, 0xd7, 0x89, 0x6b, 0x35,
+    42: };
+    43: 
+    44: // Returns 0 for one wire device presence, 1 for none
+    45: // ---------------------------------------------------------------------------
+    46: char
+    47: ow_reset(void) {
+    48:   int8_t presence;
+    49: 
+    50:   DQ_BIT = 0;
+    51:   DQ_TRIS = 0;
+    52: 
+    53:   delay_us(488); // Min. 480uS
+    54: 
+    55:   DQ_TRIS = 1;
+    56: 
+    57:   delay_us(72); // Takes 15 to 60uS for devices to respond
+    58: 
+    59:   presence = DQ_BIT;
+    60: 
+    61:   delay_us(424); // Wait for end of timeslot
+    62: 
+    63:   return presence;
+    64: }
+    65: 
+    66: // Read bit on one wire bus
+    67: // ---------------------------------------------------------------------------
+    68: uint8_t
+    69: ow_read_bit(void) {
+    70:   DQ_BIT = 0;
+    71:   DQ_TRIS = 0;
+    72: 
+    73:   delay_us(3); // Added, 1uS min. Code relied on 8051 being slow.
+    74: 
+    75:   DQ_TRIS = 1;
+    76: 
+    77:   delay_us(5); // Read within 15uS from start of time slot
+    78: 
+    79:   return DQ_BIT; // input(DQ);
+    80: }
+    81: 
+    82: // ---------------------------------------------------------------------------
+    83: void
+    84: ow_write_bit(uint8_t bitval) {
+    85:   DQ_BIT = 0;
+    86:   DQ_TRIS = 0;
+    87: 
+    88:   if(bitval == 1) {
+    89:     delay_us(1); // 1uS min. Code relied on 8051 being slow.
+    90: 
+    91:     DQ_TRIS = 1;
+    92:   }
+    93: 
+    94:   delay_us(105); // Wait for end of timeslot
+    95: 
+    96:   DQ_TRIS = 1;
+    97: }
+    98: 
+    99: // ---------------------------------------------------------------------------
+   100: uint8_t
+   101: ow_read_byte(void) {
+   102:   uint8_t i;
+   103:   uint8_t val = 0;
+   104: 
+   105:   for(i = 0; i < 8; i++) {
+   106:     if(ow_read_bit())
+   107:       val |= (0x01 << i);
+   108: 
+   109:     delay_us(120); // To finish time slot
+   110:   }
+   111: 
+   112:   return val;
+   113: }
+   114: 
+   115: // ---------------------------------------------------------------------------
+   116: // new byte writing routine with parasite power option
+   117: // ---------------------------------------------------------------------------
+   118: void
+   119: ow_write_byte(uint8_t val, BOOL power_on) {
+   120:   int i;
+   121: 
+   122:   for(i = 0; i < 8; i++) {
+   123:     DQ_BIT = 0;
+   124:     DQ_TRIS = 0;
+   125: 
+   126:     delay_us(2);
+   127: 
+   128:     DQ_BIT = val & 1;
+   129:     val >>= 1; // shift_right(&val, 1, 0);
+   130: 
+   131:     delay_us(60);
+   132: 
+   133:     if((i == 7) && (power_on == 1)) {
+   134:       DQ_BIT = 1;
+   135:     } else {
+   136:       DQ_TRIS = 1;
+   137: 
+   138:       delay_us(2);
+   139:     }
+   140:   }
+   141: }
+   142: 
+   143: // ---------------------------------------------------------------------------
+   144: // One wire crc
+   145: // ---------------------------------------------------------------------------
+   146: uint8_t
+   147: ow_crc(uint8_t x) {
+   148:   ow_dowcrc = ow_crctable[ow_dowcrc ^ x];
+   149: 
+   150:   return ow_dowcrc;
+   151: }
+   152: 
+   153: // ---------------------------------------------------------------------------
+   154: // Searches for the next device on the one wire bus. If there are no more
+   155: // devices on the bus then 0 is returned.
+   156: // ---------------------------------------------------------------------------
+   157: char
+   158: ow_next(void) {
+   159:   int8_t m = 1;  // ROM Bit index
+   160:   uint8_t n = 0; // ROM Byte index
+   161:   uint8_t k = 1; // Bit mask
+   162:   uint8_t x = 0;
+   163:   uint8_t discrepMarker = 0;
+   164:   uint8_t g;   // Output bit
+   165:   uint8_t nxt; // Return value
+   166:   int8_t flag;
+   167: 
+   168:   nxt = 0; // Reset next flag to 0
+   169: 
+   170:   ow_dowcrc = 0; // Reset the ow_dowcrc
+   171: 
+   172:   flag = ow_reset();
+   173: 
+   174:   if(flag || doneFlag) { // If no parts return 0
+   175:     lastDiscrep = 0;     // Reset the search
+   176:     return 0;
+   177:   }
+   178: 
+   179:   ow_write_byte(0xF0, 0); // Send SearchROM command
+   180: 
+   181:   do {
+   182:     x = 0;
+   183: 
+   184:     if(ow_read_bit() == 1)
+   185:       x = 2;
+   186: 
+   187:     delay_us(120);
+   188: 
+   189:     if(ow_read_bit() == 1)
+   190:       x |= 1; // And it's complement
+   191: 
+   192:     if(x == 3) // There are no devices on the one wire bus
+   193:       break;
+   194:     else {
+   195:       if(x > 0)     // All devices coupled have 0 or 1
+   196:         g = x >> 1; // Bit write value for search
+   197: 
+   198:       // If this discrepancy is before the last discrepancy on a previous
+   199:       // ow_next then pick the same as last time.
+   200:       else {
+   201:         if(m < lastDiscrep)
+   202:           g = ((RomBytes[n] & k) > 0);
+   203:         // If equal to last pick 1
+   204:         else
+   205:           g = (m == lastDiscrep); // If not then pick 0
+   206: 
+   207:         // If 0 was picked then record position with mask k
+   208:         if(g == 0)
+   209:           discrepMarker = m;
+   210:       }
+   211: 
+   212:       // Isolate bit in ROM[n] with mask k
+   213:       if(g == 1)
+   214:         RomBytes[n] |= k;
+   215:       else
+   216:         RomBytes[n] &= ~k;
+   217: 
+   218:       ow_write_bit(g); // ROM search write
+   219: 
+   220:       m++;        // Increment bit counter m
+   221:       k = k << 1; // and shift the bit mask k
+   222: 
+   223:       // If the mask is 0 then go to new ROM
+   224:       if(k == 0) {
+   225:         // Byte n and reset mask
+   226:         ow_crc(RomBytes[n]); // Accumulate the crc
+   227:         n++;
+   228:         k++;
+   229:       }
+   230:     }
+   231:   } while(n < 8); // Loop through until through all ROM bytes 0-7
+   232: 
+   233:   if(m < 65 || ow_dowcrc) // If search was unsuccessful then
+   234:     lastDiscrep = 0;      // reset the last Discrepancy to zero
+   235: 
+   236:   else { // Search was successful, so set lastDiscrep, lastOne, nxt
+   237:     lastDiscrep = discrepMarker;
+   238:     doneFlag = (lastDiscrep == 0);
+   239:     nxt = 1; // Indicates search not yet complete, more parts remain
+   240:   }
+   241: 
+   242:   return nxt;
+   243: }
+   244: 
+   245: // ---------------------------------------------------------------------------
+   246: // Resets current state of a ROM search and calls ow_next to find the first device
+   247: // on the one wire bus.
+   248: // ---------------------------------------------------------------------------
+   249: uint8_t
+   250: ow_first(void) {
+   251:   lastDiscrep = 0;
+   252:   doneFlag = 0;
+   253: 
+   254:   return ow_next(); // Call ow_next and return it's return value;
+   255: }
+   256: 
+   257: // ---------------------------------------------------------------------------
+   258: void
+   259: ow_search(void) {
+   260:   uint8_t m;
+   261: 
+   262:   if(!ow_reset()) {
+   263:     if(ow_first()) { // Begins when at least one part found
+   264:       numROMs = 0;
+   265: 
+   266:       do {
+   267:         numROMs++;
+   268: 
+   269:         for(m = 0; m < 8; m++) {
+   270:           FoundROM[numROMs][m] = RomBytes[m];
+   271:         }
+   272: 
+   273:         /*        putchar(254);
+   274:                 putchar(128);
+   275:                 printf("Device No.%u address ", numROMs);
+   276:                 putchar(254);
+   277:                 putchar(192);
+   278:                 printf("%X%X%X%X%X%X%X%X\n\r",
+   279:                        FoundROM[numROMs][7], FoundROM[numROMs][6], FoundROM[numROMs][5],
+   280:                        FoundROM[numROMs][4], FoundROM[numROMs][3], FoundROM[numROMs][2],
+   281:                        FoundROM[numROMs][1], FoundROM[numROMs][0]);
+   282:         */
+   283:       } while(ow_next() && (numROMs < 10)); // Continues until no additional
+   284: 
+   285:       // devices found.
+   286:     }
+   287:   }
+   288: 
+   289:   // printf("\n");
+   290: }
+   291: 
+   292: // ---------------------------------------------------------------------------
+   293: // Sends Match ROM command to bus then device address
+   294: // ---------------------------------------------------------------------------
+   295: char
+   296: ow_access(uint8_t actNumROM) {
+   297:   uint8_t i;
+   298: 
+   299:   if(ow_reset())
+   300:     return 0; // 0 if device present
+   301: 
+   302:   ow_write_byte(0x55, 0); // Match ROM
+   303: 
+   304:   for(i = 0; i < 8; i++) ow_write_byte(FoundROM[actNumROM][i], 0); // Send ROM code
+   305: 
+   306:   return 1;
+   307: }

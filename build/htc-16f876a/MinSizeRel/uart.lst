@@ -1,0 +1,114 @@
+     1: #include "delay.h"
+     2: #include "uart.h"
+     3: #include "typedef.h"
+     4: 
+     5: #if USE_UART
+     6: 
+     7: #ifndef UART_BRG
+     8: #if HIGH_SPEED == 1
+     9: #define UART_BRG ((uint16_t)((double)(_XTAL_FREQ) / (16 * (double)(UART_BAUD))) - 1)
+    10: #else
+    11: #define UART_BRG ((uint16_t)((double)(_XTAL_FREQ) / (64 * (double)(UART_BAUD))) - 1)
+    12: #endif
+    13: #endif
+    14: #define UART_TIMEOUT UART_BAUD
+    15: 
+    16: const uint8_t uart_brg = UART_BRG;
+    17: 
+    18: /**
+    19:  * Re-target POSIX function uart_putch
+    20:  */
+    21: void
+    22: uart_putch(uint8_t byte) {
+    23:   /* output one byte */
+    24:   while(!(PIR1 & 0b00010000)) {
+    25:     /* set when register is empty */
+    26:     continue;
+    27:   }
+    28:   TXREG = (uint8_t)byte;
+    29: }
+    30: 
+    31: int
+    32: uart_getch(void) {
+    33:   if(uart_poll(UART_TIMEOUT)) {
+    34:     uint8_t ch;
+    35:     ch = RCREG;
+    36:     PIR1 &= ~0b00100000; //  RCIF = 0;
+    37:     return (int)ch;
+    38:   }
+    39:   return -1;
+    40: }
+    41: 
+    42: // returns 1 when start bit received or 0 when timeout
+    43: //---------------------------------------------------------
+    44: bool
+    45: uart_poll(uint8_t bauds) {
+    46:   // TMR0 -= UART_BRG;            // load corrected baud value
+    47:   TMR0 = (256 - UART_BRG_FN(bauds));
+    48:   while(TMR0 & (1 << 7)) {
+    49:     if((PIR1 & 0b00100000))
+    50:       return 1;
+    51:   }
+    52:   return 0;
+    53: }
+    54: 
+    55: /**
+    56:  * ISR for UART receive
+    57:  *
+    58:  * @return received character or 0 if it's not UART interrupt
+    59:  */
+    60: uint8_t
+    61: uart_isr(void) {
+    62:   if((PIR1 & 0b00100000)) {
+    63:     PIR1 &= ~0b00100000; //  RCIF = 0;
+    64:     return RCREG;
+    65:   }
+    66:   return 0;
+    67: }
+    68: 
+    69: void
+    70: uart_enable(void) {
+    71:   RX_TRIS();
+    72:   TX_TRIS();
+    73:   TX_SET(0);
+    74:   TXSTA |= 0b00100000; //  TXEN = 1;
+    75:   RCSTA |= 0x80;       // SPEN = 1;
+    76:   PIE1 &= ~0b100000;   // RCIE = 0;
+    77: }
+    78: 
+    79: void
+    80: uart_disable(void) {
+    81:   TXSTA &= ~0b00100000; //  TXEN = 0;
+    82:   RCSTA &= ~0b10000000; // SPEN = 0;
+    83:   PIE1 &= ~0b100000;    // RCIE = 0;
+    84:   RX_TRIS();
+    85:   TX_TRIS();
+    86:   TX_SET(0);
+    87: }
+    88: 
+    89: void
+    90: uart_init(void) {
+    91:   /* Initilize baudrate generator and pins */
+    92:   RX_TRIS();
+    93:   TX_TRIS();
+    94:   TX_SET(0);
+    95:   SPBRG = UART_BRG; // UART_BRG;
+    96:   RCSTA |= 0x90     // CREN = 1;
+    97:            | /*RX9D =*/(NINE == 1 ? 0b1 : 0);
+    98:   TXSTA |= /*
+    99:   BRGH =  */ (HIGH_SPEED == 1) ? 0b100 : 0b000;
+   100:   TXSTA |= (NINE == 1) ? 0b01000000 : 0;
+   101:   uart_enable();
+   102: }
+   103: 
+   104: void
+   105: uart_puts(const char* s) {
+   106:   while(*s) uart_putch(*s++);
+   107: }
+   108: 
+   109: void
+   110: uart_puts2(uint8_t* s) {
+   111:   while(*s) uart_putch(*s++);
+   112: }
+   113: 
+   114: #endif // USE_UART

@@ -1,0 +1,756 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.83 build 10920 
+                                                                                               Fri Dec 27 16:43:20 2019
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 10920"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F876A
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNROOT	_main
+    43                           	global	_ow_crctable
+    44                           psect	stringtext,class=STRCODE,delta=2,reloc=256
+    45                           global __pstringtext
+    46  0100                     __pstringtext:
+    47                           ;	global	stringtab,__stringbase
+    48  0100                     stringtab:
+    49                           ;	String table - string pointers are 2 bytes each
+    50  0100  1BFF               	btfsc	(btemp+1),7
+    51  0101  290A               	ljmp	stringcode
+    52  0102  1383               	bcf	status,7
+    53  0103  187F               	btfsc	(btemp+1),0
+    54  0104  1783               	bsf	status,7
+    55  0105  0800               	movf	indf,w
+    56  0106  0A84               	incf fsr
+    57  0107  1903               skipnz
+    58  0108  0AFF               incf btemp+1
+    59  0109  0008               	return
+    60  010A                     stringcode:
+    61  010A  087F               	movf btemp+1,w
+    62  010B  397F               andlw 7Fh
+    63  010C  008A               movwf	pclath
+    64  010D  0804               	movf	fsr,w
+    65  010E  0A84               incf fsr
+    66  010F  1903               skipnz
+    67  0110  0AFF               incf btemp+1
+    68  0111  0082               	movwf pc
+    69  0112                     __stringbase:
+    70                           	file	"onewire.c"
+    71                           	line	27
+    72  0112                     _ow_crctable:
+    73  0112  3400               	retlw	0
+    74  0113  345E               	retlw	05Eh
+    75  0114  34BC               	retlw	0BCh
+    76  0115  34E2               	retlw	0E2h
+    77  0116  3461               	retlw	061h
+    78  0117  343F               	retlw	03Fh
+    79  0118  34DD               	retlw	0DDh
+    80  0119  3483               	retlw	083h
+    81  011A  34C2               	retlw	0C2h
+    82  011B  349C               	retlw	09Ch
+    83  011C  347E               	retlw	07Eh
+    84  011D  3420               	retlw	020h
+    85  011E  34A3               	retlw	0A3h
+    86  011F  34FD               	retlw	0FDh
+    87  0120  341F               	retlw	01Fh
+    88  0121  3441               	retlw	041h
+    89  0122  349D               	retlw	09Dh
+    90  0123  34C3               	retlw	0C3h
+    91  0124  3421               	retlw	021h
+    92  0125  347F               	retlw	07Fh
+    93  0126  34FC               	retlw	0FCh
+    94  0127  34A2               	retlw	0A2h
+    95  0128  3440               	retlw	040h
+    96  0129  341E               	retlw	01Eh
+    97  012A  345F               	retlw	05Fh
+    98  012B  3401               	retlw	01h
+    99  012C  34E3               	retlw	0E3h
+   100  012D  34BD               	retlw	0BDh
+   101  012E  343E               	retlw	03Eh
+   102  012F  3460               	retlw	060h
+   103  0130  3482               	retlw	082h
+   104  0131  34DC               	retlw	0DCh
+   105  0132  3423               	retlw	023h
+   106  0133  347D               	retlw	07Dh
+   107  0134  349F               	retlw	09Fh
+   108  0135  34C1               	retlw	0C1h
+   109  0136  3442               	retlw	042h
+   110  0137  341C               	retlw	01Ch
+   111  0138  34FE               	retlw	0FEh
+   112  0139  34A0               	retlw	0A0h
+   113  013A  34E1               	retlw	0E1h
+   114  013B  34BF               	retlw	0BFh
+   115  013C  345D               	retlw	05Dh
+   116  013D  3403               	retlw	03h
+   117  013E  3480               	retlw	080h
+   118  013F  34DE               	retlw	0DEh
+   119  0140  343C               	retlw	03Ch
+   120  0141  3462               	retlw	062h
+   121  0142  34BE               	retlw	0BEh
+   122  0143  34E0               	retlw	0E0h
+   123  0144  3402               	retlw	02h
+   124  0145  345C               	retlw	05Ch
+   125  0146  34DF               	retlw	0DFh
+   126  0147  3481               	retlw	081h
+   127  0148  3463               	retlw	063h
+   128  0149  343D               	retlw	03Dh
+   129  014A  347C               	retlw	07Ch
+   130  014B  3422               	retlw	022h
+   131  014C  34C0               	retlw	0C0h
+   132  014D  349E               	retlw	09Eh
+   133  014E  341D               	retlw	01Dh
+   134  014F  3443               	retlw	043h
+   135  0150  34A1               	retlw	0A1h
+   136  0151  34FF               	retlw	0FFh
+   137  0152  3446               	retlw	046h
+   138  0153  3418               	retlw	018h
+   139  0154  34FA               	retlw	0FAh
+   140  0155  34A4               	retlw	0A4h
+   141  0156  3427               	retlw	027h
+   142  0157  3479               	retlw	079h
+   143  0158  349B               	retlw	09Bh
+   144  0159  34C5               	retlw	0C5h
+   145  015A  3484               	retlw	084h
+   146  015B  34DA               	retlw	0DAh
+   147  015C  3438               	retlw	038h
+   148  015D  3466               	retlw	066h
+   149  015E  34E5               	retlw	0E5h
+   150  015F  34BB               	retlw	0BBh
+   151  0160  3459               	retlw	059h
+   152  0161  3407               	retlw	07h
+   153  0162  34DB               	retlw	0DBh
+   154  0163  3485               	retlw	085h
+   155  0164  3467               	retlw	067h
+   156  0165  3439               	retlw	039h
+   157  0166  34BA               	retlw	0BAh
+   158  0167  34E4               	retlw	0E4h
+   159  0168  3406               	retlw	06h
+   160  0169  3458               	retlw	058h
+   161  016A  3419               	retlw	019h
+   162  016B  3447               	retlw	047h
+   163  016C  34A5               	retlw	0A5h
+   164  016D  34FB               	retlw	0FBh
+   165  016E  3478               	retlw	078h
+   166  016F  3426               	retlw	026h
+   167  0170  34C4               	retlw	0C4h
+   168  0171  349A               	retlw	09Ah
+   169  0172  3465               	retlw	065h
+   170  0173  343B               	retlw	03Bh
+   171  0174  34D9               	retlw	0D9h
+   172  0175  3487               	retlw	087h
+   173  0176  3404               	retlw	04h
+   174  0177  345A               	retlw	05Ah
+   175  0178  34B8               	retlw	0B8h
+   176  0179  34E6               	retlw	0E6h
+   177  017A  34A7               	retlw	0A7h
+   178  017B  34F9               	retlw	0F9h
+   179  017C  341B               	retlw	01Bh
+   180  017D  3445               	retlw	045h
+   181  017E  34C6               	retlw	0C6h
+   182  017F  3498               	retlw	098h
+   183  0180  347A               	retlw	07Ah
+   184  0181  3424               	retlw	024h
+   185  0182  34F8               	retlw	0F8h
+   186  0183  34A6               	retlw	0A6h
+   187  0184  3444               	retlw	044h
+   188  0185  341A               	retlw	01Ah
+   189  0186  3499               	retlw	099h
+   190  0187  34C7               	retlw	0C7h
+   191  0188  3425               	retlw	025h
+   192  0189  347B               	retlw	07Bh
+   193  018A  343A               	retlw	03Ah
+   194  018B  3464               	retlw	064h
+   195  018C  3486               	retlw	086h
+   196  018D  34D8               	retlw	0D8h
+   197  018E  345B               	retlw	05Bh
+   198  018F  3405               	retlw	05h
+   199  0190  34E7               	retlw	0E7h
+   200  0191  34B9               	retlw	0B9h
+   201  0192  348C               	retlw	08Ch
+   202  0193  34D2               	retlw	0D2h
+   203  0194  3430               	retlw	030h
+   204  0195  346E               	retlw	06Eh
+   205  0196  34ED               	retlw	0EDh
+   206  0197  34B3               	retlw	0B3h
+   207  0198  3451               	retlw	051h
+   208  0199  340F               	retlw	0Fh
+   209  019A  344E               	retlw	04Eh
+   210  019B  3410               	retlw	010h
+   211  019C  34F2               	retlw	0F2h
+   212  019D  34AC               	retlw	0ACh
+   213  019E  342F               	retlw	02Fh
+   214  019F  3471               	retlw	071h
+   215  01A0  3493               	retlw	093h
+   216  01A1  34CD               	retlw	0CDh
+   217  01A2  3411               	retlw	011h
+   218  01A3  344F               	retlw	04Fh
+   219  01A4  34AD               	retlw	0ADh
+   220  01A5  34F3               	retlw	0F3h
+   221  01A6  3470               	retlw	070h
+   222  01A7  342E               	retlw	02Eh
+   223  01A8  34CC               	retlw	0CCh
+   224  01A9  3492               	retlw	092h
+   225  01AA  34D3               	retlw	0D3h
+   226  01AB  348D               	retlw	08Dh
+   227  01AC  346F               	retlw	06Fh
+   228  01AD  3431               	retlw	031h
+   229  01AE  34B2               	retlw	0B2h
+   230  01AF  34EC               	retlw	0ECh
+   231  01B0  340E               	retlw	0Eh
+   232  01B1  3450               	retlw	050h
+   233  01B2  34AF               	retlw	0AFh
+   234  01B3  34F1               	retlw	0F1h
+   235  01B4  3413               	retlw	013h
+   236  01B5  344D               	retlw	04Dh
+   237  01B6  34CE               	retlw	0CEh
+   238  01B7  3490               	retlw	090h
+   239  01B8  3472               	retlw	072h
+   240  01B9  342C               	retlw	02Ch
+   241  01BA  346D               	retlw	06Dh
+   242  01BB  3433               	retlw	033h
+   243  01BC  34D1               	retlw	0D1h
+   244  01BD  348F               	retlw	08Fh
+   245  01BE  340C               	retlw	0Ch
+   246  01BF  3452               	retlw	052h
+   247  01C0  34B0               	retlw	0B0h
+   248  01C1  34EE               	retlw	0EEh
+   249  01C2  3432               	retlw	032h
+   250  01C3  346C               	retlw	06Ch
+   251  01C4  348E               	retlw	08Eh
+   252  01C5  34D0               	retlw	0D0h
+   253  01C6  3453               	retlw	053h
+   254  01C7  340D               	retlw	0Dh
+   255  01C8  34EF               	retlw	0EFh
+   256  01C9  34B1               	retlw	0B1h
+   257  01CA  34F0               	retlw	0F0h
+   258  01CB  34AE               	retlw	0AEh
+   259  01CC  344C               	retlw	04Ch
+   260  01CD  3412               	retlw	012h
+   261  01CE  3491               	retlw	091h
+   262  01CF  34CF               	retlw	0CFh
+   263  01D0  342D               	retlw	02Dh
+   264  01D1  3473               	retlw	073h
+   265  01D2  34CA               	retlw	0CAh
+   266  01D3  3494               	retlw	094h
+   267  01D4  3476               	retlw	076h
+   268  01D5  3428               	retlw	028h
+   269  01D6  34AB               	retlw	0ABh
+   270  01D7  34F5               	retlw	0F5h
+   271  01D8  3417               	retlw	017h
+   272  01D9  3449               	retlw	049h
+   273  01DA  3408               	retlw	08h
+   274  01DB  3456               	retlw	056h
+   275  01DC  34B4               	retlw	0B4h
+   276  01DD  34EA               	retlw	0EAh
+   277  01DE  3469               	retlw	069h
+   278  01DF  3437               	retlw	037h
+   279  01E0  34D5               	retlw	0D5h
+   280  01E1  348B               	retlw	08Bh
+   281  01E2  3457               	retlw	057h
+   282  01E3  3409               	retlw	09h
+   283  01E4  34EB               	retlw	0EBh
+   284  01E5  34B5               	retlw	0B5h
+   285  01E6  3436               	retlw	036h
+   286  01E7  3468               	retlw	068h
+   287  01E8  348A               	retlw	08Ah
+   288  01E9  34D4               	retlw	0D4h
+   289  01EA  3495               	retlw	095h
+   290  01EB  34CB               	retlw	0CBh
+   291  01EC  3429               	retlw	029h
+   292  01ED  3477               	retlw	077h
+   293  01EE  34F4               	retlw	0F4h
+   294  01EF  34AA               	retlw	0AAh
+   295  01F0  3448               	retlw	048h
+   296  01F1  3416               	retlw	016h
+   297  01F2  34E9               	retlw	0E9h
+   298  01F3  34B7               	retlw	0B7h
+   299  01F4  3455               	retlw	055h
+   300  01F5  340B               	retlw	0Bh
+   301  01F6  3488               	retlw	088h
+   302  01F7  34D6               	retlw	0D6h
+   303  01F8  3434               	retlw	034h
+   304  01F9  346A               	retlw	06Ah
+   305  01FA  342B               	retlw	02Bh
+   306  01FB  3475               	retlw	075h
+   307  01FC  3497               	retlw	097h
+   308  01FD  34C9               	retlw	0C9h
+   309  01FE  344A               	retlw	04Ah
+   310  01FF  3414               	retlw	014h
+   311  0200  34F6               	retlw	0F6h
+   312  0201  34A8               	retlw	0A8h
+   313  0202  3474               	retlw	074h
+   314  0203  342A               	retlw	02Ah
+   315  0204  34C8               	retlw	0C8h
+   316  0205  3496               	retlw	096h
+   317  0206  3415               	retlw	015h
+   318  0207  344B               	retlw	04Bh
+   319  0208  34A9               	retlw	0A9h
+   320  0209  34F7               	retlw	0F7h
+   321  020A  34B6               	retlw	0B6h
+   322  020B  34E8               	retlw	0E8h
+   323  020C  340A               	retlw	0Ah
+   324  020D  3454               	retlw	054h
+   325  020E  34D7               	retlw	0D7h
+   326  020F  3489               	retlw	089h
+   327  0210  346B               	retlw	06Bh
+   328  0211  3435               	retlw	035h
+   329                           	global	exp@coeff
+   330                           psect	stringtext
+   331                           	file	"/opt/hitech/picc/9.83/sources/exp.c"
+   332                           	line	17
+   333  0212                     exp@coeff:
+   334  0212  3400               	retlw	0x0
+   335  0213  3400               	retlw	0x0
+   336  0214  3480               	retlw	0x80
+   337  0215  343F               	retlw	0x3f
+   338                           
+   339  0216  3418               	retlw	0x18
+   340  0217  3472               	retlw	0x72
+   341  0218  3431               	retlw	0x31
+   342  0219  343F               	retlw	0x3f
+   343                           
+   344  021A  34F0               	retlw	0xf0
+   345  021B  34FD               	retlw	0xfd
+   346  021C  3475               	retlw	0x75
+   347  021D  343E               	retlw	0x3e
+   348                           
+   349  021E  3447               	retlw	0x47
+   350  021F  3458               	retlw	0x58
+   351  0220  3463               	retlw	0x63
+   352  0221  343D               	retlw	0x3d
+   353                           
+   354  0222  3458               	retlw	0x58
+   355  0223  3495               	retlw	0x95
+   356  0224  341D               	retlw	0x1d
+   357  0225  343C               	retlw	0x3c
+   358                           
+   359  0226  3482               	retlw	0x82
+   360  0227  34C4               	retlw	0xc4
+   361  0228  34AE               	retlw	0xae
+   362  0229  343A               	retlw	0x3a
+   363                           
+   364  022A  34A8               	retlw	0xa8
+   365  022B  3478               	retlw	0x78
+   366  022C  3421               	retlw	0x21
+   367  022D  3439               	retlw	0x39
+   368                           
+   369  022E  34EF               	retlw	0xef
+   370  022F  3493               	retlw	0x93
+   371  0230  3480               	retlw	0x80
+   372  0231  3437               	retlw	0x37
+   373                           
+   374  0232  34A0               	retlw	0xa0
+   375  0233  3492               	retlw	0x92
+   376  0234  34A7               	retlw	0xa7
+   377  0235  3435               	retlw	0x35
+   378                           
+   379  0236  3446               	retlw	0x46
+   380  0237  3456               	retlw	0x56
+   381  0238  3415               	retlw	0x15
+   382  0239  3434               	retlw	0x34
+   383                           
+   384                           	global	log@coeff
+   385                           psect	stringtext
+   386                           	file	"/opt/hitech/picc/9.83/sources/log.c"
+   387                           	line	9
+   388  023A                     log@coeff:
+   389  023A  3400               	retlw	0x0
+   390  023B  3400               	retlw	0x0
+   391  023C  3400               	retlw	0x0
+   392  023D  3400               	retlw	0x0
+   393                           
+   394  023E  34C4               	retlw	0xc4
+   395  023F  34FF               	retlw	0xff
+   396  0240  347F               	retlw	0x7f
+   397  0241  343F               	retlw	0x3f
+   398                           
+   399  0242  3480               	retlw	0x80
+   400  0243  34EF               	retlw	0xef
+   401  0244  34FF               	retlw	0xff
+   402  0245  34BE               	retlw	0xbe
+   403                           
+   404  0246  3490               	retlw	0x90
+   405  0247  34E1               	retlw	0xe1
+   406  0248  34A9               	retlw	0xa9
+   407  0249  343E               	retlw	0x3e
+   408                           
+   409  024A  34EC               	retlw	0xec
+   410  024B  3482               	retlw	0x82
+   411  024C  3476               	retlw	0x76
+   412  024D  34BE               	retlw	0xbe
+   413                           
+   414  024E  3482               	retlw	0x82
+   415  024F  34AD               	retlw	0xad
+   416  0250  342B               	retlw	0x2b
+   417  0251  343E               	retlw	0x3e
+   418                           
+   419  0252  340E               	retlw	0xe
+   420  0253  343C               	retlw	0x3c
+   421  0254  34C3               	retlw	0xc3
+   422  0255  34BD               	retlw	0xbd
+   423                           
+   424  0256  3487               	retlw	0x87
+   425  0257  34D1               	retlw	0xd1
+   426  0258  3413               	retlw	0x13
+   427  0259  343D               	retlw	0x3d
+   428                           
+   429  025A  3441               	retlw	0x41
+   430  025B  3478               	retlw	0x78
+   431  025C  34D3               	retlw	0xd3
+   432  025D  34BB               	retlw	0xbb
+   433                           
+   434                           	global	_ow_crctable
+   435                           	global	exp@coeff
+   436                           	global	log@coeff
+   437                           	global	_buffer
+   438                           	global	_RomBytes
+   439                           	global	_FoundROM
+   440                           	global	_errno
+   441                           	global	_a
+   442                           	global	_b
+   443                           	global	_button_flags
+   444                           	global	_button_state
+   445                           	global	_c
+   446                           	global	_doneFlag
+   447                           	global	_lastDiscrep
+   448                           	global	_numROMs
+   449                           	global	_ow_dowcrc
+   450                           	global	_x
+   451                           	global	_CARRY
+   452  0018                     _CARRY	set	24
+   453                           	global	_GIE
+   454  005F                     _GIE	set	95
+   455                           	global	_RA1
+   456  0029                     _RA1	set	41
+   457                           	global	_RA2
+   458  002A                     _RA2	set	42
+   459                           	global	_RC3
+   460  003B                     _RC3	set	59
+   461                           	global	_TRISA1
+   462  0429                     _TRISA1	set	1065
+   463                           	global	_TRISA2
+   464  042A                     _TRISA2	set	1066
+   465                           	global	_TRISC3
+   466  043B                     _TRISC3	set	1083
+   467                           	global	_EEADR
+   468  010D                     _EEADR	set	269
+   469                           	global	_EEDATA
+   470  010C                     _EEDATA	set	268
+   471                           	global	_EECON1
+   472  018C                     _EECON1	set	396
+   473                           	global	_EECON2
+   474  018D                     _EECON2	set	397
+   475                           	global	_RD
+   476  0C60                     _RD	set	3168
+   477                           	global	_WR
+   478  0C61                     _WR	set	3169
+   479                           	global	_WREN
+   480  0C62                     _WREN	set	3170
+   481                           	file	"/tmp/cgtlkJZZW"
+   482                           	line	#
+   483                           psect cinit,class=CODE,delta=2
+   484                           global start_initialization
+   485  025E                     start_initialization:
+   486                           
+   487                           psect	bssCOMMON,class=COMMON,space=1
+   488                           global __pbssCOMMON
+   489  0070                     __pbssCOMMON:
+   490  0070                     _errno:
+   491  0070                            ds      2
+   492                           
+   493  0072                     _a:
+   494  0072                            ds      1
+   495                           
+   496  0073                     _b:
+   497  0073                            ds      1
+   498                           
+   499  0074                     _button_flags:
+   500  0074                            ds      1
+   501                           
+   502  0075                     _button_state:
+   503  0075                            ds      1
+   504                           
+   505  0076                     _c:
+   506  0076                            ds      1
+   507                           
+   508  0077                     _doneFlag:
+   509  0077                            ds      1
+   510                           
+   511  0078                     _lastDiscrep:
+   512  0078                            ds      1
+   513                           
+   514  0079                     _numROMs:
+   515  0079                            ds      1
+   516                           
+   517  007A                     _ow_dowcrc:
+   518  007A                            ds      1
+   519                           
+   520  007B                     _x:
+   521  007B                            ds      1
+   522                           
+   523                           psect	bssBANK0,class=BANK0,space=1
+   524                           global __pbssBANK0
+   525  0020                     __pbssBANK0:
+   526  0020                     _buffer:
+   527  0020                            ds      17
+   528                           
+   529  0031                     _RomBytes:
+   530  0031                            ds      8
+   531                           
+   532                           psect	bssBANK3,class=BANK3,space=1
+   533                           global __pbssBANK3
+   534  0190                     __pbssBANK3:
+   535  0190                     _FoundROM:
+   536  0190                            ds      96
+   537                           
+   538                           psect clrtext,class=CODE,delta=2
+   539                           global clear_ram
+   540                           ;	Called with FSR containing the base address, and
+   541                           ;	W with the last address+1
+   542  027C                     clear_ram:
+   543  027C  0064               	clrwdt			;clear the watchdog before getting into this loop
+   544  027D                     clrloop:
+   545  027D  0180               	clrf	indf		;clear RAM location pointed to by FSR
+   546  027E  0A84               	incf	fsr,f		;increment pointer
+   547  027F  0604               	xorwf	fsr,w		;XOR with final address
+   548  0280  1903               	btfsc	status,2	;have we reached the end yet?
+   549  0281  3400               	retlw	0		;all done for this memory range, return
+   550  0282  0604               	xorwf	fsr,w		;XOR again to restore value
+   551  0283  2A7D               	goto	clrloop		;do the next byte
+   552                           
+   553                           ; Clear objects allocated to COMMON
+   554                           psect cinit,class=CODE,delta=2
+   555  025E  3070               	movlw	low(__pbssCOMMON)
+   556  025F  0084               	movwf	fsr
+   557  0260  307C               	movlw	low((__pbssCOMMON)+0Ch)
+   558  0261  120A  118A  227C   	fcall	clear_ram
+              120A  118A         
+   559                           ; Clear objects allocated to BANK0
+   560                           psect cinit,class=CODE,delta=2
+   561  0266  1383               	bcf	status, 7	;select IRP bank0
+   562  0267  3020               	movlw	low(__pbssBANK0)
+   563  0268  0084               	movwf	fsr
+   564  0269  3039               	movlw	low((__pbssBANK0)+019h)
+   565  026A  120A  118A  227C   	fcall	clear_ram
+              120A  118A         
+   566                           ; Clear objects allocated to BANK3
+   567                           psect cinit,class=CODE,delta=2
+   568  026F  1783               	bsf	status, 7	;select IRP bank2
+   569  0270  3090               	movlw	low(__pbssBANK3)
+   570  0271  0084               	movwf	fsr
+   571  0272  30F0               	movlw	low((__pbssBANK3)+060h)
+   572  0273  120A  118A  227C   	fcall	clear_ram
+              120A  118A         
+   573                           psect cinit,class=CODE,delta=2
+   574                           global end_of_initialization
+   575                           
+   576                           ;End of C runtime variable initialization code
+   577                           
+   578  0278                     end_of_initialization:
+   579  0278  0183               clrf status
+   580  0279  120A  118A  2A84   ljmp _main	;jump to C main() function
+   581                           psect	cstackCOMMON,class=COMMON,space=1
+   582                           global __pcstackCOMMON
+   583  0000                     __pcstackCOMMON:
+   584                           	global	??_main
+   585  0000                     ??_main:	; 0 bytes @ 0x0
+   586                           	global	?_main
+   587  0000                     ?_main:	; 2 bytes @ 0x0
+   588 ;;Data sizes: Strings 0, constant 332, data 0, bss 133, persistent 0 stack 0
+   589 ;;Auto spaces:   Size  Autos    Used
+   590 ;; COMMON          14      0      12
+   591 ;; BANK0           80      0      25
+   592 ;; BANK1           80      0       0
+   593 ;; BANK3           96      0      96
+   594 ;; BANK2           96      0       0
+   595                           
+   596 ;;
+   597 ;; Pointer list with targets:
+   598                           
+   599                           
+   600                           
+   601 ;;
+   602 ;; Critical Paths under _main in COMMON
+   603 ;;
+   604 ;;   None.
+   605 ;;
+   606 ;; Critical Paths under _main in BANK0
+   607 ;;
+   608 ;;   None.
+   609 ;;
+   610 ;; Critical Paths under _main in BANK1
+   611 ;;
+   612 ;;   None.
+   613 ;;
+   614 ;; Critical Paths under _main in BANK3
+   615 ;;
+   616 ;;   None.
+   617 ;;
+   618 ;; Critical Paths under _main in BANK2
+   619 ;;
+   620 ;;   None.
+   621                           
+   622 ;;
+   623 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   624 ;;
+   625                           
+   626 ;;
+   627 ;;Call Graph Tables:
+   628 ;;
+   629 ;; ---------------------------------------------------------------------------------
+   630 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   631 ;; ---------------------------------------------------------------------------------
+   632 ;; (0) _main                                                 0     0      0       0
+   633 ;; ---------------------------------------------------------------------------------
+   634 ;; Estimated maximum stack depth 0
+   635 ;; ---------------------------------------------------------------------------------
+   636                           
+   637 ;; Call Graph Graphs:
+   638                           
+   639 ;; _main (ROOT)
+   640 ;;
+   641                           
+   642 ;; Address spaces:
+   643                           
+   644 ;;Name               Size   Autos  Total    Cost      Usage
+   645 ;;BITCOMMON            E      0       0       0        0.0%
+   646 ;;EEDATA             100      0       0       0        0.0%
+   647 ;;NULL                 0      0       0       0        0.0%
+   648 ;;CODE                 0      0       0       0        0.0%
+   649 ;;COMMON               E      0       C       1       85.7%
+   650 ;;BITSFR0              0      0       0       1        0.0%
+   651 ;;SFR0                 0      0       0       1        0.0%
+   652 ;;BITSFR1              0      0       0       2        0.0%
+   653 ;;SFR1                 0      0       0       2        0.0%
+   654 ;;STACK                0      0       0       2        0.0%
+   655 ;;ABS                  0      0      85       3        0.0%
+   656 ;;BITBANK0            50      0       0       4        0.0%
+   657 ;;BITSFR3              0      0       0       4        0.0%
+   658 ;;SFR3                 0      0       0       4        0.0%
+   659 ;;BANK0               50      0      19       5       31.2%
+   660 ;;BITSFR2              0      0       0       5        0.0%
+   661 ;;SFR2                 0      0       0       5        0.0%
+   662 ;;BITBANK1            50      0       0       6        0.0%
+   663 ;;BANK1               50      0       0       7        0.0%
+   664 ;;BITBANK3            60      0       0       8        0.0%
+   665 ;;BANK3               60      0      60       9      100.0%
+   666 ;;BITBANK2            60      0       0      10        0.0%
+   667 ;;BANK2               60      0       0      11        0.0%
+   668 ;;DATA                 0      0      85      12        0.0%
+   669                           
+   670                           	global	_main
+   671                           psect	maintext,global,class=CODE,delta=2
+   672                           global __pmaintext
+   673  0284                     __pmaintext:
+   674                           
+   675 ;; *************** function _main *****************
+   676 ;; Defined at:
+   677 ;;		line 2 in file "examples/ex01.c"
+   678 ;; Parameters:    Size  Location     Type
+   679 ;;		None
+   680 ;; Auto vars:     Size  Location     Type
+   681 ;;		None
+   682 ;; Return value:  Size  Location     Type
+   683 ;;                  2    2[COMMON] int 
+   684 ;; Registers used:
+   685 ;;		None
+   686 ;; Tracked objects:
+   687 ;;		On entry : 17F/0
+   688 ;;		On exit  : 0/0
+   689 ;;		Unchanged: 0/0
+   690 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   691 ;;      Params:         0       0       0       0       0
+   692 ;;      Locals:         0       0       0       0       0
+   693 ;;      Temps:          0       0       0       0       0
+   694 ;;      Totals:         0       0       0       0       0
+   695 ;;Total ram usage:        0 bytes
+   696 ;; This function calls:
+   697 ;;		Nothing
+   698 ;; This function is called by:
+   699 ;;		Startup code after reset
+   700 ;; This function uses a non-reentrant model
+   701 ;;
+   702                           psect	maintext
+   703                           	file	"examples/ex01.c"
+   704                           	line	2
+   705                           	global	__size_of_main
+   706  0003                     	__size_of_main	equ	__end_of_main-_main
+   707                           	
+   708  0284                     _main:	
+   709                           	opt	stack 8
+   710                           ; Regs used in _main: []
+   711                           	
+   712  0284                     l3:	
+   713                           	global	start
+   714  0284  120A  118A  2804   	ljmp	start
+   715                           	opt stack 0
+   716                           GLOBAL	__end_of_main
+   717  0287                     	__end_of_main:
+   718 ;; =============== function _main ends ============
+   719                           
+   720                           	signat	_main,90
+   721                           psect	maintext
+   722                           	global	btemp
+   723  007E                     	btemp set 07Eh
+   724                           
+   725                           	DABS	1,126,2	;btemp
+   726                           	global	wtemp0
+   727  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.83 build 10920 
+Symbol Table                                                                                   Fri Dec 27 16:43:20 2019
+
+                   l3 0284                     _a 0072                     _b 0073                     _c 0076  
+                   _x 007B                     pc 0002                    _RD 0C60                    _WR 0C61  
+                  fsr 0004                   _GIE 005F                   _RA1 0029                   _RA2 002A  
+                 _RC3 003B                   indf 0000                  _WREN 0C62                  _main 0284  
+                btemp 007E                  start 0004                 ?_main 0000                 _EEADR 010D  
+               _CARRY 0018                 _errno 0070                 pclath 000A                 status 0003  
+               wtemp0 007E          __end_of_main 0287                ??_main 0000                _EEDATA 010C  
+              _EECON1 018C                _EECON2 018D                _TRISA1 0429                _TRISA2 042A  
+              _TRISC3 043B                _buffer 0020                clrloop 027D        __pcstackCOMMON 0000  
+          __pbssBANK0 0020            __pbssBANK3 0190            __pmaintext 0284               _numROMs 0079  
+end_of_initialization 0278          __pstringtext 0100   start_initialization 025E           __pbssCOMMON 0070  
+        _button_flags 0074          _button_state 0075             _ow_dowcrc 007A           __stringbase 0112  
+            _FoundROM 0190           _lastDiscrep 0078              _RomBytes 0031              _doneFlag 0077  
+       __size_of_main 0003              clear_ram 027C              exp@coeff 0212              log@coeff 023A  
+           stringcode 010A           _ow_crctable 0112              stringtab 0100  

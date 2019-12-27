@@ -1,0 +1,126 @@
+     1: #ifdef USE_SER
+     2: #define _SER_C_
+     3: #include "device.h"
+     4: #include "oscillator.h"
+     5: #include "ser.h"
+     6: #include "const.h"
+     7: 
+     8: #ifndef SER_BAUD
+     9: #define SER_BAUD 38400
+    10: #endif
+    11: 
+    12: #define HIGH_SPEED 1
+    13: 
+    14: #ifndef SER_BRG
+    15: #if HIGH_SPEED == 1
+    16: #define SER_BRG ((uint16_t)((double)(_XTAL_FREQ) / (16 * (double)(SER_BAUD))) - 1)
+    17: #else
+    18: #define SER_BRG ((uint16_t)((double)(_XTAL_FREQ) / (64 * (double)(SER_BAUD))) - 1)
+    19: #endif
+    20: #endif
+    21: 
+    22: uint8_t ser_brg = SER_BRG;
+    23: 
+    24: uint8_t rxfifo[SER_BUFFER_SIZE];
+    25: volatile uint8_t rxiptr, rxoptr;
+    26: /*bank1*/ uint8_t txfifo[SER_BUFFER_SIZE];
+    27: volatile uint8_t txiptr, txoptr;
+    28: uint8_t ser_tmp;
+    29: 
+    30: bit
+    31: ser_isrx(void) {
+    32:   if(OERR) {
+    33:     CREN = 0;
+    34:     CREN = 1;
+    35:     return 0;
+    36:   }
+    37:   return (rxiptr != rxoptr);
+    38: }
+    39: 
+    40: uint8_t
+    41: ser_getch(void) {
+    42:   uint8_t c;
+    43: 
+    44:   while(ser_isrx() == 0) continue;
+    45: 
+    46:   GIE = 0;
+    47:   c = rxfifo[rxoptr];
+    48:   ++rxoptr;
+    49:   rxoptr &= SER_FIFO_MASK;
+    50:   GIE = 1;
+    51:   return c;
+    52: }
+    53: 
+    54: void
+    55: ser_putch(char c) {
+    56:   while(((txiptr + 1) & SER_FIFO_MASK) == txoptr) continue;
+    57:   GIE = 0;
+    58:   txfifo[txiptr] = c;
+    59:   txiptr = (txiptr + 1) & SER_FIFO_MASK;
+    60:   TXIE = 1;
+    61:   GIE = 1;
+    62: }
+    63: 
+    64: void
+    65: ser_puts(const char* s) {
+    66:   while(*s) ser_putch(*s++);
+    67: }
+    68: void
+    69: ser_put(const char* s, unsigned n) {
+    70:   while(n--) ser_putch(*s++);
+    71: }
+    72: 
+    73: void
+    74: ser_puts2(uint8_t* s) {
+    75:   while(*s) ser_putch(*s++);
+    76: }
+    77: 
+    78: void
+    79: ser_puthex(uint8_t v) {
+    80:   uint8_t c;
+    81: 
+    82:   c = v >> 4;
+    83:   if(c > 9) {
+    84:     ser_putch((char)('A' - 10 + c));
+    85:   } else {
+    86:     ser_putch((char)('0' + c));
+    87:   }
+    88: 
+    89:   c = v & 0x0F;
+    90:   if(c > 9) {
+    91:     ser_putch((char)('A' - 10 + c));
+    92:   } else {
+    93:     ser_putch((char)('0' + c));
+    94:   }
+    95: }
+    96: 
+    97: void
+    98: ser_init(void) {
+    99:   SER_TX_TRIS();
+   100:   // SER_TX_PIN = LOW;
+   101:   SER_RX_TRIS();
+   102: 
+   103:   BRGH = HIGH_SPEED; // high speed
+   104:   //    SPBRG=25;                               //9,600 @ 4MHz, SPBRG = (4MHz/(16*BAUD_RATE))-1;
+   105:   //    SPBRG=12;                               //19.2K @ 4MHz, SPBRG = (4MHz/(16*BAUD_RATE))-1;
+   106:   //  SPBRG=31;       //38.4K @ 20MHz, SPBRG = (20MHz/(16*BAUD_RATE))-1;
+   107:   //  SPBRG=39;       //31.25K @ 20MHz, SPBRG = (20MHz/(16*BAUD_RATE))-1;
+   108:   //    SPBRG=64;                               //19.2K @ 20MHz, SPBRG = (20MHz/(16*BAUD_RATE))-1;
+   109:   SPBRG = ser_brg; // 56.7K @ 20MHz, SPBRG = (20MHz/(16*BAUD_RATE))-1;
+   110:   //    SPBRG=10;                               //115.2K @ 20MHz, SPBRG = (20MHz/(16*BAUD_RATE))-1;
+   111: 
+   112:   TX9 = 0; // 8 bits
+   113:   RX9 = 0; //
+   114: 
+   115:   SYNC = 0; // uart settings
+   116:   SPEN = 1;
+   117:   CREN = 1;
+   118:   TXIE = 0;
+   119:   //  RCIE = 1;
+   120:   TXEN = 1;
+   121:   PEIE = 1;
+   122: 
+   123:   rxiptr = rxoptr = txiptr = txoptr = 0;
+   124: }
+   125: 
+   126: #endif // USE_SER

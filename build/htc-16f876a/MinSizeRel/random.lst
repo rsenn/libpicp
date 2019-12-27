@@ -1,0 +1,28 @@
+     1: #include "random.h"
+     2: 
+     3: static uint8_t x = 0;
+     4: uint8_t a = 0, b = 0, c = 0;
+     5: 
+     6: // http://www.electro-tech-online.com/threads/ultra-fast-pseudorandom-number-generator-for-8-bit.124249/
+     7: void
+     8: random_init(uint8_t s1, uint8_t s2, uint8_t s3) // Can also be used to seed the rng with more entropy during use.
+     9: {
+    10:   // XOR new entropy into key state
+    11:   a ^= s1;
+    12:   b ^= s2;
+    13:   c ^= s3;
+    14: 
+    15:   x++;
+    16:   a = (a ^ c ^ x);
+    17:   b = (b + a);
+    18:   c = (c + (b >> 1) ^ a);
+    19: }
+    20: 
+    21: uint8_t
+    22: random() {
+    23:   x++;                    // x is incremented every round and is not affected by any other variable
+    24:   a = (a ^ c ^ x);        // note the mix of addition and XOR
+    25:   b = (b + a);            // And the use of very few instructions
+    26:   c = (c + (b >> 1) ^ a); // the right shift is to ensure that high-order bits from b can affect
+    27:   return (c);             // low order bits of other variables
+    28: }

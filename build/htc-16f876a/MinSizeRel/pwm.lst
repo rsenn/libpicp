@@ -1,0 +1,13 @@
+     1: #include "pwm.h"
+     2: 
+     3: #ifdef USE_PWM
+     4: 
+     5: void
+     6: pwm_init(char ps) {
+     7:   T2CONbits.T2CKPS = ps & 0b11; // Set timer 2 prescaler
+     8:   T2CONbits.TOUTPS = 0b0000;
+     9:   TMR2ON = 1; // Enable timer 2.
+    10:   PR2 = 0xff;
+    11: }
+    12: 
+    13: #endif // USE_PWM

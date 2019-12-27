@@ -1,0 +1,9 @@
+Version 3.2 HI-TECH Software Intermediate Code
+[p mainexit ]
+"2 examples/ex01.c
+[v _main `(i  1 ef ]
+{
+[e :U _main ]
+[f ]
+[e :UE 1 ]
+}

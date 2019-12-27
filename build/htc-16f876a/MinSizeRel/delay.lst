@@ -1,0 +1,25 @@
+     1: #include "tsmdelay.h"
+     2: 
+     3: #ifdef SDCC
+     4: void
+     5: delay_us(unsigned char x) {
+     6:   while(x > 0) x--;
+     7:   __asm nop __endasm;
+     8: }
+     9: 
+    10: void
+    11: delay_ms(unsigned int x) {
+    12:   unsigned char i = 255;
+    13:   for(x; x > 0; x--) {
+    14:     while(i > 0) i--;
+    15:     i = 255;
+    16:     while(i > 0) i--;
+    17:     i = 255;
+    18:     while(i > 0) i--;
+    19:     i = 255;
+    20:     while(i > 0) i--;
+    21:     i = 50;
+    22:     while(i > 0) i--;
+    23:   }
+    24: }
+    25: #endif

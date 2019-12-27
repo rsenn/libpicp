@@ -1,0 +1,72 @@
+     1: #include "const.h"
+     2: #include "ds18b20.h"
+     3: #include "onewire.h"
+     4: 
+     5: // ---------------------------------------------------------------------------
+     6: BOOL
+     7: ds18b20_start_conversion(int8_t actNumROM, BOOL parasite_power) {
+     8:   if(!ow_reset()) {                                   // If a device is present
+     9:     ow_write_byte(OW_SKIP_ROM, 0);                    // Skip Rom command
+    10:     ow_write_byte(DS18B20_CONVERT_T, parasite_power); // Temperature convert command
+    11: 
+    12:     return 1;
+    13:   }
+    14: 
+    15:   return 0;
+    16: }
+    17: 
+    18: // ---------------------------------------------------------------------------
+    19: uint16_t
+    20: ds18b20_value(int8_t actNumROM) {
+    21:   uint8_t scratch[9];
+    22:   uint16_t v = 0;
+    23:   int i;
+    24: 
+    25:   ow_reset(); /*if(ow_reset())
+    26:     return DS18B20_T_INVAL;
+    27: 
+    28:   if(actNumROM > 0)
+    29:     ow_access(actNumROM);
+    30:   else*/
+    31:   ow_write_byte(OW_SKIP_ROM, 0);
+    32:   ow_write_byte(DS18B20_READ_SCRATCHPAD, 0); // Read scratch pad command
+    33:   // dowcrc = 0;
+    34: 
+    35:   // Get the data bytes
+    36:   for(i = 0; i <= 7; i++) {
+    37:     scratch[i] = ow_read_byte();
+    38:     // ow_crc(scratch[i]);
+    39:   }
+    40: 
+    41:   scratch[8] = ow_read_byte(); // Get crc byte
+    42:   ow_reset();
+    43: 
+    44:   // If calculated crc from incoming bytes equal to crc byte
+    45:   // then data is valid.
+    46: 
+    47:   // if(scratch[8] == dowcrc)
+    48:   { v = (((uint16_t)(unsigned)scratch[1] << 8) | (unsigned)scratch[0]); }
+    49: 
+    50:   return v;
+    51: }
+    52: 
+    53: // ---------------------------------------------------------------------------
+    54: double
+    55: ds18b20_temperature(uint16_t value, uint8_t shift) {
+    56:   double t;
+    57: 
+    58:   t = (double)value;
+    59: 
+    60:   if(shift)
+    61:     t /= (1 << shift);
+    62: 
+    63:   if(t >= 0)
+    64:     t = (t + 8) / 16;
+    65: 
+    66:   else
+    67:     t = (t - 8) / 16;
+    68: 
+    69:   t -= 0.5;
+    70: 
+    71:   return t;
+    72: }
