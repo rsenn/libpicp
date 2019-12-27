@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=libpicp-18f2550-sdcc.broken.X
+PROJECTNAME=libpicp-18f2550-sdcc.X
 
 # Active Configuration
 DEFAULTCONF=default

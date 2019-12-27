@@ -81,7 +81,7 @@
     <conf name="default" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <targetDevice>PIC16F876A</targetDevice>
+        <targetDevice>PIC18F2550</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
@@ -90,7 +90,7 @@
         <platform>2</platform>
       </toolsSet>
       <packs>
-        <pack name="PIC16Fxxx_DFP" vendor="Microchip" version="1.0.9"/>
+        <pack name="PIC18Fxxxx_DFP" vendor="Microchip" version="1.0.9"/>
       </packs>
       <compileType>
         <linkerTool>
@@ -156,15 +156,7 @@
         <sdcc-config>
         </sdcc-config>
       </item>
-      <item path="/home/roman/Sources/libpicp/ser.c" ex="true" overriding="false">
-        <sdcc-config>
-        </sdcc-config>
-      </item>
-      <item path="/home/roman/Sources/libpicp/softpwm.c" ex="true" overriding="false">
-        <sdcc-config>
-        </sdcc-config>
-      </item>
-      <item path="/home/roman/Sources/libpicp/softser.c" ex="true" overriding="false">
+      <item path="/home/roman/Sources/libpicp/pwm.c" ex="true" overriding="false">
         <sdcc-config>
         </sdcc-config>
       </item>
@@ -245,7 +237,7 @@
         <property key="nooverlay" value="false"/>
         <property key="obanksel" value="0"/>
         <property key="opt-code-size" value="false"/>
-        <property key="opt-code-speed" value="false"/>
+        <property key="opt-code-speed" value="true"/>
         <property key="optimize-cmp" value="false"/>
         <property key="optimize-df" value="false"/>
         <property key="pcode-verbose" value="false"/>
@@ -259,7 +251,7 @@
         <property key="use-crt" value=""/>
         <property key="use-non-free" value="true"/>
         <property key="user-defines"
-                  value="USE_HD44780_LCD=1;USE_PWM=1;USE_SER=1;USE_TIMER0=1;USE_TIMER1=1;USE_TIMER2=1;__16f876a=1"/>
+                  value="USE_HD44780_LCD=1;USE_PWM=1;USE_SER=1;USE_TIMER0=1;USE_TIMER1=1;USE_TIMER2=1;__18f2550=1"/>
         <property key="user-includes" value=""/>
         <property key="verbose" value="false"/>
       </sdcc-config>

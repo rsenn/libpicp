@@ -19,7 +19,7 @@ endif
 endif
 
 # Environment
-MKDIR=mkdir -p
+MKDIR=gnumkdir -p
 RM=rm -f 
 MV=mv 
 CP=cp 
@@ -30,12 +30,12 @@ ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 IMAGE_TYPE=debug
 OUTPUT_SUFFIX=hex
 DEBUGGABLE_SUFFIX=cof
-FINAL_IMAGE=dist/${CND_CONF}/${IMAGE_TYPE}/libpicp-18f2550-sdcc.broken.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+FINAL_IMAGE=dist/${CND_CONF}/${IMAGE_TYPE}/libpicp-18f2550-sdcc.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 else
 IMAGE_TYPE=production
 OUTPUT_SUFFIX=hex
 DEBUGGABLE_SUFFIX=cof
-FINAL_IMAGE=dist/${CND_CONF}/${IMAGE_TYPE}/libpicp-18f2550-sdcc.broken.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+FINAL_IMAGE=dist/${CND_CONF}/${IMAGE_TYPE}/libpicp-18f2550-sdcc.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 endif
 
 ifeq ($(COMPARE_BUILD), true)
@@ -87,7 +87,7 @@ FIXDEPS=fixDeps
 ifneq ($(INFORMATION_MESSAGE), )
 	@echo $(INFORMATION_MESSAGE)
 endif
-	${MAKE}  -f nbproject/Makefile-default.mk dist/${CND_CONF}/${IMAGE_TYPE}/libpicp-18f2550-sdcc.broken.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+	${MAKE}  -f nbproject/Makefile-default.mk dist/${CND_CONF}/${IMAGE_TYPE}/libpicp-18f2550-sdcc.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
@@ -188,13 +188,13 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: link
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-dist/${CND_CONF}/${IMAGE_TYPE}/libpicp-18f2550-sdcc.broken.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    
+dist/${CND_CONF}/${IMAGE_TYPE}/libpicp-18f2550-sdcc.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    
 	${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} -Wl-c -Wl-m --use-non-free -DUSE_HD44780_LCD=1 -DUSE_PWM=1 -DUSE_SER=1 -DUSE_TIMER0=1 -DUSE_TIMER1=1 -DUSE_TIMER2=1 -D__18f2550=1 --opt-code-speed -mpic16 -p18f2550 ${OBJECTFILES_QUOTED_IF_SPACED} -odist/${CND_CONF}/${IMAGE_TYPE}/libpicp-18f2550-sdcc.broken.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX} 
+	${MP_CC} -Wl-c -Wl-m --use-non-free -DUSE_HD44780_LCD=1 -DUSE_PWM=1 -DUSE_SER=1 -DUSE_TIMER0=1 -DUSE_TIMER1=1 -DUSE_TIMER2=1 -D__18f2550=1 --opt-code-speed -mpic16 -p18f2550 ${OBJECTFILES_QUOTED_IF_SPACED} -odist/${CND_CONF}/${IMAGE_TYPE}/libpicp-18f2550-sdcc.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX} 
 else
-dist/${CND_CONF}/${IMAGE_TYPE}/libpicp-18f2550-sdcc.broken.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
+dist/${CND_CONF}/${IMAGE_TYPE}/libpicp-18f2550-sdcc.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
 	${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} -Wl-c -Wl-m --use-non-free -DUSE_HD44780_LCD=1 -DUSE_PWM=1 -DUSE_SER=1 -DUSE_TIMER0=1 -DUSE_TIMER1=1 -DUSE_TIMER2=1 -D__18f2550=1 --opt-code-speed -mpic16 -p18f2550 ${OBJECTFILES_QUOTED_IF_SPACED} -odist/${CND_CONF}/${IMAGE_TYPE}/libpicp-18f2550-sdcc.broken.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX} 
+	${MP_CC} -Wl-c -Wl-m --use-non-free -DUSE_HD44780_LCD=1 -DUSE_PWM=1 -DUSE_SER=1 -DUSE_TIMER0=1 -DUSE_TIMER1=1 -DUSE_TIMER2=1 -D__18f2550=1 --opt-code-speed -mpic16 -p18f2550 ${OBJECTFILES_QUOTED_IF_SPACED} -odist/${CND_CONF}/${IMAGE_TYPE}/libpicp-18f2550-sdcc.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX} 
 endif
 
 
@@ -213,7 +213,7 @@ endif
 # Enable dependency checking
 .dep.inc: .depcheck-impl
 
-DEPFILES=$(shell "${PATH_TO_IDE_BIN}"mplabwildcard ${POSSIBLE_DEPFILES})
+DEPFILES=$(shell mplabwildcard ${POSSIBLE_DEPFILES})
 ifneq (${DEPFILES},)
 include ${DEPFILES}
 endif
