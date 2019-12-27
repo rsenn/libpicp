@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="62">
+<configurationDescriptor version="65">
   <logicalFolder name="root" displayName="root" projectFiles="true">
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
@@ -40,25 +40,25 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/7segment.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/adc.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/buffer.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/comparator.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/delay.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/ds18b20.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/format.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/lcd44780.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/lcd5110.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/ledsense.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/midi.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/onewire.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/pwm.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/random.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/ser.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/softpwm.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/softser.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/timer.c</itemPath>
-      <itemPath>/home/roman/Dokumente/Sources/libpicp/uart.c</itemPath>
+      <itemPath>C:/Sources/libpicp/7segment.c</itemPath>
+      <itemPath>C:/Sources/libpicp/adc.c</itemPath>
+      <itemPath>C:/Sources/libpicp/buffer.c</itemPath>
+      <itemPath>C:/Sources/libpicp/comparator.c</itemPath>
+      <itemPath>C:/Sources/libpicp/delay.c</itemPath>
+      <itemPath>C:/Sources/libpicp/ds18b20.c</itemPath>
+      <itemPath>C:/Sources/libpicp/format.c</itemPath>
+      <itemPath>C:/Sources/libpicp/lcd44780.c</itemPath>
+      <itemPath>C:/Sources/libpicp/lcd5110.c</itemPath>
+      <itemPath>C:/Sources/libpicp/ledsense.c</itemPath>
+      <itemPath>C:/Sources/libpicp/midi.c</itemPath>
+      <itemPath>C:/Sources/libpicp/onewire.c</itemPath>
+      <itemPath>C:/Sources/libpicp/pwm.c</itemPath>
+      <itemPath>C:/Sources/libpicp/random.c</itemPath>
+      <itemPath>C:/Sources/libpicp/ser.c</itemPath>
+      <itemPath>C:/Sources/libpicp/softpwm.c</itemPath>
+      <itemPath>C:/Sources/libpicp/softser.c</itemPath>
+      <itemPath>C:/Sources/libpicp/timer.c</itemPath>
+      <itemPath>C:/Sources/libpicp/uart.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -68,6 +68,7 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>../../../../../Dokumente/Sources/libpicp</Elem>
+    <Elem>C:/Sources/libpicp</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -80,8 +81,11 @@
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>1.34</languageToolchainVersion>
-        <platform>2</platform>
+        <platform>3</platform>
       </toolsSet>
+      <packs>
+        <pack name="PIC18Fxxxx_DFP" vendor="Microchip" version="1.0.9"/>
+      </packs>
       <compileType>
         <linkerTool>
           <linkerLibItems>
