@@ -55,3 +55,17 @@ dkms.conf
 /build/mplabx-pic16/libpicp-16f876a.X/build/
 /build/mplabx-pic16/libpicp-16f876a.X/dist/
 /build/mplabx-pic12/libpicp-12f1840.X/build/
+/build/mplabx-pic12/libpicp-12f1840-xc8.X/nbproject/private/
+/build/mplabx-pic12/libpicp-12f1840-sdcc/nbproject/private/
+/build/mplabx-pic12/libpicp-16f876a-xc8/nbproject/private/
+/build/mplabx-pic16/libpicp-16f876a-xc8/nbproject/private/
+/build/mplabx-pic16/libpicp-16f876a-xc8/build/default/
+/build/mplabx-pic16/libpicp-16f876a-xc8/dist/default/
+/build/mplabx-pic12/libpicp-12f1840-xc8.X/build/default/
+/build/mplabx-pic18/libpicp-18f2550/nbproject/private/
+/build/mplabx-pic18/libpicp-18f2550-xc8.X/nbproject/private/
+/build/mplabx-pic18/libpicp-18f2550-xc8.X/build/default/
+/build/mplabx-pic18/libpicp-18f2550-xc8.X/dist/default/
+/build/mplabx-pic18/libpicp-18f2550-sdcc/nbproject/private/
+/build/mplabx-pic18/libpicp-18f2550-c18.X/nbproject/private/
+/build/mplabx-pic16/libpicp-16f876a-sdcc/nbproject/private/
