@@ -69,14 +69,6 @@
 			}
 		},
 		{
-			"file": "format.h",
-			"settings":
-			{
-				"buffer_size": 230,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "format.c",
 			"settings":
 			{
@@ -455,7 +447,7 @@
 	],
 	"find":
 	{
-		"height": 29.0
+		"height": 41.0
 	},
 	"find_in_files":
 	{
@@ -469,6 +461,8 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"PIC1",
+			"DPIC"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -508,7 +502,9 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JSON (JavaScriptNext).tmLanguage"
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JSON (JavaScriptNext).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -519,34 +515,6 @@
 				},
 				{
 					"buffer": 1,
-					"file": "format.h",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 230,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								230,
-								230
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C99/C99.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "format.c",
 					"semi_transient": false,
 					"settings":
@@ -564,6 +532,7 @@
 						],
 						"settings":
 						{
+							"color_scheme": "Packages/Rainglow/rainglow/Yule Contrast (rainglow).tmTheme",
 							"syntax": "Packages/C99/C99.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
@@ -572,7 +541,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

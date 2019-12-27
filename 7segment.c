@@ -1,5 +1,4 @@
 #include "7segment.h"
-#include "stdlib.h"
 
 volatile uint8_t button_state, button_flags;
 #ifdef USE_7SEGMENT
