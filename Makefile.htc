@@ -2,12 +2,12 @@
 #  genmakefile --minsizerel --create-libs --create-objs --create-bins -DUSE_HD44780_LCD=1 -DUSE_PWM=1 -DUSE_SER=1 -DUSE_SOFTPWM=1 -DUSE_TIMER0=1 -DUSE_TIMER1=1 -DUSE_TIMER2=1 -t htc -m gmake 7segment.c adc.c buffer.c comparator.c delay.c ds18b20.c format.c lcd44780.c lcd5110.c ledsense.c midi.c onewire.c pwm.c random.c ser.c softpwm.c softser.c timer.c uart.c -o Makefile.htc
 DEFS = -DUSE_HD44780_LCD=1 -DUSE_PWM=1 -DUSE_SER=1 -DUSE_SOFTPWM=1 -DUSE_TIMER0=1 -DUSE_TIMER1=1 -DUSE_TIMER2=1
 CC = picc
+CHIP = 16f876a
 CPPFLAGS = -DNDEBUG=1 -DHI_TECH_C=1 -DPIC16=1 -D__$(CHIP)=1
 CFLAGS = -O1 -N127 --opt=space --double=32 -q --chip=$(CHIP) --runtime=default,-keep,+stackcall,+download --summary=default,+psect --errformat="%f:%l:%c error [%n]: %s" --warnformat="%f:%l:%c warning [%n]: %s"
 LIB = libr
 TARGET = pic16
 LINK = picc
-CHIP = 16f876a
 MACH = pic14
 LDFLAGS = --output=mcof --asmlist
 

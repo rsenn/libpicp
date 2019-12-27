@@ -2,12 +2,12 @@
 #  genmakefile --minsizerel --create-libs --create-objs --create-bins -DUSE_HD44780_LCD=1 -DUSE_PWM=1 -DUSE_SER=1 -DUSE_SOFTPWM=1 -DUSE_TIMER0=1 -DUSE_TIMER1=1 -DUSE_TIMER2=1 -t xc8 -m gmake 7segment.c adc.c buffer.c comparator.c delay.c ds18b20.c format.c lcd44780.c lcd5110.c ledsense.c midi.c onewire.c pwm.c random.c ser.c softpwm.c softser.c timer.c uart.c -o Makefile.xc8
 DEFS = -DUSE_HD44780_LCD=1 -DUSE_PWM=1 -DUSE_SER=1 -DUSE_SOFTPWM=1 -DUSE_TIMER0=1 -DUSE_TIMER1=1 -DUSE_TIMER2=1 -D__XC=1
 CC = xc8
+CHIP = 16f876a
 CPPFLAGS = -DNDEBUG=1 -DPIC16=1 -DPIC16F876A=1 -D__$(CHIP)=1
 CFLAGS = -O1 --mode=pro --float=24 --double=32 --opt=default,+asm,-asmfile,-speed,+space,+debug,3 -q --asmlist --chip=$(CHIP) --errformat="%f:%l:%c error [%n]: %s" --warnformat="%f:%l:%c warning [%n]: %s"
 LINK = mplink
 LIB = mplib
 TARGET = pic16
-CHIP = 16f876a
 LDFLAGS = --output=mcof --summary=default,+psect --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,+download,+clib --stack=compiled
 
 
