@@ -53,6 +53,7 @@ typedef char bool;
 #elif defined(__PCH__)
 typedef int1 bool;
 #endif
+typedef bool BOOL;
 
 #if HAVE_C99_TYPES
 #undef TRUE
