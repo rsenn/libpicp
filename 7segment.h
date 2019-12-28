@@ -92,7 +92,8 @@
 
 #define BUTTON_INT()                                                                                                   \
   {                                                                                                                    \
-    if(button_state & (1 << display_multiplex) == 0) button_flags |= (1 << display_multiplex);                         \
+    if(button_state & (1 << display_multiplex) == 0)                                                                   \
+      button_flags |= (1 << display_multiplex);                                                                        \
     button_state |= (1 << display_multiplex);
 
 #define BUTTON_RBINT()) {                                                                                              \

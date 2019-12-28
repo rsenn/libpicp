@@ -1,0 +1,1 @@
+for x in xc8 htc sdcc; do  genmakefile --minsizerel --create-{libs,objs} --no-create-bins --arch pic14   -DUSE_{HD44780_LCD,PWM,SER,SOFTPWM,TIMER0,TIMER1,TIMER2}=1 -t $x  -m ninja *.c -o $x.ninja; done

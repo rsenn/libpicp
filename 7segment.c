@@ -1,5 +1,4 @@
 #include "7segment.h"
-#include "stdlib.h"
 
 volatile uint8_t button_state, button_flags;
 #ifdef USE_7SEGMENT
@@ -31,9 +30,9 @@ display_init() {
   DISPLAY_SELECT_TRIS &= ~DISPLAY_SELECT_MASK;
   DISPLAY_DATA_TRIS &= ~DISPLAY_DATA_MASK;
   DISPLAY_DATA_PORT &= ~DISPLAY_DATA_MASK;
-  //BUTTON_TRIS = 1;
-  //button_state = 0;
-  //button_flags = 0;
+  // BUTTON_TRIS = 1;
+  // button_state = 0;
+  // button_flags = 0;
 }
 
 void

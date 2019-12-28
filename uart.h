@@ -15,7 +15,6 @@
 //#define UART_BAUD 31250      /** Baudrate */
 #endif
 
-
 #define HIGH_SPEED 0
 
 #if OSC_4 == 5000000
@@ -95,7 +94,7 @@ extern const uint8_t uart_brg;
 void uart_putch(uint8_t byte);
 
 int uart_getch(void);
-bool uart_poll(uint8_t bauds);
+char uart_poll(uint8_t bauds);
 
 /**
  * Initialize UART module
