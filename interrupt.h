@@ -9,27 +9,27 @@
 #define INTERRUPT_FN() void isr() __interrupt 0
 //#  define INTERRUPT_FN() void isr(); char interrupt_fn() { isr(); return 0; } __interrupt 0; void isr()
 #else
-#define INTERRUPT_FN()                                                                                                 \
-  void isr();                                                                                                          \
-  interrupt() { void isr(); };                                                                                         \
+#define INTERRUPT_FN() \
+  void isr(); \
+  interrupt() { void isr(); }; \
   isr()
 #endif
 #endif // !defined(HI_TECH_C)
 
 #if defined(__SDCC) || defined(SDCC)
-#define INTERRUPT_DISABLE()                                                                                            \
-  do {                                                                                                                 \
-    GIE = 0;                                                                                                           \
+#define INTERRUPT_DISABLE() \
+  do { \
+    GIE = 0; \
   } while(0);
-#define INTERRUPT_ENABLE()                                                                                             \
-  do {                                                                                                                 \
-    GIE = 1;                                                                                                           \
+#define INTERRUPT_ENABLE() \
+  do { \
+    GIE = 1; \
   } while(0);
 #else
 #ifdef __IAR_SYSTEMS_ICC__
-#define INTERRUPT_DISABLE()                                                                                            \
+#define INTERRUPT_DISABLE() \
   { __disable_interrupt(); }
-#define INTERRUPT_ENABLE()                                                                                             \
+#define INTERRUPT_ENABLE() \
   { __enable_interrupt(); }
 #else
 
