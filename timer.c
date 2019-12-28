@@ -52,10 +52,7 @@ timer0_init(uint8_t ps_mode) {
   T0CON |= (!!(ps_mode & EDGE_HIGH_LOW)) ? 0x10 : 0x00;
 
 
-<<<<<<< HEAD
-=======
   // If a prescaler is to be assigned to the Timer0 module
->>>>>>> 6b4f1b819ea74841f7ff79b946dcefe9f9b1032b
   T0CON &= (!!prescaler) ? ~0x08 : ~0x00;
 
   T0CON &= ~0b111;
