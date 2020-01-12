@@ -2,7 +2,7 @@
 #define PICLIB_INTERRUPT_H 1
 
 #if defined(HI_TECH_C) || defined(__XC) || defined(__XC8__)
-#warning interrupt.h
+//#warning interrupt.h
 #define INTERRUPT_FN() interrupt isr()
 #else
 #if defined(__SDCC) || __SDCC__

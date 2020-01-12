@@ -8,7 +8,6 @@
 #include "onewire.h"
 
 #ifdef HI_TECH_C
-#include <htc.h>
 #else
 #if defined(__PCM__) || defined(__PCH__)
 #include "ccs.h"

@@ -1,5 +1,6 @@
 #ifndef LIB_DEVICE_H
 #define LIB_DEVICE_H
+
 #ifdef __10f206
 #define PIC10 1
 #endif
@@ -79,7 +80,7 @@
 #include <pic14/pic16f628a.h>
 #endif
 #ifdef __16f876a
-#warning __16f876a
+//#warning __16f876a
 #include <pic14/pic16f876a.h>
 #endif
 #ifdef __18f252
@@ -104,14 +105,14 @@
 #include <pic16/pic18f25k50.h>
 #endif
 
-#elif defined(__XC8) || defined(__XC)
+//#elif defined(__XC8) || defined(__XC)
 //#include <xc.h>
 
 //#define MCHP_XC8 1
 //#undef HI_TECH_C
 
-#elif defined(HI_TECH_C)
-
+#elif defined(HI_TECH_C) && !defined(MCHP_XC8)
+//#warning HI-TECH
 #include <htc.h>
 #ifdef __PIC10F206_H
 #define __10f206 1
@@ -147,7 +148,9 @@
 #define __18f25k50 1
 #endif
 
-#else
+#endif
+
+#if defined(__XC) || defined(HI_TECH_C)
 #ifdef __10f206
 #include <pic10f206.h>
 #endif
@@ -158,6 +161,7 @@
 #include <pic16f628a.h>
 #endif
 #ifdef __16f876a
+//#warning pic16f876a.h
 #include <pic16f876a.h>
 #endif
 #ifdef __18f252
@@ -282,7 +286,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #endif
 
 #if defined(PIC18) || defined(PIC12)
-#warning PIC18 or PIC12
+//#warning PIC18 or PIC12
 #define TMR1CS T1CONbits.TMR1CS
 
 #ifdef PIC12
@@ -310,7 +314,6 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define OERR RCSTAbits.OERR
 #define P SSPSTATbits.P
 #define PEIE INTCONbits.PEIE
-//#define PSA OPTION_REGbits.PSA
 #define R SSPSTATbits.R
 #define RCEN SSPCON2bits.RCEN
 #define RCIE PIE1bits.RCIE
@@ -323,8 +326,6 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define SYNC TXSTAbits.SYNC
 #define T0IE INTCONbits.T0IE
 #define T0IF INTCONbits.T0IF
-/*#define T0CS OPTION_REGbits.T0CS
-#define T0SE OPTION_REGbits.T0SE*/
 #define T1CKPS0 T1CONbits.T1CKPS0
 #define T1CKPS1 T1CONbits.T1CKPS1
 #define TMR0IE INTCONbits.TMR0IE
@@ -415,6 +416,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define RB6 PORTBbits.RB6
 #define RB7 PORTBbits.RB7
 
+#if defined(__XC) || defined(SDCC)
 #define RC0 PORTCbits.RC0
 #define RC1 PORTCbits.RC1
 #define RC2 PORTCbits.RC2
@@ -423,6 +425,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define RC5 PORTCbits.RC5
 #define RC6 PORTCbits.RC6
 #define RC7 PORTCbits.RC7
+#endif
 
 #endif
 
@@ -635,10 +638,6 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 //#define SSPEN SSPEN1
 #endif
 
-#ifndef NOP
-#define NOP() __asm nop __endasm
-#endif
-
 #ifndef GIE
 #define GIE INTCONbits.GIE
 #endif // defined(GIE)
@@ -694,6 +693,17 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #endif
 __code unsigned int __at(_CONFIG) __configword = CONFIG_WORD;
 #endif
+
+#if defined(__XC)
+#ifndef NOP
+#define NOP() asm("nop")
+#endif
+#else
+#ifndef NOP
+#define NOP() __asm nop __endasm
+#endif
+#endif
+
 
 
 #endif /* LIB_DEVICE_H */
