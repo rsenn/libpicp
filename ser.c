@@ -27,7 +27,7 @@ volatile uint8_t rxiptr, rxoptr;
 volatile uint8_t txiptr, txoptr;
 uint8_t ser_tmp;
 
-bit
+char
 ser_isrx(void) {
   if(OERR) {
     CREN = 0;

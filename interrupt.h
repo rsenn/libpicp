@@ -33,7 +33,7 @@
   { __enable_interrupt(); }
 #else
 
-#ifdef HI_TECH_C
+#if defined(HI_TECH_C) && !defined(__XC)
 #define INTERRUPT_DISABLE() #asm bcf GIE #endasm
 #define INTERRUPT_ENABLE() #asm bsf GIE #endasm
 #else
