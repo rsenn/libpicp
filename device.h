@@ -217,11 +217,11 @@ volatile uint8_t           OPTION_REG          @ 0x081;
 volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 //#define nRBPU OPTION_REGbits.nRBPU
 #endif
-
+/*
 #if !NO_PORTB
 #define NOT_RBPU nRBPU
 #endif
-
+*/
 #endif
 
 #if defined(__18f252) || defined(__18f2520) || defined(__18f2450) || defined(__18f2455) || defined(__18f2550) ||       \
@@ -259,8 +259,22 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define LATC1 RC1
 #endif
 
+#ifdef PIC18
+#ifdef HI_TECH_C
+#define N_RBPU INTCON2bits.nRBPU
+#else
+#define N_RBPU INTCON2bits.NOT_RBPU
+#endif
+#else
+#ifdef HI_TECH_C
+#define N_RBPU OPTION_REGbits.nRBPU
+#else
+#define N_RBPU OPTION_REGbits.NOT_RBPU
+#endif
+#endif
 
 #if defined(PIC18) || defined(PIC12)
+#warning PIC18 or PIC12
 #define TMR1CS T1CONbits.TMR1CS
 #define T0CS T0CONbits.T0CS
 #define T0SE T0CONbits.T0SE
@@ -278,7 +292,6 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define D SSPSTATbits.D
 #define GIE INTCONbits.GIE
 #define GO_DONE ADCON0bits.GO_DONE
-#define NOT_RBPU INTCON2bits.NOT_RBPU
 #define OERR RCSTAbits.OERR
 #define P SSPSTATbits.P
 #define PEIE INTCONbits.PEIE
