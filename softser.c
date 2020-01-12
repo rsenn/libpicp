@@ -32,6 +32,7 @@
  */
 
 #define _SOFTSER_C_
+#include "device.h"
 #include "softser.h"
 #include "const.h"
 #include "timer.h"
