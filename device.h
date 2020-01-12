@@ -1,6 +1,41 @@
 #ifndef LIB_DEVICE_H
 #define LIB_DEVICE_H
 
+#ifdef __10f206
+#define PIC10 1
+#endif
+#ifdef __12f1840
+#define PIC12 1
+#endif
+#ifdef __16f628a
+#define PIC16 1
+#endif
+#ifdef __16f876a
+#define PIC16 1
+#endif
+#ifdef __18f2450
+#define PIC18 1
+#endif
+#ifdef __18f2455
+#define PIC18 1
+#endif
+#ifdef __18f252
+#define PIC18 1
+#endif
+#ifdef __18f2520
+#define PIC18 1
+#endif
+#ifdef __18f2550
+#define PIC18 1
+#endif
+#ifdef __18f25k22
+#define PIC18 1
+#endif
+#ifdef __18f25k50
+#define PIC18 1
+#endif
+
+
 #if defined(__SDCC) || defined(SDCC)
 #ifndef SDCC
 #define SDCC 1
@@ -192,6 +227,90 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define T0SE T0CONbits.T0SE
 #define TMR0IF INTCONbits.TMR0IF
 #define T0IE INTCONbits.T0IE
+
+#define ADCS2 ADCON1bits.ADCS2
+#define ADFM ADCON1bits.ADFM
+#define ADIE PIE1bits.ADIE
+#define ADIF PIR1bits.ADIF
+#define ADON ADCON0bits.ADON
+#define BRGH TXSTAbits.BRGH
+#define C STATUSbits.C
+#define CREN RCSTAbits.CREN
+#define D SSPSTATbits.D
+#define GIE INTCONbits.GIE
+#define GO_DONE ADCON0bits.GO_DONE
+#define INTE INTCONbits.INTE
+#define INTEDG OPTION_REGbits.INTEDG
+#define INTF INTCONbits.INTF
+#define NOT_RBPU OPTION_REGbits.NOT_RBPU
+#define OERR RCSTAbits.OERR
+#define P SSPSTATbits.P
+#define PEIE INTCONbits.PEIE
+#define PS0 OPTION_REGbits.PS0
+#define PS1 OPTION_REGbits.PS1
+#define PS2 OPTION_REGbits.PS2
+#define PSA OPTION_REGbits.PSA
+#define R SSPSTATbits.R
+#define RA0 PORTAbits.RA0
+#define RA1 PORTAbits.RA1
+#define RA2 PORTAbits.RA2
+#define RA3 PORTAbits.RA3
+#define RA4 PORTAbits.RA4
+#define RA5 PORTAbits.RA5
+#define RB0 PORTBbits.RB0
+#define RB1 PORTBbits.RB1
+#define RB2 PORTBbits.RB2
+#define RB3 PORTBbits.RB3
+#define RB4 PORTBbits.RB4
+#define RB5 PORTBbits.RB5
+#define RB6 PORTBbits.RB6
+#define RB7 PORTBbits.RB7
+#define RC0 PORTCbits.RC0
+#define RC1 PORTCbits.RC1
+#define RC2 PORTCbits.RC2
+#define RC3 PORTCbits.RC3
+#define RC4 PORTCbits.RC4
+#define RC5 PORTCbits.RC5
+#define RC6 PORTCbits.RC6
+#define RC7 PORTCbits.RC7
+#define RCEN SSPCON2bits.RCEN
+#define RCIE PIE1bits.RCIE
+#define RCIF PIR1bits.RCIF
+#define RX9 RCSTAbits.RX9
+#define RX9D RCSTAbits.RX9D
+#define S SSPSTATbits.S
+#define SPEN RCSTAbits.SPEN
+#define SSPEN SSPCONbits.SSPEN
+#define SYNC TXSTAbits.SYNC
+#define T0CS OPTION_REGbits.T0CS
+#define T0IE INTCONbits.T0IE
+#define T0IF INTCONbits.T0IF
+#define T0SE OPTION_REGbits.T0SE
+#define T1CKPS0 T1CONbits.T1CKPS0
+#define T1CKPS1 T1CONbits.T1CKPS1
+#define TMR0IE INTCONbits.TMR0IE
+#define TMR0IF INTCONbits.TMR0IF
+#define TMR1CS T1CONbits.TMR1CS
+#define TMR1IE PIE1bits.TMR1IE
+#define TMR1IF PIR1bits.TMR1IF
+#define TMR1ON T1CONbits.TMR1ON
+#define TMR2IE PIE1bits.TMR2IE
+#define TMR2IF PIR1bits.TMR2IF
+#define TMR2ON T2CONbits.TMR2ON
+#define TRISA0 TRISAbits.TRISA0
+#define TRISA1 TRISAbits.TRISA1
+#define TRISA2 TRISAbits.TRISA2
+#define TRISB0 TRISBbits.TRISB0
+#define TRISB1 TRISBbits.TRISB1
+#define TRISB2 TRISBbits.TRISB2
+#define TRISC3 TRISCbits.TRISC3
+#define TX9 TXSTAbits.TX9
+#define TXEN TXSTAbits.TXEN
+#define TXIE PIE1bits.TXIE
+#define TXIF PIR1bits.TXIF
+#define Z STATUSbits.Z
+#define T0PS T0CONbits.T0PS
+#
 #endif
 
 /*#ifdef __18f2550
@@ -203,7 +322,6 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #ifdef PIC18
 #define INTF INT0F
 #define INTE INT0E
-#define T0PS T0CONbits.T0PS
 #define PS0 T0PS0
 #define PS1 T0PS1
 #define PS2 T0PS2
