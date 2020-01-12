@@ -12,6 +12,7 @@
 #ifdef __16f876a
 #define PIC16 1
 #endif
+#ifndef PIC18
 #ifdef __18f2450
 #define PIC18 1
 #endif
@@ -32,6 +33,7 @@
 #endif
 #ifdef __18f25k50
 #define PIC18 1
+#endif
 #endif
 
 #ifdef __10f206
