@@ -66,7 +66,7 @@
 #define TIMER0_VALUE TMR0
 #define TIMER0_BITS 8
 
-void timer0_init(uint8_t);
+void timer0_init(unsigned char);
 
 /* Read Timer 0:
  *
@@ -103,7 +103,7 @@ unsigned short timer0_read_ps(void);
 #define TIMER1_FLAGS_EXTCLK 0x40
 #define TIMER1_FLAGS_SYNC 0x20
 
-void timer1_init(uint8_t ps_mode);
+void timer1_init(unsigned char ps_mode);
 
 #ifdef TMR1
 #define TIMER1_VALUE TMR1
