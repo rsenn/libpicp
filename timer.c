@@ -36,9 +36,9 @@ timer0_init(uint8_t ps_mode) {
 #endif
 
   // If a prescaler is to be assigned to the Timer0 module
-#ifndef PIC18
+#if !defined(PIC18) && !defined(PIC12)
 
-T0CS = (ps_mode & TIMER0_FLAGS_EXTCLK) ? 1 : 0;
+  T0CS = (ps_mode & TIMER0_FLAGS_EXTCLK) ? 1 : 0;
   T0SE = (ps_mode & EDGE_HIGH_LOW) ? 1 : 0;
 
   if(prescaler > 0) {
@@ -81,11 +81,11 @@ timer0_read_ps(void) {
   uint8_t prev = TMR0;
   uint16_t count = 0;
 
-  /*T0CON |= 0x20; //*/ T0CS = 1;
+  /*T0CON |= 0x20; */ T0CS = 1;
 
   do {
     /* self-clocking */
-    /*T0CON |= 0x10; //*/ T0SE = 1;
+    /*T0CON |= 0x10; */ T0SE = 1;
 
     NOP();
     NOP();

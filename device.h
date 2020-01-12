@@ -276,8 +276,15 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #if defined(PIC18) || defined(PIC12)
 #warning PIC18 or PIC12
 #define TMR1CS T1CONbits.TMR1CS
+
+#ifdef PIC12
+#define T0CS OPTION_REGbits.T0CS
+#define T0SE OPTION_REGbits.T0SE
+#else
 #define T0CS T0CONbits.T0CS
 #define T0SE T0CONbits.T0SE
+#endif
+
 #define TMR0IF INTCONbits.TMR0IF
 #define T0IE INTCONbits.T0IE
 
