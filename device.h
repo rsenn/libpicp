@@ -105,7 +105,7 @@
 #endif
 
 #elif defined(__XC8) || defined(__XC)
-#include <xc.h>
+//#include <xc.h>
 
 //#define MCHP_XC8 1
 //#undef HI_TECH_C
@@ -259,6 +259,12 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #if defined(PIC16)
 #define LATC0 RC0
 #define LATC1 RC1
+#endif
+
+#ifdef PIC16
+#define LATA PORTA
+#define LATB PORTB
+#define LATC PORTC
 #endif
 
 #ifdef PIC18

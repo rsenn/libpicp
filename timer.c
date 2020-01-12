@@ -1,6 +1,5 @@
-#include <xc.h>
 #include "timer.h"
-//#include "device.h"
+#include "device.h"
 
 #ifdef PIC18F2550
 #define PIC18 1
