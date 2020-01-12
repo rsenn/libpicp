@@ -35,12 +35,13 @@ extern volatile uint8_t softpwm_values[SOFTPWM_PIN_COUNT];
 #define SOFTPWM_INTERRUPT_ENABLE TMR1IE
 
 #define SOFTPWM_ISR()                                                                                                  \
-  \
-{                                                                                                                 \
+                                                                                                                       \
+  {                                                                                                                    \
     if(SOFTPWM_INTERRUPT_FLAG) {                                                                                       \
       uint8_t softpwm_bit = 1 << SOFTPWM_PIN_FIRST;                                                                    \
       softpwm_counter++;                                                                                               \
-      if(softpwm_counter > SOFTPWM_RANGE) softpwm_counter = 0;                                                         \
+      if(softpwm_counter > SOFTPWM_RANGE)                                                                              \
+        softpwm_counter = 0;                                                                                           \
       for(uint8_t i = 0; i < SOFTPWM_PIN_COUNT; i++) {                                                                 \
         if(softpwm_counter > 0 && softpwm_counter <= softpwm_values[i])                                                \
           SOFTPWM_PORT |= softpwm_bit;                                                                                 \
@@ -51,8 +52,7 @@ extern volatile uint8_t softpwm_values[SOFTPWM_PIN_COUNT];
       SOFTPWM_TIMER_VALUE = -128;                                                                                      \
       SOFTPWM_INTERRUPT_FLAG = 0;                                                                                      \
     }                                                                                                                  \
-  \
-}
+  }
 
 /**
  * Initialize SoftPWM module

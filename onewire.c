@@ -103,7 +103,8 @@ ow_read_byte(void) {
   uint8_t val = 0;
 
   for(i = 0; i < 8; i++) {
-    if(ow_read_bit()) val |= (0x01 << i);
+    if(ow_read_bit())
+      val |= (0x01 << i);
 
     delay_us(120); // To finish time slot
   }
@@ -180,11 +181,13 @@ ow_next(void) {
   do {
     x = 0;
 
-    if(ow_read_bit() == 1) x = 2;
+    if(ow_read_bit() == 1)
+      x = 2;
 
     delay_us(120);
 
-    if(ow_read_bit() == 1) x |= 1; // And it's complement
+    if(ow_read_bit() == 1)
+      x |= 1; // And it's complement
 
     if(x == 3) // There are no devices on the one wire bus
       break;
@@ -195,13 +198,15 @@ ow_next(void) {
       // If this discrepancy is before the last discrepancy on a previous
       // ow_next then pick the same as last time.
       else {
-        if(m < lastDiscrep) g = ((RomBytes[n] & k) > 0);
+        if(m < lastDiscrep)
+          g = ((RomBytes[n] & k) > 0);
         // If equal to last pick 1
         else
           g = (m == lastDiscrep); // If not then pick 0
 
         // If 0 was picked then record position with mask k
-        if(g == 0) discrepMarker = m;
+        if(g == 0)
+          discrepMarker = m;
       }
 
       // Isolate bit in ROM[n] with mask k
@@ -291,7 +296,8 @@ char
 ow_access(uint8_t actNumROM) {
   uint8_t i;
 
-  if(ow_reset()) return 0; // 0 if device present
+  if(ow_reset())
+    return 0; // 0 if device present
 
   ow_write_byte(0x55, 0); // Match ROM
 
