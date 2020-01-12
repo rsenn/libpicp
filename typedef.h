@@ -7,9 +7,6 @@
 #if defined(__SDCC) || defined(HI_TECH_C) || defined(__XC) || defined(__XC8) || defined(MCC18) || defined(__C18)
 #define HAVE_C99_TYPES 1
 #endif
-#if defined(__SDCC) 
-#warning __SDCC
-#endif
 
 #if defined(MCC18) || defined(__IAR_SYSTEMS_ICC__)
 typedef signed char int8_t;
