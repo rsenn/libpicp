@@ -1,7 +1,7 @@
 //#include <xc.h>
 #include "tsmdelay.h"
 
-#ifdef SDCC
+#ifdef __SDCC
 void
 delay_us(unsigned char x) {
   while(x > 0) x--;

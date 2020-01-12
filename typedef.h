@@ -4,8 +4,11 @@
 //#include <stdbool.h>
 //#include "device.h"
 
-#if defined(SDCC) || defined(HI_TECH_C) || defined(__XC) || defined(__XC8) || defined(MCC18) || defined(__C18)
+#if defined(__SDCC) || defined(HI_TECH_C) || defined(__XC) || defined(__XC8) || defined(MCC18) || defined(__C18)
 #define HAVE_C99_TYPES 1
+#endif
+#if defined(__SDCC) 
+#warning __SDCC
 #endif
 
 #if defined(MCC18) || defined(__IAR_SYSTEMS_ICC__)
@@ -18,7 +21,7 @@ typedef unsigned short uint16_t;
 typedef unsigned long uint32_t;
 
 #elif HAVE_C99_TYPES
-#if _HTC_VER_MINOR_ >= 80 || defined(__XC)
+#if _HTC_VER_MINOR_ >= 80 || defined(__XC) || defined(__SDCC)
 #include <stdint.h>
 #else
 #define uint8_t unsigned char
@@ -42,7 +45,7 @@ typedef unsigned int32_t uint32_t;
 #define uint32_t unsigned long
 #endif
 
-#ifdef SDCC
+#ifdef __SDCC
 #undef bool
 typedef char bool;
 typedef bool bit;
@@ -60,7 +63,7 @@ typedef char BOOL;
 #undef FALSE
 #endif
 
-#if defined(HI_TECH_C) || defined(SDCC) || defined(__IAR_SYSTEMS_ICC__) || defined(__PCH__)
+#if defined(HI_TECH_C) || defined(__SDCC) || defined(__IAR_SYSTEMS_ICC__) || defined(__PCH__)
 #undef rom
 #define rom
 #endif

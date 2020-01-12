@@ -16,7 +16,7 @@
 #endif
 #endif // !defined(HI_TECH_C)
 
-#if defined(__SDCC) || defined(SDCC)
+#if defined(__SDCC) || defined(__SDCC)
 #define INTERRUPT_DISABLE() \
   do { \
     GIE = 0; \

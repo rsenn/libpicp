@@ -72,9 +72,9 @@
 #endif
 
 
-#if defined(__SDCC) || defined(SDCC)
-#ifndef SDCC
-#define SDCC 1
+#if defined(__SDCC) || defined(__SDCC)
+#ifndef __SDCC
+#define __SDCC 1
 #endif
 #ifdef __16f628a
 #include <pic14/pic16f628a.h>
@@ -187,7 +187,7 @@
 #endif
 #endif
 
-#if defined(__SDCC) || defined(SDCC)
+#if defined(__SDCC) || defined(__SDCC)
 #define CONFIG_WORD (_FOSC_HS & _PWRTE_ON & _WDT_OFF & _BODEN_OFF & _LVP_OFF & _CPD_OFF & _CP_OFF)
 #define double float
 #endif
@@ -416,7 +416,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define RB6 PORTBbits.RB6
 #define RB7 PORTBbits.RB7
 
-#if defined(__XC) || defined(SDCC)
+#if defined(__XC) || defined(__SDCC)
 #define RC0 PORTCbits.RC0
 #define RC1 PORTCbits.RC1
 #define RC2 PORTCbits.RC2
@@ -505,7 +505,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define OUTC7 RC7
 #endif
 
-#if defined(__SDCC) || defined(SDCC)
+#if defined(__SDCC) || defined(__SDCC)
 #ifndef acos
 #define acos acosf
 #endif /* defined(acos) */
@@ -621,7 +621,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define PIC18_USB 1
 #endif
 
-#if defined(__SDCC) || defined(SDCC)
+#if defined(__SDCC) || defined(__SDCC)
 
 #if defined(__18f25k22) // || defined(__18f25k50)
 #define SPEN SPEN1
@@ -686,7 +686,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 
 #endif
 
-#if defined(SDCC) && defined(PIC16)
+#if defined(__SDCC) && defined(PIC16)
 
 #ifndef _CONFIG
 #define _CONFIG 0x2007

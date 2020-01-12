@@ -37,7 +37,7 @@
 #endif
 #define delay_ms(n) __delay_ms(n)
 #define delay_us(n) __delay_us(n)
-#elif defined(SDCC)
+#elif defined(__SDCC)
 void delay_ms(unsigned int milliseconds);
 void delay_us(unsigned char microseconds);
 #else

@@ -12,7 +12,7 @@
 #endif
 #ifdef __18f2550
 #define PIC18 1
-#ifndef SDCC
+#ifndef __SDCC
 extern volatile unsigned char T0CON @0xFD5;
 #endif
 #endif
