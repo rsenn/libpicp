@@ -278,7 +278,9 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define D SSPSTATbits.D
 #define GIE INTCONbits.GIE
 #define GO_DONE ADCON0bits.GO_DONE
+#ifndef NOT_RBPU
 #define NOT_RBPU INTCON2bits.NOT_RBPU
+#endif
 #define OERR RCSTAbits.OERR
 #define P SSPSTATbits.P
 #define PEIE INTCONbits.PEIE
