@@ -30,6 +30,7 @@
 #ifndef PICLIB_SOFTSER_H_
 #define PICLIB_SOFTSER_H_
 
+#include "device.h"
 #include "oscillator.h"
 #include "typedef.h"
 
@@ -42,6 +43,11 @@
 #define SOFTSER_IN_TRIS TRISA0
 #define SOFTSER_OUT_PIN RA1 // pin for serial input
 #define SOFTSER_OUT_TRIS TRISA1
+#elif defined(PIC18)
+#define SOFTSER_IN_PIN LATB0 // pin for serial out
+#define SOFTSER_IN_TRIS TRISB0
+#define SOFTSER_OUT_PIN LATB1 // pin for serial input
+#define SOFTSER_OUT_TRIS TRISB1
 #else
 #define SOFTSER_IN_PIN RB0 // pin for serial out
 #define SOFTSER_IN_TRIS TRISB0
