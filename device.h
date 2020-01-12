@@ -9,6 +9,7 @@
 #include <pic14/pic16f628a.h>
 #endif
 #ifdef __16f876a
+#warning __16f876a
 #include <pic14/pic16f876a.h>
 #endif
 #ifdef __18f252
@@ -187,6 +188,10 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 
 #if defined(PIC18) || defined(PIC12)
 #define TMR1CS T1CONbits.TMR1CS
+#define T0CS T0CONbits.T0CS
+#define T0SE T0CONbits.T0SE
+#define TMR0IF INTCONbits.TMR0IF
+#define T0IE INTCONbits.T0IE
 #endif
 
 /*#ifdef __18f2550
