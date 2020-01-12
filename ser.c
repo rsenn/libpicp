@@ -1,6 +1,7 @@
 #ifdef USE_SER
+#include <xc.h>
 #define _SER_C_
-#include "device.h"
+//#include "device.h"
 #include "oscillator.h"
 #include "ser.h"
 #include "const.h"

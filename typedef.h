@@ -2,7 +2,7 @@
 #define PICLIB_TYPES_H 1
 
 //#include <stdbool.h>
-#include "device.h"
+//#include "device.h"
 
 #if defined(SDCC) || defined(HI_TECH_C) || defined(__XC) || defined(__XC8) || defined(MCC18) || defined(__C18)
 #define HAVE_C99_TYPES 1
