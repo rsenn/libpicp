@@ -41,7 +41,7 @@ uart_getch(void) {
 
 // returns 1 when start bit received or 0 when timeout
 //---------------------------------------------------------
-bool
+char
 uart_poll(uint8_t bauds) {
   // TMR0 -= UART_BRG;            // load corrected baud value
   TMR0 = (256 - UART_BRG_FN(bauds));

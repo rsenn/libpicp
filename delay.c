@@ -1,3 +1,4 @@
+#include <xc.h>
 #include "tsmdelay.h"
 
 #ifdef SDCC
