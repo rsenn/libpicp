@@ -6,7 +6,7 @@
 #define INTERRUPT_FN() interrupt isr()
 #else
 #if defined(__SDCC) || __SDCC__
-#define INTERRUPT_FN() void isr() __interrupt 0
+#define INTERRUPT_FN() void isr() __interrupt 1
 //#  define INTERRUPT_FN() void isr(); char interrupt_fn() { isr(); return 0; } __interrupt 0; void isr()
 #else
 #define INTERRUPT_FN() \
