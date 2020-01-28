@@ -105,7 +105,6 @@
 #endif
 
 //#elif defined(__XC8) || defined(__XC)
-//#include <xc.h>
 
 //#define MCHP_XC8 1
 //#undef HI_TECH_C

@@ -1,7 +1,6 @@
 #ifndef PICLIB_DELAY_H
 #define PICLIB_DELAY_H
 
-//#include "device.h"
 #include "typedef.h"
 #include "tsmdelay.h"
 
@@ -31,7 +30,7 @@
 #define __delay_us delay_us
 #endif
 
-#if defined(__XC) || defined(HI_TECH_C)
+#if defined(__XC) || defined(HI_TECH_C) || defined(MCHP_XC8)
 #ifdef PIC18
 #include <pic18.h>
 #endif
