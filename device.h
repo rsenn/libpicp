@@ -1,7 +1,6 @@
 #ifndef LIB_DEVICE_H
 #define LIB_DEVICE_H
 
-
 #ifdef __XC
 #warning XC
 #include <xc.h>
@@ -77,7 +76,7 @@
 #define PIC18 1
 #endif
 
-#if defined(__SDCC) 
+#if defined(__SDCC)
 #ifndef __SDCC
 #define __SDCC 1
 #endif
@@ -154,7 +153,7 @@
 
 #endif
 
-#if  defined(HI_TECH_C) && !defined(__XC)
+#if defined(HI_TECH_C) && !defined(__XC)
 #ifdef __10f206
 #include <pic10f206.h>
 #endif

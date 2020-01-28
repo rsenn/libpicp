@@ -86,6 +86,8 @@ unsigned short timer0_read_ps(void);
 
 #ifdef TMR1IF
 #define TIMER1_INTERRUPT_FLAG TMR1IF
+#define TIMER1_INTERRUPT_SET() TMR1IF = 1;
+#define TIMER1_INTERRUPT_CLEAR() TMR1IF = 0;
 #else
 #define TIMER1_INTERRUPT_FLAG (!!(PIR1 & 0x01))
 #endif
