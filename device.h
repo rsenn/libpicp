@@ -440,6 +440,10 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define PS0 T0PS0
 #define PS1 T0PS1
 #define PS2 T0PS2
+#define T0PS T0CONbits.T0PS
+#define T08BIT T0CONbits.T08BIT
+#define PSA T0CONbits.PSA
+#define TMR0ON T0CONbits.TMR0ON
 //#define T1CS
 #define INTEDG INTEDG0
 #ifndef CM
