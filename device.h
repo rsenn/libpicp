@@ -71,7 +71,6 @@
 #define PIC18 1
 #endif
 
-
 #if defined(__SDCC) || defined(__SDCC)
 #ifndef __SDCC
 #define __SDCC 1
@@ -707,7 +706,5 @@ __code unsigned int __at(_CONFIG) __configword = CONFIG_WORD;
 #define NOP() __asm nop __endasm
 #endif
 #endif
-
-
 
 #endif /* LIB_DEVICE_H */

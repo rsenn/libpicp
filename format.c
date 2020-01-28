@@ -57,12 +57,12 @@ format_xint32(/*putchar_fn* putchar,*/ uint32_t x) {
 
 void
 format_float(/*putchar_fn* putchar_ptr,*/ float num) {
-  short m = (int)log10(num);
+  short m = (int)log10f(num);
   char digit;
   //  float tolerance = .0001;
 
   while(num > 0 + FLT_EPSILON) {
-    float weight = pow(10.0l, m);
+    float weight = powf(10.0l, m);
     digit = (char)floor(num / weight);
     num -= (digit * weight);
     buffer_putch('0' + digit);
