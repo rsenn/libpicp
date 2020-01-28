@@ -76,7 +76,7 @@
 #define PIC18 1
 #endif
 
-#if defined(__SDCC) || defined(__SDCC)
+#if defined(__SDCC) 
 #ifndef __SDCC
 #define __SDCC 1
 #endif
@@ -111,10 +111,10 @@
 
 //#elif defined(__XC8) || defined(__XC)
 
-//#define MCHP_XC8 1
+//#define __XC 1
 //#undef HI_TECH_C
 
-#elif defined(HI_TECH_C) && !defined(MCHP_XC8)
+#elif defined(HI_TECH_C) && !defined(__XC)
 //#warning HI-TECH
 #include <htc.h>
 #ifdef __PIC10F206_H
@@ -153,7 +153,7 @@
 
 #endif
 
-#if  defined(HI_TECH_C)
+#if  defined(HI_TECH_C) && !defined(__XC)
 #ifdef __10f206
 #include <pic10f206.h>
 #endif
