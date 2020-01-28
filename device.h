@@ -3,6 +3,7 @@
 
 
 #ifdef __XC
+#warning XC
 #include <xc.h>
 #endif
 
@@ -114,7 +115,7 @@
 //#define MCHP_XC8 1
 //#undef HI_TECH_C
 
-#elif defined(HI_TECH_C) && !defined(MCHP_XC8)
+#elif defined(HI_TECH_C) && !defined(__XC)
 //#warning HI-TECH
 #include <htc.h>
 #ifdef __PIC10F206_H
