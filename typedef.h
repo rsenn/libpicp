@@ -1,8 +1,6 @@
 #ifndef PICLIB_TYPES_H
 #define PICLIB_TYPES_H 1
 
-//#include <stdbool.h>
-//#include "device.h"
 
 #if defined(__SDCC) || defined(HI_TECH_C) || defined(__XC) || defined(__XC8) || defined(MCC18) || defined(__C18)
 #define HAVE_C99_TYPES 1
@@ -58,6 +56,14 @@ typedef char BOOL;
 #if HAVE_C99_TYPES
 #undef TRUE
 #undef FALSE
+#endif
+
+#ifndef TRUE
+#define TRUE 1
+#endif
+
+#ifndef FALSE
+#define FALSE 0
 #endif
 
 #if defined(HI_TECH_C) || defined(__SDCC) || defined(__IAR_SYSTEMS_ICC__) || defined(__PCH__)

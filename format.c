@@ -3,6 +3,11 @@
 #include <math.h>
 #include <float.h>
 
+
+#ifndef DBL_EPSILON
+#define DBL_EPSILON FLT_EPSILON
+#endif
+
 static void
 format_putchar(char c) {
   return;
@@ -48,15 +53,15 @@ format_number(uint16_t n, uint8_t base, int8_t pad /*, int8_t pointpos*/) {
 
 // -------------------------------------------------------------------------
 void
-format_xint32(/*putchar_fn* putchar,*/ uint32_t x) {
+format_xint32(uint32_t x) {
   buffer_putch('0');
   buffer_putch('x');
   format_number((uint16_t)(x >> 16), 16, -4);
   format_number((uint16_t)(x & 0xffff), 16, -4);
 }
-
+/*
 void
-format_float(/*putchar_fn* putchar_ptr,*/ float num) {
+format_float(float num) {
   short m = (int)log10(num);
   char digit;
   //  float tolerance = .0001;
@@ -70,18 +75,18 @@ format_float(/*putchar_fn* putchar_ptr,*/ float num) {
       buffer_putch('.');
     m--;
   }
-}
+}*/
 
 // -------------------------------------------------------------------------
 void
 format_double(double num) {
-  short m = (short)log10(num);
+  short m = (short)log10f(num);
   short digit;
   //  double tolerance = .0001;
 
   while(num > 0 + DBL_EPSILON) {
-    double weight = pow(10.0l, m);
-    digit = (short)floor(num / weight);
+    double weight = powf(10.0l, m);
+    digit = (short)floorf(num / weight);
     num -= (digit * weight);
     buffer_putch((char)('0' + digit));
     if(m == 0)
