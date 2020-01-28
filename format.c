@@ -2,9 +2,11 @@
 #include "buffer.h"
 #include <math.h>
 #include <float.h>
+
 #ifndef DBL_EPSILON
 #define DBL_EPSILON FLT_EPSILON
 #endif
+
 static void
 format_putchar(char c) {
   return;
