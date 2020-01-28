@@ -2,7 +2,9 @@
 #include "buffer.h"
 #include <math.h>
 #include <float.h>
-
+#ifndef DBL_EPSILON
+#define DBL_EPSILON FLT_EPSILON
+#endif
 static void
 format_putchar(char c) {
   return;
@@ -63,7 +65,7 @@ format_float(/*putchar_fn* putchar_ptr,*/ float num) {
 
   while(num > 0 + FLT_EPSILON) {
     float weight = powf(10.0l, m);
-    digit = (char)floor(num / weight);
+    digit = (char)floorf(num / weight);
     num -= (digit * weight);
     buffer_putch('0' + digit);
     if(m == 0)
