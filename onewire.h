@@ -4,8 +4,8 @@
 #include "typedef.h"
 
 // ---------------------------------------------------------------------------
-#define DQ_BIT RC3
-#define DQ_TRIS TRISC3
+#define DQ_BIT RC4
+#define DQ_TRIS TRISC4
 
 // ---------------------------------------------------------------------------
 #define OW_SEARCH_ROM 0xf0

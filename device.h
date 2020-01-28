@@ -1,6 +1,11 @@
 #ifndef LIB_DEVICE_H
 #define LIB_DEVICE_H
 
+
+#ifdef __XC
+#include <xc.h>
+#endif
+
 #ifdef __10f206
 #define PIC10 1
 #endif
@@ -148,7 +153,7 @@
 
 #endif
 
-#if defined(__XC) || defined(HI_TECH_C)
+#if  defined(HI_TECH_C)
 #ifdef __10f206
 #include <pic10f206.h>
 #endif

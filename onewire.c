@@ -7,6 +7,8 @@
 #include "delay.h"
 #include "onewire.h"
 
+#if USE_ONEWIRE
+
 #ifdef HI_TECH_C
 #else
 #if defined(__PCM__) || defined(__PCH__)
@@ -304,3 +306,5 @@ ow_access(uint8_t actNumROM) {
 
   return 1;
 }
+
+#endif /* USE_ONEWIRE */
