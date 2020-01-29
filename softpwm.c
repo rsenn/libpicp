@@ -1,3 +1,4 @@
+#include "device.h"
 #include "softpwm.h"
 #include "timer.h"
 #include "typedef.h"

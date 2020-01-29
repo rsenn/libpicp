@@ -1,7 +1,6 @@
 #ifndef PICLIB_TIMER_H
 #define PICLIB_TIMER_H 1
 
-#include "device.h"
 #include "typedef.h"
 
 #define PRESCALE_1_1 0b000
@@ -66,7 +65,7 @@
 #define TIMER0_VALUE TMR0
 #define TIMER0_BITS 8
 
-void timer0_init(uint8_t);
+void timer0_init(unsigned char);
 
 /* Read Timer 0:
  *
@@ -87,6 +86,8 @@ unsigned short timer0_read_ps(void);
 
 #ifdef TMR1IF
 #define TIMER1_INTERRUPT_FLAG TMR1IF
+#define TIMER1_INTERRUPT_SET() TMR1IF = 1;
+#define TIMER1_INTERRUPT_CLEAR() TMR1IF = 0;
 #else
 #define TIMER1_INTERRUPT_FLAG (!!(PIR1 & 0x01))
 #endif
@@ -103,7 +104,7 @@ unsigned short timer0_read_ps(void);
 #define TIMER1_FLAGS_EXTCLK 0x40
 #define TIMER1_FLAGS_SYNC 0x20
 
-void timer1_init(uint8_t ps_mode);
+void timer1_init(unsigned char ps_mode);
 
 #ifdef TMR1
 #define TIMER1_VALUE TMR1

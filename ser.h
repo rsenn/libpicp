@@ -45,7 +45,7 @@
     TXIF = 0;                                                                                                          \
   }
 
-bit ser_isrx(void);
+char ser_isrx(void);
 uint8_t ser_getch(void);
 void ser_putch(char byte);
 void ser_put(const char* s, unsigned n);

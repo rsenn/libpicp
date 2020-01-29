@@ -166,6 +166,11 @@ lcd_puts(const char* string) {
 }
 #endif
 
+void
+lcd_putch(char value) {
+  lcd_send((unsigned char)value, HIGH);
+}
+
 // -------------------------------------------------------------------------
 /** Write formated string on LCD **/
 #ifdef LCDPRINTF
