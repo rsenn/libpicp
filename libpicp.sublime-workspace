@@ -549,7 +549,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 29.0
+		"height": 32.0
 	},
 	"input":
 	{
@@ -614,7 +614,7 @@
 	"project": "libpicp.sublime-project",
 	"replace":
 	{
-		"height": 54.0
+		"height": 60.0
 	},
 	"save_all_on_build": true,
 	"select_file":
