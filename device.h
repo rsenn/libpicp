@@ -2,7 +2,6 @@
 #define LIB_DEVICE_H
 
 #ifdef __XC
-#warning XC
 #include <xc.h>
 #endif
 
@@ -272,20 +271,6 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define LATA PORTA
 #define LATB PORTB
 #define LATC PORTC
-#endif
-
-#ifdef PIC18
-#ifdef HI_TECH_C
-#define N_RBPU INTCON2bits.nRBPU
-#else
-#define N_RBPU INTCON2bits.NOT_RBPU
-#endif
-#else
-#ifdef HI_TECH_C
-#define N_RBPU OPTION_REGbits.nRBPU
-#else
-#define N_RBPU OPTION_REGbits.NOT_RBPU
-#endif
 #endif
 
 #if defined(PIC18) || defined(PIC12)
@@ -692,6 +677,21 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #endif // defined(SYNC)
 
 #endif
+
+#ifdef PIC18
+#if defined(HI_TECH_C) || defined(__XC)
+#define nRBPU INTCON2bits.nRBPU
+#else
+#define nRBPU INTCON2bits.NOT_RBPU
+#endif
+#else
+#if 1 //defined(HI_TECH_C) || defined(__XC)
+#define nRBPU OPTION_REGbits.nRBPU
+#else
+#define nRBPU OPTION_REGbits.NOT_RBPU
+#endif
+#endif
+
 
 #if defined(__SDCC) && defined(PIC16)
 
