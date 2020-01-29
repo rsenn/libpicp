@@ -61,13 +61,13 @@ format_xint32(/*putchar_fn* putchar,*/ uint32_t x) {
 
 void
 format_float(/*putchar_fn* putchar_ptr,*/ float num) {
-  short m = (int)log10f(num);
+  short m = (int)log10(num);
   char digit;
   //  float tolerance = .0001;
 
   while(num > 0 + FLT_EPSILON) {
-    float weight = powf(10.0l, m);
-    digit = (char)floorf(num / weight);
+    float weight = pow(10.0l, m);
+    digit = (char)floor(num / weight);
     num -= (digit * weight);
     buffer_putch('0' + digit);
     if(m == 0)
@@ -79,13 +79,13 @@ format_float(/*putchar_fn* putchar_ptr,*/ float num) {
 // -------------------------------------------------------------------------
 void
 format_double(double num) {
-  short m = (short)log10f(num);
+  short m = (short)log10(num);
   short digit;
   //  double tolerance = .0001;
 
   while(num > 0 + DBL_EPSILON) {
-    double weight = powf(10.0l, m);
-    digit = (short)floorf(num / weight);
+    double weight = pow(10.0l, m);
+    digit = (short)floor(num / weight);
     num -= (digit * weight);
     buffer_putch((char)('0' + digit));
     if(m == 0)

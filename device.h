@@ -497,6 +497,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define OUTC7 RC7
 #endif
 
+#ifdef MATH_LIB_ALIASES 
 #if defined(__SDCC) || defined(__SDCC)
 #ifndef acos
 #define acos acosf
@@ -561,6 +562,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #ifndef tanh
 #define tanh tanhf
 #endif /* defined(tanh) */
+#endif 
 
 #include <float.h>
 
