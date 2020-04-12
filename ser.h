@@ -1,7 +1,7 @@
 #ifndef PICLIB_SER_H_
 #define PICLIB_SER_H_
 
-#ifdef USE_SER
+#if USE_SER
 
 #include "typedef.h"
 

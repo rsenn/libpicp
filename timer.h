@@ -35,7 +35,7 @@
 #define EDGE_LOW_HIGH 0x00
 
 /* ----------------------- Timer 0 ----------------------- */
-#if USE_TIMER0
+//#if USE_TIMER0
 
 #define TIMER0_FREQ (OSC_4 / (1 << (TIMER0_PRESCALER)))
 #define TIMER0_INTERVAL (TIMER0_FREQ / 256)
@@ -74,10 +74,10 @@ void timer0_init(unsigned char);
  */
 unsigned short timer0_read_ps(void);
 
-#endif // USE_TIMER0
+//#endif // USE_TIMER0
 
 /* ----------------------- Timer 1 ----------------------- */
-#if USE_TIMER1
+//#if USE_TIMER1
 
 #define TIMER1_FREQ (OSC_4 / (1 << (TIMER1_PRESCALER)))
 #define TIMER1_TICK_US (1000000 / TIMER1_FREQ)
@@ -113,10 +113,10 @@ void timer1_init(unsigned char ps_mode);
 #endif
 #define TIMER1_BITS 16
 
-#endif // USE_TIMER1
+//#endif // USE_TIMER1
 
 /* ----------------------- Timer 2 ----------------------- */
-#if USE_TIMER2
+//#if USE_TIMER2
 
 #ifndef TIMER2_POSTSCALER
 #define TIMER2_POSTSCALER POSTSCALE_1_1
@@ -147,6 +147,6 @@ void timer2_init(uint8_t ps_mode);
 #define TIMER2_VALUE TMR2
 #define TIMER2_BITS 8
 
-#endif // USE_TIMER2
+//#endif // USE_TIMER2
 
 #endif // defined PICLIB_TIMER_H

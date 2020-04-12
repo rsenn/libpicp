@@ -1,4 +1,4 @@
-#ifdef USE_SER
+#if USE_SER
 
 #define _SER_C_
 #include "device.h"

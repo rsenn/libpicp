@@ -681,17 +681,17 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #endif
 
 #ifdef PIC18
-#if defined(HI_TECH_C) || defined(__XC)
-#define nRBPU INTCON2bits.nRBPU
+#  if defined(HI_TECH_C) || defined(__XC)
+#    define nRBPU INTCON2bits.nRBPU
+#  else
+#    define nRBPU INTCON2bits.NOT_RBPU
+#  endif
 #else
-#define nRBPU INTCON2bits.NOT_RBPU
-#endif
-#else
-#if 1 //defined(HI_TECH_C) || defined(__XC)
-#define nRBPU OPTION_REGbits.nRBPU
-#else
-#define nRBPU OPTION_REGbits.NOT_RBPU
-#endif
+#  if 1 //defined(HI_TECH_C) || defined(__XC)
+#    define nRBPU OPTION_REGbits.nRBPU
+#  else
+#    define nRBPU OPTION_REGbits.NOT_RBPU
+#  endif
 #endif
 
 
