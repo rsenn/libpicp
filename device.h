@@ -497,7 +497,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define OUTC7 RC7
 #endif
 
-#ifdef MATH_LIB_ALIASES 
+#ifdef MATH_LIB_ALIASES
 #if defined(__SDCC) || defined(__SDCC)
 #ifndef acos
 #define acos acosf
@@ -562,7 +562,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #ifndef tanh
 #define tanh tanhf
 #endif /* defined(tanh) */
-#endif 
+#endif
 
 #include <float.h>
 
@@ -681,19 +681,18 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #endif
 
 #ifdef PIC18
-#  if defined(HI_TECH_C) || defined(__XC)
-#    define nRBPU INTCON2bits.nRBPU
-#  else
-#    define nRBPU INTCON2bits.NOT_RBPU
-#  endif
+#if defined(HI_TECH_C) || defined(__XC)
+#define nRBPU INTCON2bits.nRBPU
 #else
-#  if 1 //defined(HI_TECH_C) || defined(__XC)
-#    define nRBPU OPTION_REGbits.nRBPU
-#  else
-#    define nRBPU OPTION_REGbits.NOT_RBPU
-#  endif
+#define nRBPU INTCON2bits.NOT_RBPU
 #endif
-
+#else
+#if 1 // defined(HI_TECH_C) || defined(__XC)
+#define nRBPU OPTION_REGbits.nRBPU
+#else
+#define nRBPU OPTION_REGbits.NOT_RBPU
+#endif
+#endif
 
 #if defined(__SDCC) && defined(PIC16)
 
