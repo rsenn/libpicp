@@ -28,13 +28,13 @@ CP=cp
 CND_CONF=default
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 IMAGE_TYPE=debug
-OUTPUT_SUFFIX=null
-DEBUGGABLE_SUFFIX=null
+OUTPUT_SUFFIX=cof
+DEBUGGABLE_SUFFIX=cof
 FINAL_IMAGE=dist/${CND_CONF}/${IMAGE_TYPE}/libpicp-18f2550-htc.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 else
 IMAGE_TYPE=production
-OUTPUT_SUFFIX=Cof
-DEBUGGABLE_SUFFIX=Cof
+OUTPUT_SUFFIX=hex
+DEBUGGABLE_SUFFIX=hex
 FINAL_IMAGE=dist/${CND_CONF}/${IMAGE_TYPE}/libpicp-18f2550-htc.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 endif
 
@@ -60,14 +60,15 @@ DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 SOURCEFILES_QUOTED_IF_SPACED=/home/roman/Sources/libpicp/7segment.c /home/roman/Sources/libpicp/adc.c /home/roman/Sources/libpicp/buffer.c /home/roman/Sources/libpicp/comparator.c /home/roman/Sources/libpicp/delay.c /home/roman/Sources/libpicp/ds18b20.c /home/roman/Sources/libpicp/format.c /home/roman/Sources/libpicp/lcd44780.c /home/roman/Sources/libpicp/lcd5110.c /home/roman/Sources/libpicp/ledsense.c /home/roman/Sources/libpicp/midi.c /home/roman/Sources/libpicp/onewire.c /home/roman/Sources/libpicp/pwm.c /home/roman/Sources/libpicp/random.c /home/roman/Sources/libpicp/ser.c /home/roman/Sources/libpicp/softpwm.c /home/roman/Sources/libpicp/softser.c /home/roman/Sources/libpicp/timer.c /home/roman/Sources/libpicp/uart.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/863579873/7segment.p1 ${OBJECTDIR}/_ext/863579873/adc.p1 ${OBJECTDIR}/_ext/863579873/buffer.p1 ${OBJECTDIR}/_ext/863579873/comparator.p1 ${OBJECTDIR}/_ext/863579873/delay.p1 ${OBJECTDIR}/_ext/863579873/ds18b20.p1 ${OBJECTDIR}/_ext/863579873/format.p1 ${OBJECTDIR}/_ext/863579873/lcd44780.p1 ${OBJECTDIR}/_ext/863579873/lcd5110.p1 ${OBJECTDIR}/_ext/863579873/ledsense.p1 ${OBJECTDIR}/_ext/863579873/midi.p1 ${OBJECTDIR}/_ext/863579873/onewire.p1 ${OBJECTDIR}/_ext/863579873/pwm.p1 ${OBJECTDIR}/_ext/863579873/random.p1 ${OBJECTDIR}/_ext/863579873/ser.p1 ${OBJECTDIR}/_ext/863579873/softpwm.p1 ${OBJECTDIR}/_ext/863579873/softser.p1 ${OBJECTDIR}/_ext/863579873/timer.p1 ${OBJECTDIR}/_ext/863579873/uart.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/863579873/7segment.p1.d ${OBJECTDIR}/_ext/863579873/adc.p1.d ${OBJECTDIR}/_ext/863579873/buffer.p1.d ${OBJECTDIR}/_ext/863579873/comparator.p1.d ${OBJECTDIR}/_ext/863579873/delay.p1.d ${OBJECTDIR}/_ext/863579873/ds18b20.p1.d ${OBJECTDIR}/_ext/863579873/format.p1.d ${OBJECTDIR}/_ext/863579873/lcd44780.p1.d ${OBJECTDIR}/_ext/863579873/lcd5110.p1.d ${OBJECTDIR}/_ext/863579873/ledsense.p1.d ${OBJECTDIR}/_ext/863579873/midi.p1.d ${OBJECTDIR}/_ext/863579873/onewire.p1.d ${OBJECTDIR}/_ext/863579873/pwm.p1.d ${OBJECTDIR}/_ext/863579873/random.p1.d ${OBJECTDIR}/_ext/863579873/ser.p1.d ${OBJECTDIR}/_ext/863579873/softpwm.p1.d ${OBJECTDIR}/_ext/863579873/softser.p1.d ${OBJECTDIR}/_ext/863579873/timer.p1.d ${OBJECTDIR}/_ext/863579873/uart.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/863579873/7segment.o ${OBJECTDIR}/_ext/863579873/adc.o ${OBJECTDIR}/_ext/863579873/buffer.o ${OBJECTDIR}/_ext/863579873/comparator.o ${OBJECTDIR}/_ext/863579873/delay.o ${OBJECTDIR}/_ext/863579873/ds18b20.o ${OBJECTDIR}/_ext/863579873/format.o ${OBJECTDIR}/_ext/863579873/lcd44780.o ${OBJECTDIR}/_ext/863579873/lcd5110.o ${OBJECTDIR}/_ext/863579873/ledsense.o ${OBJECTDIR}/_ext/863579873/midi.o ${OBJECTDIR}/_ext/863579873/onewire.o ${OBJECTDIR}/_ext/863579873/pwm.o ${OBJECTDIR}/_ext/863579873/random.o ${OBJECTDIR}/_ext/863579873/ser.o ${OBJECTDIR}/_ext/863579873/softpwm.o ${OBJECTDIR}/_ext/863579873/softser.o ${OBJECTDIR}/_ext/863579873/timer.o ${OBJECTDIR}/_ext/863579873/uart.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/863579873/7segment.o.d ${OBJECTDIR}/_ext/863579873/adc.o.d ${OBJECTDIR}/_ext/863579873/buffer.o.d ${OBJECTDIR}/_ext/863579873/comparator.o.d ${OBJECTDIR}/_ext/863579873/delay.o.d ${OBJECTDIR}/_ext/863579873/ds18b20.o.d ${OBJECTDIR}/_ext/863579873/format.o.d ${OBJECTDIR}/_ext/863579873/lcd44780.o.d ${OBJECTDIR}/_ext/863579873/lcd5110.o.d ${OBJECTDIR}/_ext/863579873/ledsense.o.d ${OBJECTDIR}/_ext/863579873/midi.o.d ${OBJECTDIR}/_ext/863579873/onewire.o.d ${OBJECTDIR}/_ext/863579873/pwm.o.d ${OBJECTDIR}/_ext/863579873/random.o.d ${OBJECTDIR}/_ext/863579873/ser.o.d ${OBJECTDIR}/_ext/863579873/softpwm.o.d ${OBJECTDIR}/_ext/863579873/softser.o.d ${OBJECTDIR}/_ext/863579873/timer.o.d ${OBJECTDIR}/_ext/863579873/uart.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/863579873/7segment.p1 ${OBJECTDIR}/_ext/863579873/adc.p1 ${OBJECTDIR}/_ext/863579873/buffer.p1 ${OBJECTDIR}/_ext/863579873/comparator.p1 ${OBJECTDIR}/_ext/863579873/delay.p1 ${OBJECTDIR}/_ext/863579873/ds18b20.p1 ${OBJECTDIR}/_ext/863579873/format.p1 ${OBJECTDIR}/_ext/863579873/lcd44780.p1 ${OBJECTDIR}/_ext/863579873/lcd5110.p1 ${OBJECTDIR}/_ext/863579873/ledsense.p1 ${OBJECTDIR}/_ext/863579873/midi.p1 ${OBJECTDIR}/_ext/863579873/onewire.p1 ${OBJECTDIR}/_ext/863579873/pwm.p1 ${OBJECTDIR}/_ext/863579873/random.p1 ${OBJECTDIR}/_ext/863579873/ser.p1 ${OBJECTDIR}/_ext/863579873/softpwm.p1 ${OBJECTDIR}/_ext/863579873/softser.p1 ${OBJECTDIR}/_ext/863579873/timer.p1 ${OBJECTDIR}/_ext/863579873/uart.p1
+OBJECTFILES=${OBJECTDIR}/_ext/863579873/7segment.o ${OBJECTDIR}/_ext/863579873/adc.o ${OBJECTDIR}/_ext/863579873/buffer.o ${OBJECTDIR}/_ext/863579873/comparator.o ${OBJECTDIR}/_ext/863579873/delay.o ${OBJECTDIR}/_ext/863579873/ds18b20.o ${OBJECTDIR}/_ext/863579873/format.o ${OBJECTDIR}/_ext/863579873/lcd44780.o ${OBJECTDIR}/_ext/863579873/lcd5110.o ${OBJECTDIR}/_ext/863579873/ledsense.o ${OBJECTDIR}/_ext/863579873/midi.o ${OBJECTDIR}/_ext/863579873/onewire.o ${OBJECTDIR}/_ext/863579873/pwm.o ${OBJECTDIR}/_ext/863579873/random.o ${OBJECTDIR}/_ext/863579873/ser.o ${OBJECTDIR}/_ext/863579873/softpwm.o ${OBJECTDIR}/_ext/863579873/softser.o ${OBJECTDIR}/_ext/863579873/timer.o ${OBJECTDIR}/_ext/863579873/uart.o
 
 # Source Files
 SOURCEFILES=/home/roman/Sources/libpicp/7segment.c /home/roman/Sources/libpicp/adc.c /home/roman/Sources/libpicp/buffer.c /home/roman/Sources/libpicp/comparator.c /home/roman/Sources/libpicp/delay.c /home/roman/Sources/libpicp/ds18b20.c /home/roman/Sources/libpicp/format.c /home/roman/Sources/libpicp/lcd44780.c /home/roman/Sources/libpicp/lcd5110.c /home/roman/Sources/libpicp/ledsense.c /home/roman/Sources/libpicp/midi.c /home/roman/Sources/libpicp/onewire.c /home/roman/Sources/libpicp/pwm.c /home/roman/Sources/libpicp/random.c /home/roman/Sources/libpicp/ser.c /home/roman/Sources/libpicp/softpwm.c /home/roman/Sources/libpicp/softser.c /home/roman/Sources/libpicp/timer.c /home/roman/Sources/libpicp/uart.c
+
 
 
 CFLAGS=
@@ -98,233 +99,233 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/_ext/863579873/7segment.p1: /home/roman/Sources/libpicp/7segment.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/7segment.o: /home/roman/Sources/libpicp/7segment.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/7segment.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/7segment.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/7segment.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/7segment.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/7segment.c 
 	
-${OBJECTDIR}/_ext/863579873/adc.p1: /home/roman/Sources/libpicp/adc.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/adc.o: /home/roman/Sources/libpicp/adc.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/adc.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/adc.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/adc.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/adc.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/adc.c 
 	
-${OBJECTDIR}/_ext/863579873/buffer.p1: /home/roman/Sources/libpicp/buffer.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/buffer.o: /home/roman/Sources/libpicp/buffer.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/buffer.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/buffer.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/buffer.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/buffer.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/buffer.c 
 	
-${OBJECTDIR}/_ext/863579873/comparator.p1: /home/roman/Sources/libpicp/comparator.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/comparator.o: /home/roman/Sources/libpicp/comparator.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/comparator.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/comparator.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/comparator.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/comparator.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/comparator.c 
 	
-${OBJECTDIR}/_ext/863579873/delay.p1: /home/roman/Sources/libpicp/delay.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/delay.o: /home/roman/Sources/libpicp/delay.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/delay.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/delay.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/delay.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/delay.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/delay.c 
 	
-${OBJECTDIR}/_ext/863579873/ds18b20.p1: /home/roman/Sources/libpicp/ds18b20.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/ds18b20.o: /home/roman/Sources/libpicp/ds18b20.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/ds18b20.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/ds18b20.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/ds18b20.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/ds18b20.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/ds18b20.c 
 	
-${OBJECTDIR}/_ext/863579873/format.p1: /home/roman/Sources/libpicp/format.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/format.o: /home/roman/Sources/libpicp/format.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/format.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/format.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/format.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/format.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/format.c 
 	
-${OBJECTDIR}/_ext/863579873/lcd44780.p1: /home/roman/Sources/libpicp/lcd44780.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/lcd44780.o: /home/roman/Sources/libpicp/lcd44780.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/lcd44780.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/lcd44780.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/lcd44780.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/lcd44780.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/lcd44780.c 
 	
-${OBJECTDIR}/_ext/863579873/lcd5110.p1: /home/roman/Sources/libpicp/lcd5110.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/lcd5110.o: /home/roman/Sources/libpicp/lcd5110.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/lcd5110.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/lcd5110.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/lcd5110.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/lcd5110.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/lcd5110.c 
 	
-${OBJECTDIR}/_ext/863579873/ledsense.p1: /home/roman/Sources/libpicp/ledsense.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/ledsense.o: /home/roman/Sources/libpicp/ledsense.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/ledsense.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/ledsense.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/ledsense.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/ledsense.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/ledsense.c 
 	
-${OBJECTDIR}/_ext/863579873/midi.p1: /home/roman/Sources/libpicp/midi.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/midi.o: /home/roman/Sources/libpicp/midi.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/midi.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/midi.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/midi.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/midi.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/midi.c 
 	
-${OBJECTDIR}/_ext/863579873/onewire.p1: /home/roman/Sources/libpicp/onewire.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/onewire.o: /home/roman/Sources/libpicp/onewire.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/onewire.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/onewire.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/onewire.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/onewire.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/onewire.c 
 	
-${OBJECTDIR}/_ext/863579873/pwm.p1: /home/roman/Sources/libpicp/pwm.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/pwm.o: /home/roman/Sources/libpicp/pwm.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/pwm.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/pwm.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/pwm.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/pwm.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/pwm.c 
 	
-${OBJECTDIR}/_ext/863579873/random.p1: /home/roman/Sources/libpicp/random.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/random.o: /home/roman/Sources/libpicp/random.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/random.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/random.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/random.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/random.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/random.c 
 	
-${OBJECTDIR}/_ext/863579873/ser.p1: /home/roman/Sources/libpicp/ser.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/ser.o: /home/roman/Sources/libpicp/ser.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/ser.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/ser.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/ser.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/ser.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/ser.c 
 	
-${OBJECTDIR}/_ext/863579873/softpwm.p1: /home/roman/Sources/libpicp/softpwm.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/softpwm.o: /home/roman/Sources/libpicp/softpwm.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/softpwm.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/softpwm.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/softpwm.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/softpwm.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/softpwm.c 
 	
-${OBJECTDIR}/_ext/863579873/softser.p1: /home/roman/Sources/libpicp/softser.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/softser.o: /home/roman/Sources/libpicp/softser.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/softser.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/softser.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/softser.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/softser.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/softser.c 
 	
-${OBJECTDIR}/_ext/863579873/timer.p1: /home/roman/Sources/libpicp/timer.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/timer.o: /home/roman/Sources/libpicp/timer.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/timer.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/timer.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/timer.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/timer.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/timer.c 
 	
-${OBJECTDIR}/_ext/863579873/uart.p1: /home/roman/Sources/libpicp/uart.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/uart.o: /home/roman/Sources/libpicp/uart.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/uart.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/uart.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/uart.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/uart.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/uart.c 
 	
 else
-${OBJECTDIR}/_ext/863579873/7segment.p1: /home/roman/Sources/libpicp/7segment.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/7segment.o: /home/roman/Sources/libpicp/7segment.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/7segment.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/7segment.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/7segment.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/7segment.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/7segment.c 
 	
-${OBJECTDIR}/_ext/863579873/adc.p1: /home/roman/Sources/libpicp/adc.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/adc.o: /home/roman/Sources/libpicp/adc.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/adc.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/adc.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/adc.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/adc.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/adc.c 
 	
-${OBJECTDIR}/_ext/863579873/buffer.p1: /home/roman/Sources/libpicp/buffer.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/buffer.o: /home/roman/Sources/libpicp/buffer.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/buffer.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/buffer.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/buffer.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/buffer.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/buffer.c 
 	
-${OBJECTDIR}/_ext/863579873/comparator.p1: /home/roman/Sources/libpicp/comparator.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/comparator.o: /home/roman/Sources/libpicp/comparator.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/comparator.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/comparator.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/comparator.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/comparator.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/comparator.c 
 	
-${OBJECTDIR}/_ext/863579873/delay.p1: /home/roman/Sources/libpicp/delay.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/delay.o: /home/roman/Sources/libpicp/delay.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/delay.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/delay.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/delay.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/delay.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/delay.c 
 	
-${OBJECTDIR}/_ext/863579873/ds18b20.p1: /home/roman/Sources/libpicp/ds18b20.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/ds18b20.o: /home/roman/Sources/libpicp/ds18b20.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/ds18b20.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/ds18b20.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/ds18b20.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/ds18b20.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/ds18b20.c 
 	
-${OBJECTDIR}/_ext/863579873/format.p1: /home/roman/Sources/libpicp/format.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/format.o: /home/roman/Sources/libpicp/format.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/format.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/format.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/format.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/format.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/format.c 
 	
-${OBJECTDIR}/_ext/863579873/lcd44780.p1: /home/roman/Sources/libpicp/lcd44780.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/lcd44780.o: /home/roman/Sources/libpicp/lcd44780.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/lcd44780.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/lcd44780.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/lcd44780.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/lcd44780.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/lcd44780.c 
 	
-${OBJECTDIR}/_ext/863579873/lcd5110.p1: /home/roman/Sources/libpicp/lcd5110.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/lcd5110.o: /home/roman/Sources/libpicp/lcd5110.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/lcd5110.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/lcd5110.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/lcd5110.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/lcd5110.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/lcd5110.c 
 	
-${OBJECTDIR}/_ext/863579873/ledsense.p1: /home/roman/Sources/libpicp/ledsense.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/ledsense.o: /home/roman/Sources/libpicp/ledsense.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/ledsense.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/ledsense.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/ledsense.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/ledsense.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/ledsense.c 
 	
-${OBJECTDIR}/_ext/863579873/midi.p1: /home/roman/Sources/libpicp/midi.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/midi.o: /home/roman/Sources/libpicp/midi.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/midi.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/midi.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/midi.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/midi.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/midi.c 
 	
-${OBJECTDIR}/_ext/863579873/onewire.p1: /home/roman/Sources/libpicp/onewire.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/onewire.o: /home/roman/Sources/libpicp/onewire.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/onewire.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/onewire.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/onewire.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/onewire.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/onewire.c 
 	
-${OBJECTDIR}/_ext/863579873/pwm.p1: /home/roman/Sources/libpicp/pwm.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/pwm.o: /home/roman/Sources/libpicp/pwm.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/pwm.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/pwm.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/pwm.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/pwm.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/pwm.c 
 	
-${OBJECTDIR}/_ext/863579873/random.p1: /home/roman/Sources/libpicp/random.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/random.o: /home/roman/Sources/libpicp/random.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/random.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/random.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/random.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/random.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/random.c 
 	
-${OBJECTDIR}/_ext/863579873/ser.p1: /home/roman/Sources/libpicp/ser.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/ser.o: /home/roman/Sources/libpicp/ser.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/ser.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/ser.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/ser.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/ser.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/ser.c 
 	
-${OBJECTDIR}/_ext/863579873/softpwm.p1: /home/roman/Sources/libpicp/softpwm.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/softpwm.o: /home/roman/Sources/libpicp/softpwm.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/softpwm.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/softpwm.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/softpwm.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/softpwm.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/softpwm.c 
 	
-${OBJECTDIR}/_ext/863579873/softser.p1: /home/roman/Sources/libpicp/softser.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/softser.o: /home/roman/Sources/libpicp/softser.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/softser.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/softser.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/softser.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/softser.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/softser.c 
 	
-${OBJECTDIR}/_ext/863579873/timer.p1: /home/roman/Sources/libpicp/timer.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/timer.o: /home/roman/Sources/libpicp/timer.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/timer.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/timer.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/timer.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/timer.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/timer.c 
 	
-${OBJECTDIR}/_ext/863579873/uart.p1: /home/roman/Sources/libpicp/uart.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/863579873/uart.o: /home/roman/Sources/libpicp/uart.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/863579873" 
-	@${RM} ${OBJECTDIR}/_ext/863579873/uart.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/863579873/uart.p1 
+	@${RM} ${OBJECTDIR}/_ext/863579873/uart.o.d 
+	@${RM} ${OBJECTDIR}/_ext/863579873/uart.o 
 	 ${MP_CC} $(MP_EXTRA_CC_PRE)  /home/roman/Sources/libpicp/uart.c 
 	
 endif
@@ -355,11 +356,3 @@ endif
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r build/default
 	${RM} -r dist/default
-
-# Enable dependency checking
-.dep.inc: .depcheck-impl
-
-DEPFILES=$(shell "${PATH_TO_IDE_BIN}"mplabwildcard ${POSSIBLE_DEPFILES})
-ifneq (${DEPFILES},)
-include ${DEPFILES}
-endif

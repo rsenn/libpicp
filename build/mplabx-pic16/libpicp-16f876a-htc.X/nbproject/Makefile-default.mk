@@ -70,6 +70,7 @@ OBJECTFILES=${OBJECTDIR}/_ext/863579873/7segment.p1 ${OBJECTDIR}/_ext/863579873/
 SOURCEFILES=/home/roman/Sources/libpicp/7segment.c /home/roman/Sources/libpicp/adc.c /home/roman/Sources/libpicp/buffer.c /home/roman/Sources/libpicp/comparator.c /home/roman/Sources/libpicp/delay.c /home/roman/Sources/libpicp/ds18b20.c /home/roman/Sources/libpicp/format.c /home/roman/Sources/libpicp/lcd44780.c /home/roman/Sources/libpicp/lcd5110.c /home/roman/Sources/libpicp/ledsense.c /home/roman/Sources/libpicp/midi.c /home/roman/Sources/libpicp/onewire.c /home/roman/Sources/libpicp/pwm.c /home/roman/Sources/libpicp/random.c /home/roman/Sources/libpicp/ser.c /home/roman/Sources/libpicp/softpwm.c /home/roman/Sources/libpicp/softser.c /home/roman/Sources/libpicp/timer.c /home/roman/Sources/libpicp/uart.c
 
 
+
 CFLAGS=
 ASFLAGS=
 LDLIBSOPTIONS=
@@ -431,11 +432,3 @@ endif
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r build/default
 	${RM} -r dist/default
-
-# Enable dependency checking
-.dep.inc: .depcheck-impl
-
-DEPFILES=$(shell "${PATH_TO_IDE_BIN}"mplabwildcard ${POSSIBLE_DEPFILES})
-ifneq (${DEPFILES},)
-include ${DEPFILES}
-endif
