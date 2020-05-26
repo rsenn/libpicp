@@ -87,3 +87,5 @@ dkms.conf
 /build/mplabx-pic16/libpicp-16f876a-sdcc.X/dist/default/
 /build/mplabx-pic16/libpicp-16f876a-htc.X/nbproject/private/
 /build/mplabx-pic18/libpicp-18f2550-htc.X/nbproject/private/
+/build/mplabx-pic12/libpicp-12f1840-xc8.X/build/
+/build/mplabx-pic18/libpicp-18f2550-c18.X/build/

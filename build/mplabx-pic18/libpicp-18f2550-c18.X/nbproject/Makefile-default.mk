@@ -70,6 +70,7 @@ OBJECTFILES=${OBJECTDIR}/_ext/40321244/7segment.o ${OBJECTDIR}/_ext/40321244/adc
 SOURCEFILES=/home/roman/Dokumente/Sources/libpicp/7segment.c /home/roman/Dokumente/Sources/libpicp/adc.c /home/roman/Dokumente/Sources/libpicp/buffer.c /home/roman/Dokumente/Sources/libpicp/comparator.c /home/roman/Dokumente/Sources/libpicp/delay.c /home/roman/Dokumente/Sources/libpicp/ds18b20.c /home/roman/Dokumente/Sources/libpicp/format.c /home/roman/Dokumente/Sources/libpicp/lcd44780.c /home/roman/Dokumente/Sources/libpicp/lcd5110.c /home/roman/Dokumente/Sources/libpicp/ledsense.c /home/roman/Dokumente/Sources/libpicp/midi.c /home/roman/Dokumente/Sources/libpicp/onewire.c /home/roman/Dokumente/Sources/libpicp/pwm.c /home/roman/Dokumente/Sources/libpicp/random.c /home/roman/Dokumente/Sources/libpicp/ser.c /home/roman/Dokumente/Sources/libpicp/softpwm.c /home/roman/Dokumente/Sources/libpicp/softser.c /home/roman/Dokumente/Sources/libpicp/timer.c /home/roman/Dokumente/Sources/libpicp/uart.c
 
 
+
 CFLAGS=
 ASFLAGS=
 LDLIBSOPTIONS=
@@ -432,11 +433,3 @@ endif
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r build/default
 	${RM} -r dist/default
-
-# Enable dependency checking
-.dep.inc: .depcheck-impl
-
-DEPFILES=$(shell "${PATH_TO_IDE_BIN}"mplabwildcard ${POSSIBLE_DEPFILES})
-ifneq (${DEPFILES},)
-include ${DEPFILES}
-endif
