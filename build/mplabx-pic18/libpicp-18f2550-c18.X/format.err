@@ -1,1 +1,1 @@
-Error[yy] /home/roman/Dokumente/Sources/libpicp/format.h 6 : syntax error
+Warning[2065] /home/roman/Dokumente/Sources/libpicp/format.c 93 : static function 'format_putchar' never referenced
