@@ -30,16 +30,16 @@
 /* Insert this macro inside the interrupt routine */
 #define ser_int()                                                                                                      \
   if(RCIF) {                                                                                                           \
-    ser_rxfifo[ser_rxiptr] = RCREG;                                                                                            \
-    ser_tmp = (ser_rxiptr + 1) & SER_FIFO_MASK;                                                                            \
-    if(ser_tmp != ser_rxoptr)                                                                                              \
-      ser_rxiptr = ser_tmp;                                                                                                \
+    ser_rxfifo[ser_rxiptr] = RCREG;                                                                                    \
+    ser_tmp = (ser_rxiptr + 1) & SER_FIFO_MASK;                                                                        \
+    if(ser_tmp != ser_rxoptr)                                                                                          \
+      ser_rxiptr = ser_tmp;                                                                                            \
   };                                                                                                                   \
   if(TXIF && TXIE) {                                                                                                   \
-    TXREG = ser_txfifo[ser_txoptr];                                                                                            \
-    ++ser_txoptr;                                                                                                          \
-    ser_txoptr &= SER_FIFO_MASK;                                                                                           \
-    if(ser_txoptr == ser_txiptr) {                                                                                             \
+    TXREG = ser_txfifo[ser_txoptr];                                                                                    \
+    ++ser_txoptr;                                                                                                      \
+    ser_txoptr &= SER_FIFO_MASK;                                                                                       \
+    if(ser_txoptr == ser_txiptr) {                                                                                     \
       TXIE = 0;                                                                                                        \
     };                                                                                                                 \
     TXIF = 0;                                                                                                          \
@@ -51,7 +51,6 @@ extern uint8_t ser_txfifo[SER_BUFFER_SIZE];
 extern volatile uint8_t ser_txiptr, ser_txoptr;
 extern uint8_t ser_tmp;
 
-
 char ser_isrx(void);
 unsigned char ser_rxsize(void);
 uint8_t ser_getch(void);
@@ -62,8 +61,7 @@ void ser_puts2(uint8_t* s);
 void ser_puthex(uint8_t v);
 void ser_init(void);
 
-uint8_t
-ser_rxat(unsigned char at);
+uint8_t ser_rxat(unsigned char at);
 unsigned char ser_size(void);
 
 #if 1 // ndef _SER_C_

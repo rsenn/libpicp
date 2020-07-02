@@ -244,8 +244,6 @@
 #endif
 #endif
 
-
-
 #if defined(__SDCC) || defined(__SDCC)
 #define CONFIG_WORD (_FOSC_HS & _PWRTE_ON & _WDT_OFF & _BODEN_OFF & _LVP_OFF & _CPD_OFF & _CP_OFF)
 #define double float

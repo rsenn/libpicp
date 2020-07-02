@@ -16,7 +16,7 @@ format_putchar(char c) {
 
 // -------------------------------------------------------------------------
 void
-format_number(putch_t fn,uint16_t n, uint8_t base, int8_t pad /*, int8_t pointpos*/) {
+format_number(putch_t fn, uint16_t n, uint8_t base, int8_t pad /*, int8_t pointpos*/) {
   char buf[8 * sizeof(long)]; // Assumes 8-bit chars.
   uint8_t di;
   int8_t i = 0;
@@ -52,15 +52,15 @@ format_number(putch_t fn,uint16_t n, uint8_t base, int8_t pad /*, int8_t pointpo
 
 // -------------------------------------------------------------------------
 void
-format_xint32(putch_t fn,/*putchar_fn* putchar,*/ uint32_t x) {
+format_xint32(putch_t fn, /*putchar_fn* putchar,*/ uint32_t x) {
   fn('0');
   fn('x');
-  format_number(fn,(uint16_t)(x >> 16), 16, -4);
+  format_number(fn, (uint16_t)(x >> 16), 16, -4);
   format_number(fn, (uint16_t)(x & 0xffff), 16, -4);
 }
 
 void
-format_float(putch_t fn,/*putchar_fn* putchar_ptr,*/ float num) {
+format_float(putch_t fn, /*putchar_fn* putchar_ptr,*/ float num) {
   short m = (int)log10(num);
   char digit;
   //  float tolerance = .0001;
@@ -78,7 +78,7 @@ format_float(putch_t fn,/*putchar_fn* putchar_ptr,*/ float num) {
 
 // -------------------------------------------------------------------------
 void
-format_double(putch_t fn,double num) {
+format_double(putch_t fn, double num) {
   short m = (short)log10(num);
   short digit;
   //  double tolerance = .0001;

@@ -5,7 +5,7 @@
 //#warning interrupt.h
 #define INTERRUPT_FN() interrupt isr()
 #elif defined(MCC18)
-#pragma interrupt  isr
+#pragma interrupt isr
 #define INTERRUPT_HANDLER() void isr()
 #else
 #if defined(__SDCC) || __SDCC__
