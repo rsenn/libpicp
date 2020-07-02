@@ -2,7 +2,6 @@
 #include "softpwm.h"
 #include "timer.h"
 #include "typedef.h"
-#include <assert.h>
 
 #if USE_SOFTPWM
 

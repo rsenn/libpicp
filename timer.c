@@ -1,35 +1,37 @@
 #include "timer.h"
 #include "device.h"
 
+/*
 #ifdef PIC18F2550
-#define PIC18 1
+# define PIC18 1
 #endif
-#ifdef __18f14k50
+# ifdef __18f14k50
 #define PIC18 1
 #endif
 #ifdef __18f25k50
-#define PIC18 1
+# define PIC18 1
 #endif
 #ifdef __18f2550
-#define PIC18 1
-#ifndef __SDCC
+# define PIC18 1
+#  ifndef MCC18
+#   ifndef __SDCC
 extern volatile unsigned char T0CON @0xFD5;
 #endif
 #endif
+*/
 
-#ifndef PIC18
-#define T0CON OPTION_REG
-#endif
-
-/* ----------------------- Timer 0 ----------------------- */
 #if USE_TIMER0
 
 void
 timer0_init(uint8_t ps_mode) {
   uint8_t prescaler = ps_mode & PRESCALE_MASK;
 
+#ifdef TIMER0_VALUE
   TIMER0_VALUE = 0;
-
+#else
+  TIMER0_VALUE_L = 0;
+  TIMER0_VALUE_H = 0;
+#endif
 #ifdef PIC18
   T0CON |= (!!(ps_mode & TIMER0_FLAGS_8BIT)) ? 0x40 : 0x00;
 #endif

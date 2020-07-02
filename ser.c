@@ -5,6 +5,7 @@
 #include "oscillator.h"
 #include "ser.h"
 #include "const.h"
+#include "interrupt.h"
 
 #ifndef SER_BAUD
 #define SER_BAUD 38400
@@ -22,10 +23,10 @@
 
 uint8_t ser_brg = SER_BRG;
 
-uint8_t rxfifo[SER_BUFFER_SIZE];
-volatile uint8_t rxiptr, rxoptr;
-/*bank1*/ uint8_t txfifo[SER_BUFFER_SIZE];
-volatile uint8_t txiptr, txoptr;
+uint8_t ser_rxfifo[SER_BUFFER_SIZE];
+volatile uint8_t ser_rxiptr, ser_rxoptr;
+uint8_t ser_txfifo[SER_BUFFER_SIZE];
+volatile uint8_t ser_txiptr, ser_txoptr;
 uint8_t ser_tmp;
 
 char
@@ -35,7 +36,21 @@ ser_isrx(void) {
     CREN = 1;
     return 0;
   }
-  return (rxiptr != rxoptr);
+  return (ser_rxiptr != ser_rxoptr);
+}
+
+unsigned char
+ser_rxsize(void) {
+  unsigned char ret;
+  INTERRUPT_DISABLE();
+  ret = ser_rxiptr < ser_rxoptr ? SER_BUFFER_SIZE - ser_rxiptr + ser_rxoptr : ser_rxiptr - ser_rxoptr;
+  INTERRUPT_ENABLE();
+  return ret;
+}
+
+uint8_t
+ser_rxat(unsigned char at) {
+  return ser_rxfifo[at & SER_FIFO_MASK];
 }
 
 uint8_t
@@ -45,19 +60,19 @@ ser_getch(void) {
   while(ser_isrx() == 0) continue;
 
   GIE = 0;
-  c = rxfifo[rxoptr];
-  ++rxoptr;
-  rxoptr &= SER_FIFO_MASK;
+  c = ser_rxfifo[ser_rxoptr];
+  ++ser_rxoptr;
+  ser_rxoptr &= SER_FIFO_MASK;
   GIE = 1;
   return c;
 }
 
 void
 ser_putch(char c) {
-  while(((txiptr + 1) & SER_FIFO_MASK) == txoptr) continue;
+  while(((ser_txiptr + 1) & SER_FIFO_MASK) == ser_txoptr) continue;
   GIE = 0;
-  txfifo[txiptr] = c;
-  txiptr = (txiptr + 1) & SER_FIFO_MASK;
+  ser_txfifo[ser_txiptr] = c;
+  ser_txiptr = (ser_txiptr + 1) & SER_FIFO_MASK;
   TXIE = 1;
   GIE = 1;
 }
@@ -121,7 +136,7 @@ ser_init(void) {
   TXEN = 1;
   PEIE = 1;
 
-  rxiptr = rxoptr = txiptr = txoptr = 0;
+  ser_rxiptr = ser_rxoptr = ser_txiptr = ser_txoptr = 0;
 }
 
 #endif // USE_SER

@@ -2,6 +2,7 @@
 #define PICLIB_7SEGMENT_H__
 
 #include "typedef.h"
+#include "device.h"
 
 #define SEG_A 0x80
 #define SEG_B 0x40
@@ -78,8 +79,8 @@
 #define DISPLAY_SELECT_MASK (((1 << DISPLAY_DIGITS) - 1) << DISPLAY_SELECT_SHIFT)
 #define DISPLAY_SELECT_BIT(b) (1 << ((b) + DISPLAY_SELECT_SHIFT))
 
-#define BUTTON_PIN RB0
-#define BUTTON_TRIS TRISB0
+#define BUTTON_PIN RC4
+#define BUTTON_TRIS TRISC4
 
 #define DISPLAY_INTERRUPT()                                                                                            \
   {                                                                                                                    \
@@ -122,7 +123,7 @@ button_pressed(uint8_t b) {
 }
 
 void display_init();
-void display_set(uint8_t index, char segs);
-void display_number(short n);
+void display_set(uint8_t index, uint8_t segs);
+void display_number(int16_t n);
 
 #endif // PICLIB_7SEGMENT_H__

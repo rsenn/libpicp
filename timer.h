@@ -63,6 +63,10 @@
 #define TIMER0_FLAGS_EXTCLK 0x20
 
 #define TIMER0_VALUE TMR0
+#define TIMER0_VALUE_L TMR0L
+#define TIMER0_VALUE_H TMR0H
+
+#define GET_TIMER0() ((TMR0H<<8)|TMR0L)
 #define TIMER0_BITS 8
 
 void timer0_init(unsigned char);
