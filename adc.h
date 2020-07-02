@@ -3,7 +3,7 @@
 
 #include "typedef.h"
 
-#define ADRES (((uint16_t)ADRESH << 8) | ADRESL)
+#define GET_ADRES() (((uint16_t)ADRESH << 8) | ADRESL)
 
 #define VREF_PLUS 4.800
 #define VREF_MINUS 0.000

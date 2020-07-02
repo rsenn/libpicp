@@ -33,6 +33,9 @@
 #ifdef __18f2550
 #define PIC18 1
 #endif
+#ifdef __18f14k50
+#define PIC18 1
+#endif
 #ifdef __18f25k22
 #define PIC18 1
 #endif
@@ -71,6 +74,9 @@
 #ifdef __18f25k22
 #define PIC18 1
 #endif
+#ifdef __18f14k50
+#define PIC18 1
+#endif
 #ifdef __18f25k50
 #define PIC18 1
 #endif
@@ -100,6 +106,9 @@
 #endif
 #ifdef __18f2550
 #include <pic16/pic18f2550.h>
+#endif
+#ifdef __18f14k50
+#include <pic16/pic18f14k50.h>
 #endif
 #ifdef __18f25k22
 #include <pic16/pic18f25k22.h>
@@ -146,6 +155,9 @@
 #ifdef __PIC18F25K22_H
 #define __18f25k22 1
 #endif
+#ifdef __PIC18F24K50_H
+#define __18f14k50 1
+#endif
 #ifdef __PIC18F25K50_H
 #define __18f25k50 1
 #endif
@@ -181,6 +193,9 @@
 #ifdef __18f2550
 #include <pic18f2550.h>
 #endif
+#ifdef __18f14k50
+#include <pic18f14k50.h>
+#endif
 #ifdef __18f25k22
 #include <pic18f25k22.h>
 #endif
@@ -188,6 +203,48 @@
 #include <pic18f25k50.h>
 #endif
 #endif
+
+#if defined(MCC18)
+#ifdef __10f206
+#include <p10f206.h>
+#endif
+#ifdef __12f1840
+#include <p12f1840.h>
+#endif
+#ifdef __16f628a
+#include <p16f628a.h>
+#endif
+#ifdef __16f876a
+
+#include <p16f876a.h>
+#endif
+#ifdef __18f252
+#include <p18f252.h>
+#endif
+#ifdef __18f2450
+#include <p18f2450.h>
+#endif
+#ifdef __18f2455
+#include <p18f2455.h>
+#endif
+#ifdef __18f2520
+#include <p18f2520.h>
+#endif
+#ifdef __18f2550
+#include <p18f2550.h>
+#endif
+#ifdef __18f14k50
+#include <p18f14k50.h>
+#endif
+#ifdef __18f25k22
+#include <p18f25k22.h>
+#endif
+#ifdef __18f25k50
+#include <p18f25k50.h>
+#endif
+#endif
+
+
 
 #if defined(__SDCC) || defined(__SDCC)
 #define CONFIG_WORD (_FOSC_HS & _PWRTE_ON & _WDT_OFF & _BODEN_OFF & _LVP_OFF & _CPD_OFF & _CP_OFF)
@@ -225,6 +282,8 @@ volatile uint8_t           OPTION_REG          @ 0x081;
 volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 //#define nRBPU OPTION_REGbits.nRBPU
 #endif
+
+#else
 /*
 #if !NO_PORTB
 #define NOT_RBPU nRBPU
@@ -249,7 +308,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define PCFG ADCON1bits.PCFG
 #endif
 
-#if defined(__16f628a) || defined(__16f876a) || defined(__18f2550) || defined(__18f25k50)
+#if defined(__16f628a) || defined(__16f876a) || defined(__18f2550) || defined(__18f25k50) || defined(__18f14k50)
 #define HAVE_COMPARATOR 1
 #endif
 
@@ -293,25 +352,18 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define ADIE PIE1bits.ADIE
 #define ADIF PIR1bits.ADIF
 #define ADON ADCON0bits.ADON
-#define BRGH TXSTAbits.BRGH
 #define C STATUSbits.C
-#define CREN RCSTAbits.CREN
 #define D SSPSTATbits.D
 #define GIE INTCONbits.GIE
 #define GO_DONE ADCON0bits.GO_DONE
-#define OERR RCSTAbits.OERR
 #define P SSPSTATbits.P
 #define PEIE INTCONbits.PEIE
 #define R SSPSTATbits.R
 #define RCEN SSPCON2bits.RCEN
 #define RCIE PIE1bits.RCIE
 #define RCIF PIR1bits.RCIF
-#define RX9 RCSTAbits.RX9
-#define RX9D RCSTAbits.RX9D
 #define S SSPSTATbits.S
-#define SPEN RCSTAbits.SPEN
 #define SSPEN SSPCONbits.SSPEN
-#define SYNC TXSTAbits.SYNC
 #define T0IE INTCONbits.T0IE
 #define T0IF INTCONbits.T0IF
 #define T1CKPS0 T1CONbits.T1CKPS0
@@ -332,8 +384,6 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define TRISB1 TRISBbits.TRISB1
 #define TRISB2 TRISBbits.TRISB2
 #define TRISC3 TRISCbits.TRISC3
-#define TX9 TXSTAbits.TX9
-#define TXEN TXSTAbits.TXEN
 #define TXIE PIE1bits.TXIE
 #define TXIF PIR1bits.TXIF
 #define Z STATUSbits.Z
@@ -369,7 +419,6 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define TRISC5 TRISCbits.TRISC5
 #define TRISC6 TRISCbits.TRISC6
 #define TRISC7 TRISCbits.TRISC7
-#define FERR RCSTAbits.FERR
 #define LATB0 LATBbits.LATB0
 #define LATB1 LATBbits.LATB1
 #define LATB2 LATBbits.LATB2
@@ -611,15 +660,30 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #endif
 #endif
 
-#if defined(__18f2550) || defined(__18f25k22) || defined(__18f25k50)
+#if defined(__18f2550) || defined(__18f24k50) || defined(__18f25k22) || defined(__18f25k50)
 #define PIC18_USB 1
 #endif
 
+#if defined(__18f25k22) // || defined(__18f25k50)
+#define RCSTAbits RCSTA2bits
+#define TXSTAbits TXSTA2bits
+#endif
+
+#define CREN RCSTAbits.CREN
+#define FERR RCSTAbits.FERR
+#define OERR RCSTAbits.OERR
+#define RX9 RCSTAbits.RX9
+#define RX9D RCSTAbits.RX9D
+#define SPEN RCSTAbits.SPEN
+#define BRGH TXSTAbits.BRGH
+#define SYNC TXSTAbits.SYNC
+#define TX9 TXSTAbits.TX9
+#define TXEN TXSTAbits.TXEN
+
 #if defined(__SDCC) || defined(__SDCC)
 
-#if defined(__18f25k22) // || defined(__18f25k50)
+/*#if defined(__18f25k22) // || defined(__18f25k50)
 #define SPEN SPEN1
-
 #define TXEN TXEN1
 #define CREN CREN1
 #define RX9D RX9D1
@@ -631,6 +695,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 
 //#define SSPEN SSPEN1
 #endif
+*/
 
 #ifndef GIE
 #define GIE INTCONbits.GIE
@@ -686,11 +751,11 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #else
 #define nRBPU INTCON2bits.NOT_RBPU
 #endif
-#else
-#if 1 // defined(HI_TECH_C) || defined(__XC)
+#else // pic16
+#if defined(HI_TECH_C) || defined(__XC)
 #define nRBPU OPTION_REGbits.nRBPU
 #else
-#define nRBPU OPTION_REGbits.NOT_RBPU
+#define nRBPU /*OPTION_REGbits.*/ NOT_RBPU
 #endif
 #endif
 
@@ -706,6 +771,8 @@ __code unsigned int __at(_CONFIG) __configword = CONFIG_WORD;
 #ifndef NOP
 #define NOP() asm("nop")
 #endif
+#elif defined(MCC18)
+#define NOP() _asm nop _endasm
 #else
 #ifndef NOP
 #define NOP() __asm nop __endasm

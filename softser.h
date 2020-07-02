@@ -43,6 +43,11 @@
 #define SOFTSER_IN_TRIS TRISA0
 #define SOFTSER_OUT_PIN RA1 // pin for serial input
 #define SOFTSER_OUT_TRIS TRISA1
+#elif defined(__18f14k50)
+#define SOFTSER_IN_PIN LATB6 // pin for serial out
+#define SOFTSER_IN_TRIS TRISB6
+#define SOFTSER_OUT_PIN LATB7 // pin for serial input
+#define SOFTSER_OUT_TRIS TRISB7
 #elif defined(PIC18)
 #define SOFTSER_IN_PIN LATB0 // pin for serial out
 #define SOFTSER_IN_TRIS TRISB0
