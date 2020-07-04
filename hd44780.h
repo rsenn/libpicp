@@ -51,7 +51,7 @@ extern void lcd_clrscr(void);
 extern void lcd_return(void);
 extern void lcd_setmode(uint8_t param);
 extern void lcd_goto(uint8_t line, uint8_t address);
-extern void lcd_puts(const uint8_t* str);
+extern void lcd_puts(const char* str);
 extern void lcd_putc(uint8_t data);
 extern void lcd_loadchar(uint8_t* vector, uint8_t position);
 extern void lcd_drawchar(uint8_t* vector, uint8_t position, uint8_t line, uint8_t address);

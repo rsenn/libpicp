@@ -27,12 +27,17 @@ buffer_flush() {
 }
 
 char
-buffer_putch(char ch) {
+buffer_putc(char ch) {
   if(BUFFER_SIZE - buffer.n <= 0)
     return 0;
   buffer.x[buffer.n] = ch;
   buffer.n++;
   return 1;
+}
+
+void
+buffer_putch(char ch) {
+  buffer_putc(ch);
 }
 
 char
