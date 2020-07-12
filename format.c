@@ -1,4 +1,6 @@
+#define MATH_LIB_ALIASES 1
 #include "format.h"
+#include "device.h"
 #include "buffer.h"
 #include <math.h>
 #include <float.h>
@@ -66,7 +68,7 @@ format_float(putch_t fn,  float num) {
 
   while(num > 0 + FLT_EPSILON) {
     float weight = pow(10.0l, m);
-    digit = (char)floorf(num / weight);
+    digit = (char)floor(num / weight);
     num -= (digit * weight);
     fn('0' + digit);
     if(m == 0)
@@ -85,7 +87,7 @@ format_double(putch_t fn, double num) {
 
   while(num > 0 + DBL_EPSILON) {
     double weight = pow(10.0l, m);
-    digit = (short)floorf(num / weight);
+    digit = (short)floor(num / weight);
     num -= (digit * weight);
     fn((char)('0' + digit));
     if(m == 0)

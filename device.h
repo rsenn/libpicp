@@ -570,7 +570,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #endif
 
 #ifdef MATH_LIB_ALIASES
-#if defined(__SDCC) || defined(__SDCC)
+#if defined(SDCC) || defined(__SDCC)
 #ifndef acos
 #define acos acosf
 #endif /* defined(acos) */
