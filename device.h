@@ -315,9 +315,17 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define HAVE_TIMER0 1
 #endif
 
-#if HAVE_COMPARATOR && defined(PIC18)
+#if HAVE_COMPARATOR && defined(PIC18) && !defined(__18f2520) && !defined(__18f2550)
+
+
 #define CMCON CM1CON0
 #define CMCONbits CM1CON0bits
+#define COUT  CM1CON0bits.C1OUT
+
+#endif
+
+#ifndef COUT
+#define COUT C2OUT
 #endif
 
 #if defined(PIC16)
@@ -781,7 +789,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #ifndef _CONFIG
 #define _CONFIG 0x2007
 #endif
-__code unsigned int __at(_CONFIG) __configword = CONFIG_WORD;
+__code unsigned int __at(_CONFIG) __config_word = CONFIG_WORD;
 #endif
 
 #if defined(__XC)

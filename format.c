@@ -44,10 +44,9 @@ format_number(putch_t fn, uint16_t n, uint8_t base, int8_t pad /*, int8_t pointp
 
   while(pad-- > i) buffer_putch(padchar);
 
-  for(; i > 0; i--) {
-    fn((char)buf[(int16_t)i - 1]);
+  for(unsigned j = 0; j < i; j++)
+    (*fn)(buf[j]);
     // buffer_putch((buf[i - 1] < 10 ?(char)'0' + buf[i - 1] : (char)'A' + buf[i - 1] - 10));
-  }
 }
 
 // -------------------------------------------------------------------------
@@ -60,14 +59,14 @@ format_xint32(putch_t fn, /*putchar_fn* putchar,*/ uint32_t x) {
 }
 
 void
-format_float(putch_t fn, /*putchar_fn* putchar_ptr,*/ float num) {
-  short m = (int)log10(num);
+format_float(putch_t fn,  float num) {
+  short m = (int)log10f(num);
   char digit;
   //  float tolerance = .0001;
 
   while(num > 0 + FLT_EPSILON) {
-    float weight = pow(10.0l, m);
-    digit = (char)floor(num / weight);
+    float weight = powf(10.0l, m);
+    digit = (char)floorf(num / weight);
     num -= (digit * weight);
     fn('0' + digit);
     if(m == 0)
@@ -77,15 +76,16 @@ format_float(putch_t fn, /*putchar_fn* putchar_ptr,*/ float num) {
 }
 
 // -------------------------------------------------------------------------
+#ifndef SDCC
 void
 format_double(putch_t fn, double num) {
-  short m = (short)log10(num);
+  short m = (short)log10f(num);
   short digit;
   //  double tolerance = .0001;
 
   while(num > 0 + DBL_EPSILON) {
-    double weight = pow(10.0l, m);
-    digit = (short)floor(num / weight);
+    double weight = powf(10.0l, m);
+    digit = (short)floorf(num / weight);
     num -= (digit * weight);
     fn((char)('0' + digit));
     if(m == 0)
@@ -93,3 +93,4 @@ format_double(putch_t fn, double num) {
     m--;
   }
 }
+#endif
