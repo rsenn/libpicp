@@ -307,7 +307,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define PCFG ADCON1bits.PCFG
 #endif
 
-#if defined(__16f628a) || defined(__16f876a) || defined(__18f2550) || defined(__18f25k50) || defined(__18f14k50)
+#if defined(__16f628a) || defined(__16f876a) || defined(__18f2550)  || defined(__18f2520) || defined(__18f25k22)  || defined(__18f25k50) || defined(__18f14k50)
 #define HAVE_COMPARATOR 1
 #endif
 
@@ -315,7 +315,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define HAVE_TIMER0 1
 #endif
 
-#if HAVE_COMPARATOR && defined(__18f25k50)
+#if HAVE_COMPARATOR && defined(PIC18)
 #define CMCON CM1CON0
 #define CMCONbits CM1CON0bits
 #endif
