@@ -194,6 +194,7 @@
 #include <pic18f2550.h>
 #endif
 #ifdef __18f14k50
+
 #include <pic18f14k50.h>
 #endif
 #ifdef __18f25k22
@@ -542,6 +543,22 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define OUTC5 RC5
 #define OUTC6 RC6
 #define OUTC7 RC7
+#endif
+
+
+#define CFGS EECON1bits.CFGS
+#define EEPGD EECON1bits.EEPGD
+#define RD EECON1bits.RD
+#define EEPGD EECON1bits.EEPGD
+#define CFGS EECON1bits.CFGS
+#define WREN EECON1bits.WREN
+#define WR EECON1bits.WR
+#define WR EECON1bits.WR
+#define WREN EECON1bits.WREN
+
+#if PIC18
+//    #undef EEDATA
+//#define EEDATA EEDATAbits.EEDATL
 #endif
 
 #ifdef MATH_LIB_ALIASES
