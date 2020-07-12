@@ -6,10 +6,10 @@
 #include "typedef.h"
 
 //-----------------------------------------------------------------------------
-#define LS_A_PIN RA2
-#define LS_A_TRIS TRISA2
-#define LS_K_PIN RA1
-#define LS_K_TRIS TRISA1
+#define LS_A_PIN RA4
+#define LS_A_TRIS TRISA4
+#define LS_K_PIN RA5
+#define LS_K_TRIS TRISA5
 
 // -------------------------------------------------------------------------
 void
