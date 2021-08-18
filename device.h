@@ -451,16 +451,16 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define RA6 PORTAbits.RA6
 #define RA7 PORTAbits.RA7
 
-#define RB0 PORTBbits.RB0
+/*#define RB0 PORTBbits.RB0
 #define RB1 PORTBbits.RB1
 #define RB2 PORTBbits.RB2
 #define RB3 PORTBbits.RB3
 #define RB4 PORTBbits.RB4
 #define RB5 PORTBbits.RB5
 #define RB6 PORTBbits.RB6
-#define RB7 PORTBbits.RB7
+#define RB7 PORTBbits.RB7*/
 
-#if defined(__XC) || defined(__SDCC)
+#if 0 //defined(__XC) || defined(__SDCC)
 #define RC0 PORTCbits.RC0
 #define RC1 PORTCbits.RC1
 #define RC2 PORTCbits.RC2
