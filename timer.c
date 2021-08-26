@@ -32,6 +32,9 @@ timer0_init(uint8_t ps_mode) {
   TIMER0_VALUE_L = 0;
   TIMER0_VALUE_H = 0;
 #endif
+  
+  T0CON = 0;
+  
 #ifdef PIC18
   T0CON |= (!!(ps_mode & TIMER0_FLAGS_8BIT)) ? 0x40 : 0x00;
 #endif
@@ -70,6 +73,8 @@ timer0_init(uint8_t ps_mode) {
   //  T0PS = prescaler - 1;
   //#endif
 #endif
+  
+  T0CON |= 0x80;
 
   /* INTCON &= ~0x40; //*/ TMR0IF = 0;
   T0IE = (ps_mode & TIMER0_FLAGS_INTR) ? 1 : 0;
