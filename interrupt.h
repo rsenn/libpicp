@@ -36,7 +36,10 @@
   { __enable_interrupt(); }
 #else
 
-#if 0 // def HI_TECH_C
+#ifdef __XC8
+#define INTERRUPT_DISABLE() INTCONbits.GIE=0
+#define INTERRUPT_ENABLE() INTCONbits.GIE=1
+#elif 0 // def HI_TECH_C
 #define INTERRUPT_DISABLE() #asm bcf GIE #endasm
 #define INTERRUPT_ENABLE() #asm bsf GIE #endasm
 #else
