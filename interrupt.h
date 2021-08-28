@@ -3,7 +3,7 @@
 
 #if defined(HI_TECH_C) || defined(__XC) || defined(__XC8__)
 //#warning interrupt.h
-#define INTERRUPT_FN() interrupt isr()
+#define INTERRUPT_FN() void interrupt isr()
 #elif defined(MCC18)
 #pragma interrupt isr
 #define INTERRUPT_HANDLER() void isr()
