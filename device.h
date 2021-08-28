@@ -307,7 +307,8 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define PCFG ADCON1bits.PCFG
 #endif
 
-#if defined(__16f628a) || defined(__16f876a) || defined(__18f2550)  || defined(__18f2520) || defined(__18f25k22)  || defined(__18f25k50) || defined(__18f14k50)
+#if defined(__16f628a) || defined(__16f876a) || defined(__18f2550) || defined(__18f2520) || defined(__18f25k22) ||     \
+    defined(__18f25k50) || defined(__18f14k50)
 #define HAVE_COMPARATOR 1
 #endif
 
@@ -317,10 +318,9 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 
 #if HAVE_COMPARATOR && defined(PIC18) && !defined(__18f2520) && !defined(__18f2550)
 
-
 #define CMCON CM1CON0
 #define CMCONbits CM1CON0bits
-#define COUT  CM1CON0bits.C1OUT
+#define COUT CM1CON0bits.C1OUT
 
 #endif
 
@@ -460,7 +460,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define RB6 PORTBbits.RB6
 #define RB7 PORTBbits.RB7*/
 
-#if 0 //defined(__XC) || defined(__SDCC)
+#if 0 // defined(__XC) || defined(__SDCC)
 #define RC0 PORTCbits.RC0
 #define RC1 PORTCbits.RC1
 #define RC2 PORTCbits.RC2
@@ -552,7 +552,6 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define OUTC6 RC6
 #define OUTC7 RC7
 #endif
-
 
 #define CFGS EECON1bits.CFGS
 #define EEPGD EECON1bits.EEPGD
@@ -771,18 +770,18 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #if !defined(__XC)
 #if defined(PIC18)
 #if defined(HI_TECH_C) || defined(__XC)
-# define nRBPU INTCON2bits.nRBPU
-# else
-# define nRBPU INTCON2bits.NOT_RBPU
-# endif
-#else // pic16
-# if defined(HI_TECH_C) || defined(__XC)
-# define nRBPU OPTION_REGbits.nRBPU
-# else
-# define nRBPU /*OPTION_REGbits.*/ NOT_RBPU
-# endif
+#define nRBPU INTCON2bits.nRBPU
+#else
+#define nRBPU INTCON2bits.NOT_RBPU
 #endif
-    #endif
+#else // pic16
+#if defined(HI_TECH_C) || defined(__XC)
+#define nRBPU OPTION_REGbits.nRBPU
+#else
+#define nRBPU /*OPTION_REGbits.*/ NOT_RBPU
+#endif
+#endif
+#endif
 
 #if defined(__SDCC) && defined(PIC16)
 
