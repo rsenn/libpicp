@@ -1,9 +1,9 @@
 #ifndef PICLIB_INTERRUPT_H
 #define PICLIB_INTERRUPT_H 1
 
-#if defined(HI_TECH_C) || defined(__XC) || defined(__XC8__)
+#if defined(HI_TECH_C) || defined(__XC) || defined(__XC8__)|| defined(__XC8)
 //#warning interrupt.h
-#define INTERRUPT_FN() void interrupt isr()
+#define INTERRUPT_FN() void __interrupt high_priority isr()
 #elif defined(MCC18)
 #pragma interrupt isr
 #define INTERRUPT_HANDLER() void isr()
