@@ -35,7 +35,7 @@ extern volatile uint8_t softpwm_values[SOFTPWM_PIN_COUNT];
 #define SOFTPWM_INTERRUPT_ENABLE TMR1IE
 
 #define SOFTPWM_ISR()                                                                                                  \
-                                                                                                                       \
+  do                                                                                                                    \
   {                                                                                                                    \
     if(SOFTPWM_INTERRUPT_FLAG) {                                                                                       \
       uint8_t softpwm_bit = 1 << SOFTPWM_PIN_FIRST;                                                                    \
@@ -52,7 +52,7 @@ extern volatile uint8_t softpwm_values[SOFTPWM_PIN_COUNT];
       SOFTPWM_TIMER_VALUE = -128;                                                                                      \
       SOFTPWM_INTERRUPT_FLAG = 0;                                                                                      \
     }                                                                                                                  \
-  }
+  } while(0);
 
 /**
  * Initialize SoftPWM module

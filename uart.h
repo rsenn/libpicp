@@ -51,6 +51,23 @@
 #define UART_PS 0b000 // prescaler 1:2
 #define UART_BRG 0x21 // TMR1 (5Mhz/2/57600 baud) = 87
 #endif
+#elif OSC_4 == 12000000
+#if UART_BAUD == 9600
+#define UART_PS 0b010 // prescaler 1:8
+#define UART_BRG 0x66 // TMR1 (5Mhz/4/31250 baud) = 40
+#elif UART_BAUD == 19200
+#define UART_PS 0b010 // prescaler 1:8
+#define UART_BRG 0x33 // TMR1 (5Mhz/4/31250 baud) = 40
+#elif UART_BAUD == 31250
+#define UART_PS 0b010 // prescaler 1:8
+#define UART_BRG 0x20 // TMR1 (5Mhz/4/31250 baud) = 40
+#elif UART_BAUD == 38400
+#define UART_PS 0b001 // prescaler 1:4
+#define UART_BRG 0x34 // TMR1 (5Mhz/2/38400 baud) = 66
+#elif UART_BAUD == 57600
+#define UART_PS 0b001 // prescaler 1:4
+#define UART_BRG 0x21 // TMR1 (5Mhz/2/57600 baud) = 87
+#endif
 #endif
 
 #define UART_BRG_FN(baud) ((OSC_4 / (1 << (UART_PS + 1)) / (baud)) + 1)
