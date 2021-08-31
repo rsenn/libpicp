@@ -610,7 +610,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define log logf
 #endif /* defined(log) */
 #ifndef log10
-#define log10 log10f
+#define log10 log10
 #endif /* defined(log10) */
 #ifndef modf
 #define modf modff
