@@ -354,9 +354,13 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define TMR0IF INTCONbits.TMR0IF
 #define T0IE INTCONbits.T0IE
 
-#define ADCS ADCON2bits.ADCS
+//#define ADCS ADCON2bits.ADCS
 #define ADCS2 ADCON1bits.ADCS2
+#ifdef __18f25k50
+#define ADFM ADCON2bits.ADFM
+#else
 #define ADFM ADCON1bits.ADFM
+#endif
 #define ADIE PIE1bits.ADIE
 #define ADIF PIR1bits.ADIF
 #define ADON ADCON0bits.ADON

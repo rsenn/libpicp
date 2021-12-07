@@ -9,18 +9,19 @@ void
 adc_init(void) {
   /* Enable ADC, port config DDDDADAA, Fosc/32 clock */
 
-#if 1 // def __18f25k50
-  ADCON2 &= ~0b11;
-  ADCON2 |= 0b10;
-
+#ifdef __18f25k50
+  ADCON2bits.ADCS = 0b10;
+  ADCON1bits.PVCFG = 0;
+  ADCON1bits.NVCFG = 0;
+  ADCON0bits.CHS = 0;
 #else
 
   ADCON0bits.ADCS = 0b10;
   ADCON1bits.PCFG = 0b1110;
-#endif
   /*ADCON1bits.*/ ADCS2 = 0;
-
   /*ADCON0bits.*/CHS = 0;
+#endif
+
   TRISA |= 0b1011;
 
   ADIE = 0;
