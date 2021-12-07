@@ -2,13 +2,12 @@
 #undef EEDATA
 #define EEDATA EE_DAT
 
-
 #if PIC18
-extern volatile unsigned char EE_DAT  @ 0xFA8;
+extern volatile unsigned char EE_DAT @0xFA8;
 #elif defined(__16f628a)
-extern volatile unsigned char        EE_DAT              @ 0x09a;
+extern volatile unsigned char EE_DAT @0x09a;
 #else
-extern volatile unsigned char        EE_DAT              @ 0x10C;
+extern volatile unsigned char EE_DAT @0x10C;
 #endif
 
 unsigned char
@@ -42,7 +41,6 @@ ee_write(unsigned char addr, unsigned char data) {
   WREN = 0;
 }
 
-
 #if USE_EEPROM
 unsigned char
 Read_b_eep(unsigned int badd) {
@@ -52,8 +50,8 @@ Read_b_eep(unsigned int badd) {
 #endif
   EEPGD = 0;
   RD = 1;
-  Nop();           // Nop may be required for latency at high frequencies
-  Nop();           // Nop may be required for latency at high frequencies
+  Nop();         // Nop may be required for latency at high frequencies
+  Nop();         // Nop may be required for latency at high frequencies
   return EEDATA; // return with read byte
 }
 
