@@ -8,14 +8,14 @@ void
 adc_init(void) {
   /* Enable ADC, port config DDDDADAA, Fosc/32 clock */
 
-#if 1 //def __18f25k50
+#if 1 // def __18f25k50
   ADCON2 &= ~0b11;
   ADCON2 |= 0b10;
-    
-  #else
+
+#else
 
   ADCON0bits.ADCS = 0b10;
-    ADCON1bits.PCFG = 0b1110;
+  ADCON1bits.PCFG = 0b1110;
 #endif
   /*ADCON1bits.*/ ADCS2 = 0;
 
@@ -50,7 +50,7 @@ adc_read(uint8_t ch) {
     while(GO_DONE)
       ;
 
-    result = (ADRESH << 8) |ADRESL;
+    result = (ADRESH << 8) | ADRESL;
 
     ADON = 0;
 
