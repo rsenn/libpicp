@@ -10,10 +10,26 @@ adc_init(void) {
   /* Enable ADC, port config DDDDADAA, Fosc/32 clock */
 
 #ifdef __18f25k50
-  ADCON2bits.ADCS = 0b10;
-  ADCON1bits.PVCFG = 0;
-  ADCON1bits.NVCFG = 0;
+  // Configure AN2 as an analog channel
+  ANSELAbits.ANSA2 = 1;
+  TRISA2 = 1;
+  // ADCON2
+  /*ADCON2bits.*/ ADFM = 1;
+  ADCON2bits.ACQT = 1;
+  ADCON2bits.ADCS = 2;
+  // ADCON1
+  ADCON1bits.PVCFG0 = 0;
+  ADCON1bits.NVCFG1 = 0;
+  // ADCON0
   ADCON0bits.CHS = 0;
+  ///*ADCON0bits.*/ADON = 1;
+// Results format 1= Right justified
+// Acquition time 7 = 20TAD 2 = 4TAD 1=2TAD
+// Clock conversion bits 6= FOSC/64 2=FOSC/32
+// Vref+ = AVdd
+// Vref- = AVss
+// Select ADC channel
+// Turn on ADC
 #else
 
   ADCON0bits.ADCS = 0b10;
