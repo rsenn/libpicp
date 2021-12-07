@@ -52,10 +52,10 @@ timer0_init(uint8_t ps_mode) {
 #else
 
   // 0: Internal instruction cycle clock (CLKO) or 1: Transition on T0CKI pin
-  T0CON |= (!!(ps_mode & TIMER0_FLAGS_EXTCLK)) ? 0x20 : 0x00;
+  T0CON |= (!!(ps_mode & TIMER0_FLAGS_EXTCLK)) ? 0x20u : 0x00u;
 
   // T0CKI pin: Increment on 1->0 or on 0->1 transition
-  T0CON |= (!!(ps_mode & EDGE_HIGH_LOW)) ? 0x10 : 0x00;
+  T0CON |= (!!(ps_mode & EDGE_HIGH_LOW)) ? 0x10u : 0x00u;
 
   // If a prescaler is to be assigned to the Timer0 module
   T0CON &= (!!prescaler) ? ~0x08 : ~0x00;

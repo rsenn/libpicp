@@ -8,16 +8,17 @@ V1.0 11/23/04   Created.
 #include "lcd5110.h"
 
 #if USE_NOKIA5110_LCD
+#define LCD_NOP() NOP()
 
 #define CLK_IN(data, bitnum)                                                                                           \
-  NOP();                                                                                                               \
+  LCD_NOP();                                                                                                           \
   LCD_CLK = 0;                                                                                                         \
-  NOP();                                                                                                               \
+  LCD_NOP();                                                                                                           \
   LCD_DATA = 0;                                                                                                        \
   if((data) & (bitnum)) {                                                                                              \
     LCD_DATA = 1;                                                                                                      \
   }                                                                                                                    \
-  NOP();                                                                                                               \
+  LCD_NOP();                                                                                                           \
   LCD_CLK = 1
 
 const char lcd_font[][5] = {
@@ -26,8 +27,7 @@ const char lcd_font[][5] = {
     {0x00, 0x07, 0x00, 0x07, 0x00}, // "
     {0x14, 0x7f, 0x14, 0x7f, 0x14}, // #
     {0x24, 0x2a, 0x7f, 0x2a, 0x12}, // $
-    //  { 0xc4, 0xc8, 0x10, 0x26, 0x46 },  // %
-    {0b00100011, 0b00010011, 0b00001000, 0b01100100, 0b01100010},
+    {0xc4, 0xc8, 0x10, 0x26, 0x46}, // %
     {0x36, 0x49, 0x55, 0x22, 0x50}, // &
     {0x00, 0x05, 0x03, 0x00, 0x00}, // '
     {0x00, 0x1c, 0x22, 0x41, 0x00}, // (
@@ -112,7 +112,7 @@ const char lcd_font[][5] = {
     {0x3C, 0x40, 0x30, 0x40, 0x3C}, // w
     {0x44, 0x28, 0x10, 0x28, 0x44}, // x
     {0x0C, 0x50, 0x50, 0x50, 0x3C}, // y
-    {0x44, 0x64, 0x54, 0x4C, 0x44}  // z
+    {0x44, 0x64, 0x54, 0x4C, 0x44}, // z
 };
 
 // -------------------------------------------------------------------------
@@ -136,7 +136,7 @@ lcd_send(uint8_t a, uint8_t cmd) {
   if(cmd == LCD_TCMD) {
     LCD_DC = 0;
   }
-  NOP();
+  LCD_NOP();
   LCD_CE = 0;
   // clock in data in A
   CLK_IN(a, BIT7);
@@ -147,7 +147,7 @@ lcd_send(uint8_t a, uint8_t cmd) {
   CLK_IN(a, BIT2);
   CLK_IN(a, BIT1);
   CLK_IN(a, BIT0);
-  NOP();
+  LCD_NOP();
   LCD_CE = 1;
 }
 
@@ -157,15 +157,15 @@ lcd_init(void) {
   LCD_TRIS();
   __delay_ms(20);
   // delay10ms(20);
-  NOP();
+  LCD_NOP();
   LCD_CLK = 0;
-  NOP();
+  LCD_NOP();
   LCD_DATA = 1;
-  NOP();
+  LCD_NOP();
   LCD_DC = 0;
-  NOP();
+  LCD_NOP();
   LCD_CE = 1;
-  NOP();
+  LCD_NOP();
   // reset LCD
   LCD_RESET = 0;
   __delay_ms(20);

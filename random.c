@@ -13,7 +13,7 @@ random_init(uint8_t s1, uint8_t s2, uint8_t s3) // Can also be used to seed the 
   c ^= s3;
 
   x++;
-  a = (a ^ c ^ x);
+  a = (unsigned)(a ^ c ^ x);
   b = (b + a);
   c = (c + (b >> 1) ^ a);
 }

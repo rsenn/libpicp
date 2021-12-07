@@ -3,45 +3,45 @@
 
 #include "typedef.h"
 
-#define PRESCALE_1_1 0b000
-#define PRESCALE_1_2 0b001
-#define PRESCALE_1_4 0b010
-#define PRESCALE_1_8 0b011
-#define PRESCALE_1_16 0b100
-#define PRESCALE_1_32 0b101
-#define PRESCALE_1_64 0b110
-#define PRESCALE_1_128 0b111
-#define PRESCALE_1_256 0b1000
-#define PRESCALE_MASK 0b1111
+#define PRESCALE_1_1 0b000u
+#define PRESCALE_1_2 0b001u
+#define PRESCALE_1_4 0b010u
+#define PRESCALE_1_8 0b011u
+#define PRESCALE_1_16 0b100u
+#define PRESCALE_1_32 0b101u
+#define PRESCALE_1_64 0b110u
+#define PRESCALE_1_128 0b111u
+#define PRESCALE_1_256 0b1000u
+#define PRESCALE_MASK 0b1111u
 
-#define POSTSCALE_1_1 0
-#define POSTSCALE_1_2 1
-#define POSTSCALE_1_3 2
-#define POSTSCALE_1_4 3
-#define POSTSCALE_1_5 4
-#define POSTSCALE_1_6 5
-#define POSTSCALE_1_7 6
-#define POSTSCALE_1_8 7
-#define POSTSCALE_1_9 8
-#define POSTSCALE_1_10 9
-#define POSTSCALE_1_11 10
-#define POSTSCALE_1_12 11
-#define POSTSCALE_1_13 12
-#define POSTSCALE_1_14 13
-#define POSTSCALE_1_15 14
-#define POSTSCALE_1_16 15
+#define POSTSCALE_1_1 0u
+#define POSTSCALE_1_2 1u
+#define POSTSCALE_1_3 2u
+#define POSTSCALE_1_4 3u
+#define POSTSCALE_1_5 4u
+#define POSTSCALE_1_6 5u
+#define POSTSCALE_1_7 6u
+#define POSTSCALE_1_8 7u
+#define POSTSCALE_1_9 8u
+#define POSTSCALE_1_10 9u
+#define POSTSCALE_1_11 10u
+#define POSTSCALE_1_12 11u
+#define POSTSCALE_1_13 12u
+#define POSTSCALE_1_14 13u
+#define POSTSCALE_1_15 14u
+#define POSTSCALE_1_16 15u
 
-#define EDGE_HIGH_LOW 0x10
-#define EDGE_LOW_HIGH 0x00
+#define EDGE_HIGH_LOW 0x10u
+#define EDGE_LOW_HIGH 0x00u
 
 /* ----------------------- Timer 0 ----------------------- */
 //#if USE_TIMER0
 
 #define TIMER0_FREQ (OSC_4 / (1 << (TIMER0_PRESCALER)))
-#define TIMER0_INTERVAL (TIMER0_FREQ / 256)
-#define TIMER0_TICK_US (1000000 / TIMER0_FREQ)
-#define TIMER0_INTERVAL_US (1000000 * 256 / TIMER0_FREQ)
-#define TIMER0_INTERVAL_MS (1000 * 256 / TIMER0_FREQ)
+#define TIMER0_INTERVAL (TIMER0_FREQ / 256u) u
+#define TIMER0_TICK_US (1000000u / TIMER0_FREQ)
+#define TIMER0_INTERVAL_US (1000000u * 256u / TIMER0_FREQ)
+#define TIMER0_INTERVAL_MS (1000u * 256u / TIMER0_FREQ)
 
 #ifdef PIC18
 #define TIMER0_INTERRUPT_FLAG TMR0IF
