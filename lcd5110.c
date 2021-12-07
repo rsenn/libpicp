@@ -229,7 +229,8 @@ lcd_gotoxy(uint8_t x, unsigned y) {
 
 // -------------------------------------------------------------------------
 void
-lcd_putch(uint8_t c) {
+lcd_putch(char ch) {
+  uint8_t c = ch;
   if(c > 'z' || c < 32) {
     return;
   }

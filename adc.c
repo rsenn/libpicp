@@ -1,5 +1,6 @@
 #include "adc.h"
 #include "delay.h"
+#include "device.h"
 
 #ifdef USE_ADCONVERTER
 
@@ -19,7 +20,7 @@ adc_init(void) {
 #endif
   /*ADCON1bits.*/ ADCS2 = 0;
 
-  ADCON0bits.CHS = 0;
+  /*ADCON0bits.*/CHS = 0;
   TRISA |= 0b1011;
 
   ADIE = 0;
