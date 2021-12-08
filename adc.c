@@ -51,7 +51,7 @@ unsigned short
 adc_read(uint8_t ch) {
 
   uint8_t i;
-  /*ADCON0bits.*/CHS = ch & 0b111;
+  ADCON0bits.CHS = ch & 0b111;
 
   ADON = 1;
 /*
