@@ -15,13 +15,13 @@
 #define ADVAL_MIN 0x0000
 #define ADVAL_MAX 0x03ff
 
-#define ADVAL_V(val10bit) ((double)(val10bit) * ((VREF_PLUS) - (VREF_MINUS)) / ADVAL_MAX + (VREF_MINUS))
+#define ADVAL_V(val10bit) ((float)(val10bit) * ((VREF_PLUS) - (VREF_MINUS)) / ADVAL_MAX + (VREF_MINUS))
 
 /* Initialize ADC clock and port configuration. */
 void adc_init(void);
 
 /* Enable ADC, start conversion and return data. Then disable ADC */
-unsigned short adc_read(char ch);
+uint16_t adc_read(char ch);
 
 /* Disable ADC for sleep */
 void adc_disable(void);

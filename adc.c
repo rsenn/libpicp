@@ -47,7 +47,7 @@ adc_init(void) {
 }
 
 // -------------------------------------------------------------------------
-unsigned short
+uint16_t
 adc_read(uint8_t ch) {
 
   uint8_t i;
