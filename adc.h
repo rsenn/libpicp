@@ -5,8 +5,12 @@
 
 #define GET_ADRES() (((uint16_t)ADRESH << 8) | ADRESL)
 
-#define VREF_PLUS 4.800
+#ifndef VREF_PLUS
+#define VREF_PLUS 3.3
+#endif
+#ifndef VREF_MINUS
 #define VREF_MINUS 0.000
+#endif
 
 #define ADVAL_MIN 0x0000
 #define ADVAL_MAX 0x03ff

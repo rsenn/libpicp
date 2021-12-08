@@ -25,7 +25,10 @@
 #define LCD_TCMD 0
 #define LCD_TDATA 1
 
-#define LCD_NOP() __delay_us(10)
+
+#define LCD_WIDTH 16
+#define LCD_HEIGHT 4
+
 
 uint8_t lcd_str_width(const char* c);
 void lcd_send(uint8_t a, uint8_t cmd);
