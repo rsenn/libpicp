@@ -11,6 +11,8 @@ adc_init(void) {
 
 #ifdef __18f25k50
   // Configure AN2 as an analog channel
+  ANSELAbits.ANSA0 = 1;
+  ANSELAbits.ANSA1 = 1;
   ANSELAbits.ANSA2 = 1;
   TRISA2 = 1;
   // ADCON2
