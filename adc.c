@@ -20,8 +20,8 @@ adc_init(void) {
   ADCON2bits.ACQT = 1;
   ADCON2bits.ADCS = 2;
   // ADCON1
-  ADCON1bits.PVCFG0 = 0;
-  ADCON1bits.NVCFG1 = 0;
+  ADCON1bits.PVCFG = 0;
+  ADCON1bits.NVCFG = 0;
   // ADCON0
   ADCON0bits.CHS = 0;
   ///*ADCON0bits.*/ADON = 1;
@@ -51,7 +51,7 @@ unsigned short
 adc_read(uint8_t ch) {
 
   uint8_t i;
-  ADCON0bits.CHS = ch & 0b111;
+  /*ADCON0bits.*/CHS = ch & 0b111;
 
   ADON = 1;
 /*
