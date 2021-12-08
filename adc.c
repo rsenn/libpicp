@@ -54,10 +54,11 @@ adc_read(uint8_t ch) {
   ADCON0bits.CHS = ch & 0b111;
 
   ADON = 1;
-
+/*
   for(i = 0; i < 100; i++) {
-  }
+  }*/
   //  _delay(100);
+  __delay_us(100);
 
   if(ADIE)
     ADIF = 0;
