@@ -11,19 +11,19 @@ adc_init(void) {
 
 #ifdef __18f25k50
   // Configure AN2 as an analog channel
-  ANSELAbits.ANSA0 = 1;
-  ANSELAbits.ANSA1 = 1;
-  ANSELAbits.ANSA2 = 1;
+  /*ANSELAbits.*/ANSA0 = 1;
+  /*ANSELAbits.*/ANSA1 = 1;
+  /*ANSELAbits.*/ANSA2 = 1;
   TRISA2 = 1;
   // ADCON2
   /*ADCON2bits.*/ ADFM = 1;
-  ADCON2bits.ACQT = 1;
-  ADCON2bits.ADCS = 2;
+  /*ADCON2bits.*/ACQT = 1;
+  /*ADCON2bits.*/ADCS = 2;
   // ADCON1
-  ADCON1bits.PVCFG = 0;
-  ADCON1bits.NVCFG = 0;
+  /*ADCON1bits.*/PVCFG = 0;
+  /*ADCON1bits.*/NVCFG = 0;
   // ADCON0
-  ADCON0bits.CHS = 0;
+  /*ADCON0bits.*/CHS = 0;
   ///*ADCON0bits.*/ADON = 1;
 // Results format 1= Right justified
 // Acquition time 7 = 20TAD 2 = 4TAD 1=2TAD
@@ -32,12 +32,16 @@ adc_init(void) {
 // Vref- = AVss
 // Select ADC channel
 // Turn on ADC
-#else
+//#elif defined(__18f252)
 
-  ADCON0bits.ADCS = 0b10;
-  ADCON1bits.PCFG = 0b1110;
-  /*ADCON1bits.*/ ADCS2 = 0;
-  /*ADCON0bits.*/ CHS = 0;
+#else
+ADCON0 &= ~0b111111001;
+ADCON0 |= (0b10 << 6) | (0  << 3);
+
+ ///* ADCON0bits.*/ADCS = 0b10;
+  ///*ADCON1bits.*/PCFG = 0b1110;
+  ///*ADCON1bits.*/ ADCS2 = 0;
+  ///*ADCON0bits.*/ CHS = 0;
 #endif
 
   TRISA |= 0b1011;
