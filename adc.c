@@ -6,7 +6,7 @@
 
 // -------------------------------------------------------------------------
 void
-adc_init(void) {
+adc_init(uint8_t  clock_sel, uint8_t port_cfg) {
   /* Enable ADC, port config DDDDADAA, Fosc/32 clock */
 
 #ifdef __18f25k50
@@ -37,6 +37,11 @@ adc_init(void) {
 #else
   ADCON0 &= ~0b111111001;
   ADCON0 |= (0b10 << 6) | (0 << 3);
+
+ADCON1 &= ~0b11001111;
+ADCON1 |= (((port_cfg << PCFG_ADCON1_SHIFT) & PCFG_ADCON1_MASK)) | ((clock_sel << ADCS_ADCON1_SHIFT)&ADCS_ADCON1_MASK);
+
+
 
   ///* ADCON0bits.*/ADCS = 0b10;
   ///*ADCON1bits.*/PCFG = 0b1110;
