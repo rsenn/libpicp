@@ -33,37 +33,37 @@
 #include <typedef.h>
 
 #if defined(__18f46j50) || defined(__18f46j53) || defined(__18f47j53)
-#define NUMOFI2C        2
+#define NUMOFI2C 2
 #else
-#define NUMOFI2C        1
+#define NUMOFI2C 1
 #endif
 
 // Modules (02-12-2016 - RB - moved to const.h)
 //#define I2C1            1
 //#define I2C2            2
 
-#define I2C_WRITE       0
-//TODO : replace with the following to avoid conflict with XC8 headers files
+#define I2C_WRITE 0
+// TODO : replace with the following to avoid conflict with XC8 headers files
 //#define I2C_WRITE_BIT   0
 //#define I2C_READ_BIT  1
 
 // Mode I2C
 #define I2C_MASTER_MODE 0
-#define I2C_SLAVE_MODE  1
-#define I2C_SLEW_OFF    0
-#define I2C_SLEW_ON     1
+#define I2C_SLAVE_MODE 1
+#define I2C_SLEW_OFF 0
+#define I2C_SLEW_ON 1
 
 // Speed definitions
-#define I2C_100KHZ      100
-#define I2C_400KHZ      400
-#define I2C_1MHZ        1000
+#define I2C_100KHZ 100
+#define I2C_400KHZ 400
+#define I2C_1MHZ 1000
 
 // Status
 #define I2C_READY 0
-#define I2C_MRX   1
-#define I2C_MTX   2
-#define I2C_SRX   3
-#define I2C_STX   4
+#define I2C_MRX 1
+#define I2C_MTX 2
+#define I2C_SRX 3
+#define I2C_STX 4
 
 /*
 #if defined(__18f2550) || defined(__18f4550) || \
@@ -118,49 +118,48 @@ u8 I2C_readBytes(u8, u8, u8, u8*, u8);
 
 void I2C_wait(u8);
 void I2C_idle(u8);
-//u8 I2C_waitAck(u8);
+// u8 I2C_waitAck(u8);
 void I2C_start(u8);
 void I2C_stop(u8);
 void I2C_restart(u8);
 void I2C_sendNack(u8);
 void I2C_sendAck(u8);
 
-#define I2C1_master(x)      I2C_master(I2C1, x)
-#define I2C1_slave(x)       I2C_slave(I2C1, x)
-#define I2C1_init(x, y)     I2C_init(I2C1, x, y)
-#define I2C1_write(x)       I2C_write(I2C1, x)
-#define I2C1_writeChar(x)   I2C_writeChar(I2C1, x)
-#define I2C1_read()         I2C_read(I2C1)
-#define I2C1_readChar()     I2C_readChar(I2C1)
-#define I2C1_wait()         I2C_wait(I2C1)
-#define I2C1_idle()         I2C_idle(I2C1)
+#define I2C1_master(x) I2C_master(I2C1, x)
+#define I2C1_slave(x) I2C_slave(I2C1, x)
+#define I2C1_init(x, y) I2C_init(I2C1, x, y)
+#define I2C1_write(x) I2C_write(I2C1, x)
+#define I2C1_writeChar(x) I2C_writeChar(I2C1, x)
+#define I2C1_read() I2C_read(I2C1)
+#define I2C1_readChar() I2C_readChar(I2C1)
+#define I2C1_wait() I2C_wait(I2C1)
+#define I2C1_idle() I2C_idle(I2C1)
 //#define I2C1_waitAck()    I2C_waitAck(I2C1)
-#define I2C1_start()        I2C_start(I2C1)
-#define I2C1_stop()         I2C_stop(I2C1)
-#define I2C1_restart()      I2C_restart(I2C1)
-#define I2C1_sendNack()     I2C_sendNack(I2C1)
-#define I2C1_sendAck()      I2C_sendAck(I2C1)
+#define I2C1_start() I2C_start(I2C1)
+#define I2C1_stop() I2C_stop(I2C1)
+#define I2C1_restart() I2C_restart(I2C1)
+#define I2C1_sendNack() I2C_sendNack(I2C1)
+#define I2C1_sendAck() I2C_sendAck(I2C1)
 
 // PIC18F with 2 I2C modules
-#if defined(__18f26j50) || defined(__18f46j50) || \
-    defined(__18f26j53) || defined(__18f46j53) || \
-    defined(__18f27j53) || defined(__18f47j53)
+#if defined(__18f26j50) || defined(__18f46j50) || defined(__18f26j53) || defined(__18f46j53) || defined(__18f27j53) || \
+    defined(__18f47j53)
 
-#define I2C2_master(x)      I2C_master(I2C2, x)
-#define I2C2_slave(x)       I2C_slave(I2C2, x)
-#define I2C2_init(x, y)     I2C_init(I2C2, x, y)
-#define I2C2_write(x)       I2C_write(I2C2, x)
-#define I2C2_writeChar(x)   I2C_writeChar(I2C2, x)
-#define I2C2_read()         I2C_read(I2C2)
-#define I2C2_readChar()     I2C_readChar(I2C2)
-#define I2C2_wait()         I2C_wait(I2C2)
-#define I2C2_idle()         I2C_idle(I2C2)
+#define I2C2_master(x) I2C_master(I2C2, x)
+#define I2C2_slave(x) I2C_slave(I2C2, x)
+#define I2C2_init(x, y) I2C_init(I2C2, x, y)
+#define I2C2_write(x) I2C_write(I2C2, x)
+#define I2C2_writeChar(x) I2C_writeChar(I2C2, x)
+#define I2C2_read() I2C_read(I2C2)
+#define I2C2_readChar() I2C_readChar(I2C2)
+#define I2C2_wait() I2C_wait(I2C2)
+#define I2C2_idle() I2C_idle(I2C2)
 //#define I2C2_waitAck()    I2C_waitAck(I2C2)
-#define I2C2_start()        I2C_start(I2C2)
-#define I2C2_stop()         I2C_stop(I2C2)
-#define I2C2_restart()      I2C_restart(I2C2)
-#define I2C2_sendNack()     I2C_sendNack(I2C2)
-#define I2C2_sendAck()      I2C_sendAck(I2C2)
+#define I2C2_start() I2C_start(I2C2)
+#define I2C2_stop() I2C_stop(I2C2)
+#define I2C2_restart() I2C_restart(I2C2)
+#define I2C2_sendNack() I2C_sendNack(I2C2)
+#define I2C2_sendAck() I2C_sendAck(I2C2)
 
 #endif
 
