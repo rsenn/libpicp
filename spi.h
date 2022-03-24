@@ -99,6 +99,9 @@
 #define SCK2PIN TRISBbits.TRISB2 // SPI2 SCK Clock TRIS
 #define SDO2PIN TRISBbits.TRISB1 // SPI2 SDI Master output/Slave input TRIS
 #define SSP2INTFLAG PIR3bits.SSP2IF
+
+#elif defined(__18f16q41)
+
 #else
 
 #error "Your processor is not yet supported"
