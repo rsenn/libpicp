@@ -20,7 +20,7 @@
 #define ADCS_FOSC_2 0b000u
 #define ADCS_FOSC_8 0b001u
 #define ADCS_FOSC_32 0b010u
-#define ADCS_FRC  0b011u
+#define ADCS_FRC 0b011u
 #define ADCS_FOSC_4 0b100u
 #define ADCS_FOSC_16 0b101u
 #define ADCS_FOSC_64 0b110u
@@ -34,7 +34,7 @@
 #define PCFG_ADCON1_SHIFT 0
 
 /* Initialize ADC clock and port configuration. */
-void adc_init(uint8_t,uint8_t);
+void adc_init(uint8_t, uint8_t);
 
 /* Enable ADC, start conversion and return data. Then disable ADC */
 uint16_t adc_read(char ch);

@@ -31,31 +31,30 @@
 #include <typedef.h>
 #include <macro.h>
 
-//extern u32 _cpu_clock_;
+// extern u32 _cpu_clock_;
 
 // Cycles per second = FOSC/4000000
 
-void Delayus(u16 us)
-{
-    //u8 status = isInterrupts();
-    //if (status) noInterrupts();    
-    #ifdef __XC8__
-    while(--us)
-    {
-        nop();
-        nop();
-        nop();
-    }
-    #else
-    // valid up to 40.000 us
-    if (us > 1000)
-    {
-        us = us / 3;
-        us = us * 5;
-    }
-    while(--us);
-    #endif
-    //if (status) interrupts();    
+void
+Delayus(u16 us) {
+// u8 status = isInterrupts();
+// if (status) noInterrupts();
+#ifdef __XC8__
+  while(--us) {
+    nop();
+    nop();
+    nop();
+  }
+#else
+  // valid up to 40.000 us
+  if(us > 1000) {
+    us = us / 3;
+    us = us * 5;
+  }
+  while(--us)
+    ;
+#endif
+  // if (status) interrupts();
 }
 
-#endif // __DELAYUS_C__ 
+#endif // __DELAYUS_C__

@@ -6,7 +6,7 @@
     FIRST RELEASE:	2008
     LAST RELEASE:	2014/04/15
     ----------------------------------------------------------------------------
-    TODO : 
+    TODO :
     ----------------------------------------------------------------------------
     CHANGELOG :
         jean-pierre mandon : modification 2009/08/08 18F4550
@@ -40,14 +40,14 @@
 
 #include <compiler.h>
 #include <typedef.h>
-#include <digitalw.c>       // digitalwrite
+#include <digitalw.c> // digitalwrite
 
 u8 gToggleStatus;
 
-void toggle(u8 pin)
-{
-    gToggleStatus = gToggleStatus ^ 1;
-    digitalwrite(pin, gToggleStatus);
+void
+toggle(u8 pin) {
+  gToggleStatus = gToggleStatus ^ 1;
+  digitalwrite(pin, gToggleStatus);
 }
 
 #endif /* __DIGITALT__ */

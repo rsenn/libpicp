@@ -6,7 +6,7 @@
     FIRST RELEASE:	2008
     LAST RELEASE:	2014/04/15
     ----------------------------------------------------------------------------
-    TODO : 
+    TODO :
     ----------------------------------------------------------------------------
     CHANGELOG :
         jean-pierre mandon : modification 2009/08/08 18F4550
@@ -46,37 +46,29 @@
 #include <pwmclose.c>
 #endif
 
-u8 digitalread(u8 pin)
-{
-    #if defined(ANALOGWRITE) || defined(__PWM__)
-    PWM_close(pin);
-    #endif
+u8
+digitalread(u8 pin) {
+#if defined(ANALOGWRITE) || defined(__PWM__)
+  PWM_close(pin);
+#endif
 
-    switch (port[pin])
-    {
-        case pA:
-            return ((PORTA & mask[pin])!=0);
+  switch(port[pin]) {
+    case pA: return ((PORTA & mask[pin]) != 0);
 
-        case pB:
-            return ((PORTB & mask[pin])!=0);
+    case pB: return ((PORTB & mask[pin]) != 0);
 
-        case pC:
-            return ((PORTC & mask[pin])!=0);
+    case pC: return ((PORTC & mask[pin]) != 0);
 
-        #if defined(PINGUINO4455)   || defined(PINGUINO4550)   || \
-            defined(PINGUINO45K50)  || defined(PINGUINO46J50)  || \
-            defined(PINGUINO47J53A) || defined(PINGUINO47J53B) || \
-            defined(PICUNO_EQUO)
+#if defined(PINGUINO4455) || defined(PINGUINO4550) || defined(PINGUINO45K50) || defined(PINGUINO46J50) ||              \
+    defined(PINGUINO47J53A) || defined(PINGUINO47J53B) || defined(PICUNO_EQUO)
 
-        case pD:
-            return ((PORTD & mask[pin])!=0);
+    case pD: return ((PORTD & mask[pin]) != 0);
 
-        case pE:
-            return ((PORTE & mask[pin])!=0);
+    case pE: return ((PORTE & mask[pin]) != 0);
 
-        #endif
-    }
-    return 0;
+#endif
+  }
+  return 0;
 }
 
 #endif /* __DIGITALR__ */

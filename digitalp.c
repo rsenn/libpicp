@@ -6,7 +6,7 @@
     FIRST RELEASE:	2008
     LAST RELEASE:	2014/04/15
     ----------------------------------------------------------------------------
-    TODO : 
+    TODO :
     ----------------------------------------------------------------------------
     CHANGELOG :
         jean-pierre mandon : modification 2009/08/08 18F4550
@@ -43,52 +43,59 @@
 #include <typedef.h>
 #include <digital.h>
 
-void pinmode(u8 pin, u8 state)
-{
-    
-    u8 m = mask[pin];
-    u8 c = 255 - m;
+void
+pinmode(u8 pin, u8 state) {
 
-    #ifdef __XC8__
+  u8 m = mask[pin];
+  u8 c = 255 - m;
 
-    u8* p;
+#ifdef __XC8__
 
-    p = (u8 *)(0xF92 + port[pin]);
+  u8* p;
 
-    (state) ? *p |= m : *p &= c;
+  p = (u8*)(0xF92 + port[pin]);
 
-    #else // SDCC
+  (state) ? * p |= m : * p &= c;
 
-    switch (port[pin])
-    {
-        case pA:
-            if (state) TRISA=TRISA | m;
-            else TRISA=TRISA & c;
-            break;
-        case pB:
-            if (state) TRISB=TRISB | m;
-            else TRISB=TRISB & c;
-            break;
-        case pC:
-            if (state) TRISC=TRISC | m;
-            else TRISC=TRISC & c;
-            break;
-        #if defined(PINGUINO4455)   || defined(PINGUINO4550)   || \
-            defined(PINGUINO45K50)  || defined(PINGUINO46J50)  || \
-            defined(PINGUINO47J53A) || defined(PINGUINO47J53B) || \
-            defined(PICUNO_EQUO)
-        case pD:
-            if (state) TRISD=TRISD | m;
-            else TRISD=TRISD & c;
-            break;
-        case pE:
-            if (state) TRISE=TRISE | m;
-            else TRISE=TRISE & c;
-            break;
-        #endif
-    }
+#else // SDCC
 
-    #endif
+  switch(port[pin]) {
+    case pA:
+      if(state)
+        TRISA = TRISA | m;
+      else
+        TRISA = TRISA & c;
+      break;
+    case pB:
+      if(state)
+        TRISB = TRISB | m;
+      else
+        TRISB = TRISB & c;
+      break;
+    case pC:
+      if(state)
+        TRISC = TRISC | m;
+      else
+        TRISC = TRISC & c;
+      break;
+#if defined(PINGUINO4455) || defined(PINGUINO4550) || defined(PINGUINO45K50) || defined(PINGUINO46J50) ||              \
+    defined(PINGUINO47J53A) || defined(PINGUINO47J53B) || defined(PICUNO_EQUO)
+    case pD:
+      if(state)
+        TRISD = TRISD | m;
+      else
+        TRISD = TRISD & c;
+      break;
+    case pE:
+      if(state)
+        TRISE = TRISE | m;
+      else
+        TRISE = TRISE & c;
+      break;
+#endif
+  }
+
+#endif
 }
 
 #endif /* __DIGITALP__ */
