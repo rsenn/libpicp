@@ -31,9 +31,9 @@
 #endif
 
 #if defined(__XC) || defined(HI_TECH_C) || defined(__XC)
-#ifdef PIC18
+/*#ifdef PIC18
 #include <pic18.h>
-#endif
+#endif*/
 #define delay_ms(n) __delay_ms(n)
 #define delay_us(n) __delay_us(n)
 #elif defined(__SDCC)

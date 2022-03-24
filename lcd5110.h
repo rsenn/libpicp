@@ -6,12 +6,22 @@
 #include "device.h"
 #include "typedef.h"
 
+#ifdef __18f16q41
+#define LCD_CE LATC7
+#define LCD_RESET LATC6
+#define LCD_DC LATC3
+#define LCD_DATA PORTCbits.RC4
+#define LCD_CLK LATC5
+#define LCD_TRIS() TRISC &= 0b00000111
+
+#else
 #define LCD_CE LATB2
 #define LCD_RESET LATB3
 #define LCD_DC LATB4
 #define LCD_DATA PORTBbits.RB5
 #define LCD_CLK LATB6
 #define LCD_TRIS() TRISB &= 0x00
+#endif
 
 #define BIT7 0b10000000
 #define BIT6 0b01000000
