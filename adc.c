@@ -17,13 +17,13 @@ adc_init(uint8_t clock_sel, uint8_t port_cfg) {
   TRISA2 = 1;
   // ADCON2
   /*ADCON2bits.*/ ADFM = 1;
-  /*ADCON2bits.*/ ACQT = 1;
-  /*ADCON2bits.*/ ADCS = 2;
+  ADCON2bits.ACQT = 1;
+  ADCON2bits.ADCS = 2;
   // ADCON1
-  /*ADCON1bits.*/ PVCFG = 0;
-  /*ADCON1bits.*/ NVCFG = 0;
+  ADCON1bits.PVCFG = 0;
+  ADCON1bits.NVCFG = 0;
   // ADCON0
-  /*ADCON0bits.*/ CHS = 0;
+  ADCON0bits.CHS = 0;
   ///*ADCON0bits.*/ADON = 1;
   // Results format 1= Right justified
   // Acquition time 7 = 20TAD 2 = 4TAD 1=2TAD
