@@ -80,6 +80,9 @@
 #ifdef __18f25k50
 #define PIC18 1
 #endif
+#ifdef __18f16q41
+#define PIC18 1
+#endif
 
 #if defined(__SDCC)
 #ifndef __SDCC

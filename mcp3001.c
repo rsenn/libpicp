@@ -6,9 +6,10 @@ V1.0 11/23/04   Created.
 */
 
 #include "mcp3001.h"
+#include "delay.h"
 
 #if USE_MCP3001
-#define MCP3001_NOP() __delay_us(50)
+#define MCP3001_NOP() delay_us(50)
 
 #define CLK_OUT() ((MCP3001_CLK = 1), (MCP3001_NOP()), (MCP3001_CLK = 0), (MCP3001_NOP()), (MCP3001_DIN));
 
@@ -17,7 +18,9 @@ void
 mcp3001_init(void) {
   MCP3001_TRIS();
   MCP3001_SS = 1;
-  __delay_ms(20);
+  
+  for(char i = 0; i < 20; i++)
+    delay_ms(1);
 }
 
 // -------------------------------------------------------------------------
