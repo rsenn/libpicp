@@ -3,7 +3,7 @@
 
 #if defined(HI_TECH_C) || defined(__XC) || defined(__XC8__) || defined(__XC8)
 //#warning interrupt.h
-#define INTERRUPT_FN() __interrupt(__high_priority) void isr()
+#define INTERRUPT_FN() __interrupt(/*__low_priority*/) void isr()
 #elif defined(MCC18)
 #pragma interrupt isr
 #define INTERRUPT_HANDLER() void isr()
@@ -36,7 +36,7 @@
   { __enable_interrupt(); }
 #else
 
-#ifdef __XC8
+#ifdef __XC8__
 #if defined(__18f16q41)
 #define INTERRUPT_DISABLE() GIE = 0
 #define INTERRUPT_ENABLE() GIE = 1
