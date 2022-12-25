@@ -6,6 +6,8 @@
 #define SOFTPWM_TIMER 1
 #define SOFTPWM_RANGE 100
 
+#ifndef SOFTPWM_PORT
+
 #if NO_PORTC
 #if NO_PORTB
 #if NO_PORTA
@@ -26,6 +28,8 @@
 
 #define SOFTPWM_PIN_COUNT 4
 #define SOFTPWM_PIN_FIRST 0
+
+#endif
 
 extern volatile uint8_t softpwm_counter;
 extern volatile uint8_t softpwm_values[SOFTPWM_PIN_COUNT];

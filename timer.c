@@ -36,6 +36,8 @@ timer0_init(uint8_t ps_mode) {
 #ifdef __18f16q41
   T0CON0 = 0;
   T0CON1 = 0;
+#elif defined(PIC16)
+  OPTION_REG &= 0b11000000;
 #else
   T0CON = 0;
 #endif
@@ -47,6 +49,8 @@ timer0_init(uint8_t ps_mode) {
 
 #if defined(PIC18)
   T0CON |= (!!(ps_mode & TIMER0_FLAGS_8BIT)) ? 0x40 : 0x00;
+#elif defined(PIC16)
+  /* PIC16 has no 16-bit mode */  
 #endif
 
   // If a prescaler is to be assigned to the Timer0 module
@@ -84,7 +88,11 @@ timer0_init(uint8_t ps_mode) {
   //#endif
 #endif
 
+#ifdef PIC16
+  /* PIC16 has no TMR0ON */  
+#else
   T0CON |= 0x80;
+#endif
 
   /* INTCON &= ~0x40; //*/ TMR0IF = 0;
   T0IE = (ps_mode & TIMER0_FLAGS_INTR) ? 1 : 0;
