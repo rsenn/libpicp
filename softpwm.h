@@ -6,6 +6,8 @@
 #define SOFTPWM_TIMER 1
 #define SOFTPWM_RANGE 100
 
+#ifndef SOFTPWM_PORT
+
 #if NO_PORTC
 #if NO_PORTB
 #if NO_PORTA
@@ -24,8 +26,10 @@
 #define SOFTPWM_TRIS TRISC
 #endif
 
-#define SOFTPWM_PIN_COUNT 3
+#define SOFTPWM_PIN_COUNT 4
 #define SOFTPWM_PIN_FIRST 0
+
+#endif
 
 extern volatile uint8_t softpwm_counter;
 extern volatile uint8_t softpwm_values[SOFTPWM_PIN_COUNT];
@@ -34,9 +38,10 @@ extern volatile uint8_t softpwm_values[SOFTPWM_PIN_COUNT];
 #define SOFTPWM_INTERRUPT_FLAG TMR1IF
 #define SOFTPWM_INTERRUPT_ENABLE TMR1IE
 
+#define SOFTPWM_PIN(n, port) (port) = (softpwm_counter > 0 && softpwm_counter <= softpwm_values[n])
+
 #define SOFTPWM_ISR()                                                                                                  \
-  do                                                                                                                    \
-  {                                                                                                                    \
+  do {                                                                                                                 \
     if(SOFTPWM_INTERRUPT_FLAG) {                                                                                       \
       uint8_t softpwm_bit = 1 << SOFTPWM_PIN_FIRST;                                                                    \
       softpwm_counter++;                                                                                               \

@@ -4,7 +4,7 @@
 #include "typedef.h"
 #include "tsmdelay.h"
 
-#if !(defined(HI_TECH_C) || defined(__XC) || defined(__XC))
+#if !(defined(PIC18) || defined(HI_TECH_C) || defined(__XC8__))
 /*#define _delay(C) \
   do {                                                                                                                 \
     if(C < 750)                                                                                                        \
@@ -30,10 +30,10 @@
 #define __delay_us delay_us
 #endif
 
-#if defined(__XC) || defined(HI_TECH_C) || defined(__XC)
-#ifdef PIC18
+#if defined(PIC18) || defined(HI_TECH_C) || defined(__XC8__)
+/*#ifdef PIC18
 #include <pic18.h>
-#endif
+#endif*/
 #define delay_ms(n) __delay_ms(n)
 #define delay_us(n) __delay_us(n)
 #elif defined(__SDCC)

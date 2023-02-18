@@ -80,6 +80,9 @@
 #ifdef __18f25k50
 #define PIC18 1
 #endif
+#ifdef __18f16q41
+#define PIC18 1
+#endif
 
 #if defined(__SDCC)
 #ifndef __SDCC
@@ -351,11 +354,16 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define T0SE T0CONbits.T0SE
 #endif
 
-#define TMR0IF INTCONbits.TMR0IF
-#define T0IE INTCONbits.T0IE
+/*#define TMR0IF INTCONbits.TMR0IF
+#define T0IE INTCONbits.T0IE*/
 
+//#define ADCS ADCON2bits.ADCS
 #define ADCS2 ADCON1bits.ADCS2
+#ifdef __18f25k50
+#define ADFM ADCON2bits.ADFM
+#else
 #define ADFM ADCON1bits.ADFM
+#endif
 #define ADIE PIE1bits.ADIE
 #define ADIF PIR1bits.ADIF
 #define ADON ADCON0bits.ADON
@@ -371,12 +379,14 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define RCIF PIR1bits.RCIF
 #define S SSPSTATbits.S
 #define SSPEN SSPCONbits.SSPEN
-#define T0IE INTCONbits.T0IE
-#define T0IF INTCONbits.T0IF
+/*#define T0IE INTCONbits.T0IE
+#define T0IF INTCONbits.T0IF*/
 #define T1CKPS0 T1CONbits.T1CKPS0
 #define T1CKPS1 T1CONbits.T1CKPS1
+#ifndef __18f16q41
 #define TMR0IE INTCONbits.TMR0IE
 #define TMR0IF INTCONbits.TMR0IF
+#endif
 #define TMR1CS T1CONbits.TMR1CS
 #define TMR1IE PIE1bits.TMR1IE
 #define TMR1IF PIR1bits.TMR1IF
@@ -702,7 +712,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define TX9 TXSTAbits.TX9
 #define TXEN TXSTAbits.TXEN
 
-#if defined(__SDCC) || defined(__SDCC)
+#if defined(__SDCC__) || defined(__SDCC)
 
 /*#if defined(__18f25k22) // || defined(__18f25k50)
 #define SPEN SPEN1

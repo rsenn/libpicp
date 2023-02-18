@@ -33,9 +33,24 @@ timer0_init(uint8_t ps_mode) {
   TIMER0_VALUE_H = 0;
 #endif
 
-#ifdef PIC18
+#ifdef __18f16q41
+  T0CON0 = 0;
+  T0CON1 = 0;
+#elif defined(PIC16)
+  OPTION_REG &= 0b11000000;
+#else
   T0CON = 0;
+#endif
+
+#ifdef __18f16q41
+  T0CON0 |= 0x80 | ((ps_mode & TIMER0_FLAGS_8BIT) == 0 ? 0x10 : 0x00);
+  T0CON1 |= prescaler | (0b010 << 5);
+#else
+
+#if defined(PIC18)
   T0CON |= (!!(ps_mode & TIMER0_FLAGS_8BIT)) ? 0x40 : 0x00;
+#elif defined(PIC16)
+  /* PIC16 has no 16-bit mode */  
 #endif
 
   // If a prescaler is to be assigned to the Timer0 module
@@ -51,10 +66,10 @@ timer0_init(uint8_t ps_mode) {
 #else
 
   // 0: Internal instruction cycle clock (CLKO) or 1: Transition on T0CKI pin
-  T0CON |= (!!(ps_mode & TIMER0_FLAGS_EXTCLK)) ? 0x20 : 0x00;
+  T0CON |= (!!(ps_mode & TIMER0_FLAGS_EXTCLK)) ? 0x20u : 0x00u;
 
   // T0CKI pin: Increment on 1->0 or on 0->1 transition
-  T0CON |= (!!(ps_mode & EDGE_HIGH_LOW)) ? 0x10 : 0x00;
+  T0CON |= (!!(ps_mode & EDGE_HIGH_LOW)) ? 0x10u : 0x00u;
 
   // If a prescaler is to be assigned to the Timer0 module
   T0CON &= (!!prescaler) ? ~0x08 : ~0x00;
@@ -73,12 +88,15 @@ timer0_init(uint8_t ps_mode) {
   //#endif
 #endif
 
-#ifdef PIC18
-  T0CON |= 0x80; // TMR0ON
+#ifdef PIC16
+  /* PIC16 has no TMR0ON */  
 #else
+  T0CON |= 0x80;
 #endif
+
   /* INTCON &= ~0x40; //*/ TMR0IF = 0;
   T0IE = (ps_mode & TIMER0_FLAGS_INTR) ? 1 : 0;
+#endif
 }
 
 /* Read Timer 0:
@@ -91,6 +109,7 @@ timer0_read_ps(void) {
   uint8_t prev = TMR0;
   uint16_t count = 0;
 
+#ifndef __18f16q41
   /*T0CON |= 0x20; */ T0CS = 1;
 
   do {
@@ -109,7 +128,7 @@ timer0_read_ps(void) {
 
     // count until TMR0 incremented
   } while(prev == TMR0 && count <= 255);
-
+#endif
   count = ((prev << 8) + (256 - count));
   return count;
 }

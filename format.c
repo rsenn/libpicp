@@ -46,9 +46,8 @@ format_number(putch_t fn, uint16_t n, uint8_t base, int8_t pad /*, int8_t pointp
 
   while(pad-- > i) buffer_putch(padchar);
 
-  for(unsigned j = 0; j < i; j++)
-    (*fn)(buf[j]);
-    // buffer_putch((buf[i - 1] < 10 ?(char)'0' + buf[i - 1] : (char)'A' + buf[i - 1] - 10));
+  for(unsigned j = 0; j < i; j++) (*fn)(buf[j]);
+  // buffer_putch((buf[i - 1] < 10 ?(char)'0' + buf[i - 1] : (char)'A' + buf[i - 1] - 10));
 }
 
 // -------------------------------------------------------------------------
@@ -61,8 +60,8 @@ format_xint32(putch_t fn, /*putchar_fn* putchar,*/ uint32_t x) {
 }
 
 void
-format_float(putch_t fn,  float num) {
-  short m = (int)log10(num);
+format_float(putch_t fn, float num) {
+  short m = (int)log10f(num);
   char digit;
   //  float tolerance = .0001;
 
@@ -81,7 +80,7 @@ format_float(putch_t fn,  float num) {
 #ifndef SDCC
 void
 format_double(putch_t fn, double num) {
-  short m = (short)log10(num);
+  short m = (short)log10f(num);
   short digit;
   //  double tolerance = .0001;
 
