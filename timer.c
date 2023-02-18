@@ -33,9 +33,8 @@ timer0_init(uint8_t ps_mode) {
   TIMER0_VALUE_H = 0;
 #endif
 
-  T0CON = 0;
-
 #ifdef PIC18
+  T0CON = 0;
   T0CON |= (!!(ps_mode & TIMER0_FLAGS_8BIT)) ? 0x40 : 0x00;
 #endif
 
@@ -74,12 +73,19 @@ timer0_init(uint8_t ps_mode) {
   //#endif
 #endif
 
-  T0CON |= 0x80;
-
+#ifdef PIC18
+  T0CON |= 0x80; // TMR0ON
+#else
+#endif
   /* INTCON &= ~0x40; //*/ TMR0IF = 0;
   T0IE = (ps_mode & TIMER0_FLAGS_INTR) ? 1 : 0;
 }
 
+/* Read Timer 0:
+ *
+ * TMR0 in high byte
+ * prescaler in low byte
+ */
 unsigned short
 timer0_read_ps(void) {
   uint8_t prev = TMR0;
@@ -89,12 +95,12 @@ timer0_read_ps(void) {
 
   do {
     /* self-clocking */
-    /*T0CON |= 0x10; */ T0SE = 1;
+    T0SE = 1;
 
     NOP();
     NOP();
 
-    /* T0CON &= ~0x10; //*/ T0SE = 0;
+    T0SE = 0;
 
     NOP();
     NOP();
