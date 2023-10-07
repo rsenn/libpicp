@@ -38,7 +38,7 @@ timer0_init(uint8_t ps_mode) {
   T0CON1 = 0;
 #elif defined(PIC16)
   OPTION_REG &= 0b11000000;
-#else
+#elif !defined(PIC12)
   T0CON = 0;
 #endif
 
@@ -50,7 +50,7 @@ timer0_init(uint8_t ps_mode) {
 #if defined(PIC18)
   T0CON |= (!!(ps_mode & TIMER0_FLAGS_8BIT)) ? 0x40 : 0x00;
 #elif defined(PIC16)
-  /* PIC16 has no 16-bit mode */  
+  /* PIC16 has no 16-bit mode */
 #endif
 
   // If a prescaler is to be assigned to the Timer0 module
@@ -63,6 +63,8 @@ timer0_init(uint8_t ps_mode) {
     /*OPTION_REGbits.*/ PSA = prescaler > 0;
     /*OPTION_REGbits.*/ OPTION_REGbits.PS = prescaler - 1;
   }
+#elif defined(PIC12)
+  OPTION_REGbits.PS = (prescaler - 1) & 0b111;
 #else
 
   // 0: Internal instruction cycle clock (CLKO) or 1: Transition on T0CKI pin
@@ -88,8 +90,7 @@ timer0_init(uint8_t ps_mode) {
   //#endif
 #endif
 
-#ifdef PIC16
-  /* PIC16 has no TMR0ON */  
+#if defined(PIC16) || defined(PIC12) /* PIC16 has no TMR0ON */
 #else
   T0CON |= 0x80;
 #endif

@@ -383,7 +383,7 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define T0IF INTCONbits.T0IF*/
 #define T1CKPS0 T1CONbits.T1CKPS0
 #define T1CKPS1 T1CONbits.T1CKPS1
-#ifndef __18f16q41
+#if 0 // ndef __18f16q41
 #define TMR0IE INTCONbits.TMR0IE
 #define TMR0IF INTCONbits.TMR0IF
 #endif
