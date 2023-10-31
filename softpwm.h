@@ -4,7 +4,9 @@
 #include "timer.h"
 
 #define SOFTPWM_TIMER 1
+#ifndef SOFTPWM_RANGE
 #define SOFTPWM_RANGE 100
+#endif
 
 #define SOFTPWM_CHANNELS 24
 
@@ -111,10 +113,10 @@ extern volatile uint8_t softpwm_values[SOFTPWM_CHANNELS];
 
 #define SOFTPWM_PIN(n, port) (port) = (softpwm_counter > 0 && softpwm_counter > softpwm_values[n])
 #define SOFTPWM_REG8(values)                                                                                           \
-  ((softpwm_counter > (values)[0] ? 0 : 0b00000001) | (softpwm_counter > (values)[1] ? 0 : 0b00000010) |               \
-   (softpwm_counter > (values)[2] ? 0 : 0b00000100) | (softpwm_counter > (values)[3] ? 0 : 0b00001000) |               \
-   (softpwm_counter > (values)[4] ? 0 : 0b00010000) | (softpwm_counter > (values)[5] ? 0 : 0b00100000) |               \
-   (softpwm_counter > (values)[6] ? 0 : 0b01000000) | (softpwm_counter > (values)[7] ? 0 : 0b10000000))
+  ((softpwm_counter >= (values)[0] ? 0 : 0b00000001) | (softpwm_counter >= (values)[1] ? 0 : 0b00000010) |               \
+   (softpwm_counter >= (values)[2] ? 0 : 0b00000100) | (softpwm_counter >= (values)[3] ? 0 : 0b00001000) |               \
+   (softpwm_counter >= (values)[4] ? 0 : 0b00010000) | (softpwm_counter >= (values)[5] ? 0 : 0b00100000) |               \
+   (softpwm_counter >= (values)[6] ? 0 : 0b01000000) | (softpwm_counter >= (values)[7] ? 0 : 0b10000000))
 
 #define SOFTPWM_ISR()                                                                                                  \
   do {                                                                                                                 \
