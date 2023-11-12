@@ -3,7 +3,7 @@
 #include "timer.h"
 #include "typedef.h"
 
-#if USE_SOFTPWM
+#ifdef USE_SOFTPWM
 
 #define SOFTPWM_EVAL(x) x
 #define SOFTPWM_TIMER_SETUP timer1_init

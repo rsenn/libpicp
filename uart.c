@@ -2,7 +2,7 @@
 #include "uart.h"
 #include "typedef.h"
 
-#if USE_UART
+#ifdef USE_UART
 
 #ifndef UART_BRG
 #if HIGH_SPEED == 1

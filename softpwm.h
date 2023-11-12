@@ -31,14 +31,26 @@
 #define SOFTPWM_PORT3 PORTA
 #endif
 
+#ifndef SOFTPWM_TRIS
 #define SOFTPWM_TRIS TRISB
+#endif
+#ifndef SOFTPWM_MASK
 #define SOFTPWM_MASK 0b11111111
+#endif
 
+#ifndef SOFTPWM_TRIS2
 #define SOFTPWM_TRIS2 TRISC
+#endif
+#ifndef SOFTPWM_MASK2
 #define SOFTPWM_MASK2 0b11000111
+#endif
 
+#ifndef SOFTPWM_TRIS3
 #define SOFTPWM_TRIS3 TRISA
+#endif
+#ifndef SOFTPWM_MASK3
 #define SOFTPWM_MASK3 0b11111111
+#endif
 
 #ifndef SOFTPWM_PORT
 
@@ -113,22 +125,58 @@ extern volatile uint8_t softpwm_values[SOFTPWM_CHANNELS];
 
 #define SOFTPWM_PIN(n, port) (port) = (softpwm_counter > 0 && softpwm_counter > softpwm_values[n])
 #define SOFTPWM_REG8(values)                                                                                           \
-  ((softpwm_counter >= (values)[0] ? 0 : 0b00000001) | (softpwm_counter >= (values)[1] ? 0 : 0b00000010) |               \
-   (softpwm_counter >= (values)[2] ? 0 : 0b00000100) | (softpwm_counter >= (values)[3] ? 0 : 0b00001000) |               \
-   (softpwm_counter >= (values)[4] ? 0 : 0b00010000) | (softpwm_counter >= (values)[5] ? 0 : 0b00100000) |               \
+  ((softpwm_counter >= (values)[0] ? 0 : 0b00000001) | (softpwm_counter >= (values)[1] ? 0 : 0b00000010) |             \
+   (softpwm_counter >= (values)[2] ? 0 : 0b00000100) | (softpwm_counter >= (values)[3] ? 0 : 0b00001000) |             \
+   (softpwm_counter >= (values)[4] ? 0 : 0b00010000) | (softpwm_counter >= (values)[5] ? 0 : 0b00100000) |             \
    (softpwm_counter >= (values)[6] ? 0 : 0b01000000) | (softpwm_counter >= (values)[7] ? 0 : 0b10000000))
 
-#define SOFTPWM_ISR()                                                                                                  \
+#define SOFTPWM_ISR1()                                                                                                 \
   do {                                                                                                                 \
     if(SOFTPWM_INTERRUPT_FLAG) {                                                                                       \
       SOFTPWM_PORT = SOFTPWM_REG8(softpwm_values);                                                                     \
-      SOFTPWM_PORT2 = SOFTPWM_REG8(softpwm_values + 16);                                                               \
-      SOFTPWM_PORT3 = SOFTPWM_REG8(softpwm_values + 8);                                                                \
-      SOFTPWM_TIMER_VALUE = -128;                                                                                      \
+      SOFTPWM_TIMER_VALUE = (int16_t)(int8_t)-128;                                                                     \
+      if(softpwm_counter >= SOFTPWM_RANGE) {                                                                           \
+        softpwm_counter = 0;                                                                                           \
+        softpwm_counter2++;                                                                                            \
+      } else {                                                                                                         \
+        softpwm_counter++;                                                                                             \
+      }                                                                                                                \
       SOFTPWM_INTERRUPT_FLAG = 0;                                                                                      \
-      softpwm_counter++;                                                                                               \
     }                                                                                                                  \
-  } while(0);
+  } while(0)
+
+#define SOFTPWM_ISR2()                                                                                                 \
+  do {                                                                                                                 \
+    if(SOFTPWM_INTERRUPT_FLAG) {                                                                                       \
+      SOFTPWM_PORT = SOFTPWM_REG8(softpwm_values);                                                                     \
+      SOFTPWM_PORT2 = SOFTPWM_REG8(softpwm_values + 8);                                                                \
+      SOFTPWM_TIMER_VALUE = (int16_t)(int8_t)-128;                                                                     \
+      if(softpwm_counter >= SOFTPWM_RANGE) {                                                                           \
+        softpwm_counter = 0;                                                                                           \
+        softpwm_counter2++;                                                                                            \
+      } else {                                                                                                         \
+        softpwm_counter++;                                                                                             \
+      }                                                                                                                \
+      SOFTPWM_INTERRUPT_FLAG = 0;                                                                                      \
+    }                                                                                                                  \
+  } while(0)
+
+#define SOFTPWM_ISR3()                                                                                                 \
+  do {                                                                                                                 \
+    if(SOFTPWM_INTERRUPT_FLAG) {                                                                                       \
+      SOFTPWM_PORT = SOFTPWM_REG8(softpwm_values);                                                                     \
+      SOFTPWM_PORT2 = SOFTPWM_REG8(softpwm_values + 8);                                                                \
+      SOFTPWM_PORT3 = SOFTPWM_REG8(softpwm_values + 16);                                                               \
+      SOFTPWM_TIMER_VALUE = (int16_t)(int8_t)-128;                                                                     \
+      if(softpwm_counter >= SOFTPWM_RANGE) {                                                                           \
+        softpwm_counter = 0;                                                                                           \
+        softpwm_counter2++;                                                                                            \
+      } else {                                                                                                         \
+        softpwm_counter++;                                                                                             \
+      }                                                                                                                \
+      SOFTPWM_INTERRUPT_FLAG = 0;                                                                                      \
+    }                                                                                                                  \
+  } while(0)
 
 /**
  * Initialize SoftPWM module

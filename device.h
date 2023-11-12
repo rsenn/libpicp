@@ -88,8 +88,8 @@
 #ifndef __SDCC
 #define __SDCC 1
 #endif
-#ifdef __16f628a
-#include <pic14/pic16f628a.h>
+#ifdef __12f1840
+#include <pic14/pic12f1840.h>
 #endif
 #ifdef __16f876a
 //#warning __16f876a
@@ -367,23 +367,27 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define ADIE PIE1bits.ADIE
 #define ADIF PIR1bits.ADIF
 #define ADON ADCON0bits.ADON
-#define C STATUSbits.C
-#define D SSPSTATbits.D
+//#define C STATUSbits.C
+//#define D SSPSTATbits.D
 //#define GIE INTCONbits.GIE
 #define GO_DONE ADCON0bits.GO_DONE
-#define P SSPSTATbits.P
+//#define P SSPSTATbits.P
 #define PEIE INTCONbits.PEIE
-#define R SSPSTATbits.R
+//#define R SSPSTATbits.R
+#ifndef RCEN
 #define RCEN SSPCON2bits.RCEN
+#endif
 #define RCIE PIE1bits.RCIE
 #define RCIF PIR1bits.RCIF
-#define S SSPSTATbits.S
+//#define S SSPSTATbits.S
+#ifndef SSPEN
 #define SSPEN SSPCONbits.SSPEN
+#endif
 /*#define T0IE INTCONbits.T0IE
 #define T0IF INTCONbits.T0IF*/
 #define T1CKPS0 T1CONbits.T1CKPS0
 #define T1CKPS1 T1CONbits.T1CKPS1
-#if 0 // ndef __18f16q41
+#ifdef PIC18
 #define TMR0IE INTCONbits.TMR0IE
 #define TMR0IF INTCONbits.TMR0IF
 #endif
@@ -793,12 +797,11 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #endif
 #endif
 
-#if defined(__SDCC) && defined(PIC16)
-
+#if defined(__SDCC__) && defined(PIC16)
 #ifndef _CONFIG
 #define _CONFIG 0x2007
 #endif
-__code unsigned int __at(_CONFIG) __config_word = CONFIG_WORD;
+//__code unsigned int __at(_CONFIG) __config_word = CONFIG_WORD;
 #endif
 
 #if defined(__XC)
