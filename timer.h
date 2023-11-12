@@ -43,7 +43,7 @@
 #define TIMER0_INTERVAL_US (1000000u * 256u / TIMER0_FREQ)
 #define TIMER0_INTERVAL_MS (1000u * 256u / TIMER0_FREQ)
 
-#ifdef PIC18
+#if defined(PIC18) || defined(PIC12)
 #define TIMER0_INTERRUPT_FLAG TMR0IF
 #define TIMER0_INTERRUPT_CLEAR() TMR0IF = 0
 #elif defined(T0IF)

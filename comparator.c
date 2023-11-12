@@ -1,4 +1,3 @@
-#include "device.h"
 #include "comparator.h"
 
 #if HAVE_COMPARATOR
