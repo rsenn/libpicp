@@ -1,5 +1,5 @@
 /*-------------------------------------------------------------------------
-   logf.c - Computes the natural log of a 32 bit float as outlined in [1].
+   log10f.c - Computes the base 10 log of a 32 bit float.
 
    Copyright (C) 2001,2002, Jesus Calvino-Fraga, jesusc@ieee.org
 
@@ -26,46 +26,9 @@
    might be covered by the GNU General Public License.
 -------------------------------------------------------------------------*/
 
-/* [1] William James Cody and W.  M.  Waite.  _Software manual for the
-   elementary functions_, Englewood Cliffs, N.J.:Prentice-Hall, 1980. */
-
-#include <float.h>
-#include <math.h>
-#include <errno.h>
-
-/*Constans for 24 bits or less (8 decimal digits)*/
-#define A0 -0.5527074855E+0
-#define B0 -0.6632718214E+1
-#define A(w) (A0)
-#define B(w) (w + B0)
-
-#define C0 0.70710678118654752440
-#define C1 0.693359375 /*355.0/512.0*/
-#define C2 -2.121944400546905827679E-4
+extern float logf(float);
 
 float
-logf(float x) _MATH_REENTRANT {
-  float Rz;
-  float f, z, w, znum, zden, xn;
-  FS_STATIC int n;
-
-  if(x <= 0.0) {
-    errno = EDOM;
-    return 0.0;
-  }
-  f = frexpf(x, &n);
-  znum = f - 0.5;
-  if(f > C0) {
-    znum -= 0.5;
-    zden = (f * 0.5) + 0.5;
-  } else {
-    n--;
-    zden = znum * 0.5 + 0.5;
-  }
-  z = znum / zden;
-  w = z * z;
-
-  Rz = z + z * (w * A(w) / B(w));
-  xn = n;
-  return ((xn * C2 + Rz) + xn * C1);
+log10f(float x) {
+  return logf(x) * 0.4342944819;
 }
