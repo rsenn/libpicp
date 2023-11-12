@@ -52,14 +52,10 @@
 
 #ifndef SOFTPWM_TRIS3
 #define SOFTPWM_TRIS3 TRISA
-<<<<<<< HEAD
 #endif
 #ifndef SOFTPWM_MASK3
 #define SOFTPWM_MASK3 0b11111111
 #endif
-=======
-#define SOFTPWM_MASK3 0b11101111
->>>>>>> 42c150a1f2f00d4b81d792177d63809ea20e4dc8
 
 #ifndef SOFTPWM_PORT
 
