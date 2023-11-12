@@ -1,7 +1,7 @@
 #ifndef PICLIB_MCP3001_H
 #define PICLIB_MCP3001_H
 
-#if USE_MCP3001
+#ifdef USE_MCP3001
 
 #include "device.h"
 #include "typedef.h"

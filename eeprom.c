@@ -41,7 +41,7 @@ ee_write(unsigned char addr, unsigned char data) {
   WREN = 0;
 }
 
-#if USE_EEPROM
+#ifdef USE_EEPROM
 unsigned char
 Read_b_eep(unsigned int badd) {
   EEADR = (badd & 0x0ff);

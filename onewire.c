@@ -7,7 +7,7 @@
 #include "delay.h"
 #include "onewire.h"
 
-#if USE_ONEWIRE
+#ifdef USE_ONEWIRE
 
 #ifdef HI_TECH_C
 #else

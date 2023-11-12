@@ -39,24 +39,24 @@
 #define SOFTSER_INVERT 1
 
 #if NO_PORTB
-#define SOFTSER_IN_PIN RA0 // pin for serial out
+#define SOFTSER_IN_PIN RA0 // pin for serial input
 #define SOFTSER_IN_TRIS TRISA0
-#define SOFTSER_OUT_PIN RA1 // pin for serial input
+#define SOFTSER_OUT_PIN RA1 // pin for serial output
 #define SOFTSER_OUT_TRIS TRISA1
 #elif defined(__18f14k50)
-#define SOFTSER_IN_PIN LATB6 // pin for serial out
+#define SOFTSER_IN_PIN LATB6 // pin for serial input
 #define SOFTSER_IN_TRIS TRISB6
-#define SOFTSER_OUT_PIN LATB7 // pin for serial input
+#define SOFTSER_OUT_PIN LATB7 // pin for serial output
 #define SOFTSER_OUT_TRIS TRISB7
 #elif defined(PIC18)
-#define SOFTSER_IN_PIN LATB0 // pin for serial out
+#define SOFTSER_IN_PIN LATB0 // pin for serial input
 #define SOFTSER_IN_TRIS TRISB0
-#define SOFTSER_OUT_PIN LATB1 // pin for serial input
+#define SOFTSER_OUT_PIN LATB1 // pin for serial output
 #define SOFTSER_OUT_TRIS TRISB1
 #else
-#define SOFTSER_IN_PIN RB0 // pin for serial out
+#define SOFTSER_IN_PIN RB0 // pin for serial input
 #define SOFTSER_IN_TRIS TRISB0
-#define SOFTSER_OUT_PIN RB1 // pin for serial input
+#define SOFTSER_OUT_PIN RB1 // pin for serial output
 #define SOFTSER_OUT_TRIS TRISB1
 #endif
 
@@ -130,7 +130,7 @@
 
 #define SOFTSER_BRG_FN(baud) ((OSC_4 / (1 << (SOFTSER_PS + 1)) / (baud)) + 1)
 
-#if USE_SOFTSER && !defined(SOFTSER_BRG)
+#if defined(USE_SOFTSER) && !defined(SOFTSER_BRG)
 #define SOFTSER_PS 0
 #define SOFTSER_BRG SOFTSER_BRG_FN(SOFTSER_BAUD)
 #endif

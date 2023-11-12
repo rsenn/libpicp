@@ -8,7 +8,7 @@ V1.0 11/23/04   Created.
 #include "lcd5110.h"
 #include "delay.h"
 
-#if USE_NOKIA5110_LCD
+#ifdef USE_NOKIA5110_LCD
 #define LCD_NOP() NOP()
 
 #define CLK_IN(data, bitnum)                                                                                           \

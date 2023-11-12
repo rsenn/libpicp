@@ -12,7 +12,7 @@
 #include "device.h"
 #include "pcd8544.h"
 
-#if USE_PCD8544
+#ifdef USE_PCD8544
 
 // main constants
 #define COMMAND_BYTE 0

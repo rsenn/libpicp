@@ -8,7 +8,7 @@ V1.0 11/23/04   Created.
 #include "mcp3001.h"
 #include "delay.h"
 
-#if USE_MCP3001
+#ifdef USE_MCP3001
 #define MCP3001_NOP() delay_us(50)
 
 #define CLK_OUT() ((MCP3001_CLK = 1), (MCP3001_NOP()), (MCP3001_CLK = 0), (MCP3001_NOP()), (MCP3001_DIN));

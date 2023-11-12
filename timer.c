@@ -20,7 +20,7 @@ extern volatile unsigned char T0CON @0xFD5;
 #endif
 */
 
-#if USE_TIMER0
+#ifdef USE_TIMER0
 
 void
 timer0_init(uint8_t ps_mode) {
@@ -96,7 +96,7 @@ timer0_init(uint8_t ps_mode) {
 #endif
 
   /* INTCON &= ~0x40;  TMR0IF = 0;*/
-  T0IE = (ps_mode & TIMER0_FLAGS_INTR) ? 1 : 0;
+  TMR0IE = (ps_mode & TIMER0_FLAGS_INTR) ? 1 : 0;
 #endif
 }
 
@@ -137,7 +137,7 @@ timer0_read_ps(void) {
 #endif // USE_TIMER0
 
 /* ----------------------- Timer 1 ----------------------- */
-#if USE_TIMER1
+#ifdef USE_TIMER1
 
 void
 timer1_init(uint8_t ps_mode) {
@@ -170,7 +170,7 @@ timer1_init(uint8_t ps_mode) {
 #endif // USE_TIMER1
 
 /* ----------------------- Timer 2 ----------------------- */
-#if USE_TIMER2
+#ifdef USE_TIMER2
 
 void
 timer2_init(uint8_t ps_mode) {

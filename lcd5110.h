@@ -1,7 +1,7 @@
 #ifndef PICLIB_LCD5110_H
 #define PICLIB_LCD5110_H
 
-#if USE_NOKIA5110_LCD
+#ifdef USE_NOKIA5110_LCD
 
 #include "device.h"
 #include "typedef.h"
