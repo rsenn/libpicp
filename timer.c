@@ -54,7 +54,7 @@ timer0_init(uint8_t ps_mode) {
 #endif
 
   // If a prescaler is to be assigned to the Timer0 module
-#if !defined(PIC18) && !defined(PIC12)
+#if !defined(PIC18) //&& !defined(PIC12)
 
   T0CS = (ps_mode & TIMER0_FLAGS_EXTCLK) ? 1 : 0;
   T0SE = (ps_mode & EDGE_HIGH_LOW) ? 1 : 0;

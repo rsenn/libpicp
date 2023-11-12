@@ -45,11 +45,15 @@ softpwm_init(void) {
   SOFTPWM_TRIS &= ~(SOFTPWM_MASK);
   SOFTPWM_PORT &= ~(SOFTPWM_MASK);
 
+#if SOFTPWM_CHANNELS > 8
   SOFTPWM_TRIS2 &= ~(SOFTPWM_MASK2);
   SOFTPWM_PORT2 &= ~(SOFTPWM_MASK2);
+#endif
 
+#if SOFTPWM_CHANNELS > 16
   SOFTPWM_TRIS3 &= ~(SOFTPWM_MASK3);
   SOFTPWM_PORT3 &= ~(SOFTPWM_MASK3);
+#endif
 
   softpwm_counter = 0;
 
