@@ -60,8 +60,10 @@ timer0_init(uint8_t ps_mode) {
   T0SE = (ps_mode & EDGE_HIGH_LOW) ? 1 : 0;
 
   if(prescaler > 0) {
-    /*OPTION_REGbits.*/ PSA = prescaler > 0;
+    /*OPTION_REGbits.*/ PSA = 0;
     /*OPTION_REGbits.*/ OPTION_REGbits.PS = prescaler - 1;
+  } else {
+    PSA = 1;
   }
 #elif defined(PIC12)
   OPTION_REGbits.PS = (prescaler - 1) & 0b111;
@@ -161,10 +163,12 @@ timer1_init(uint8_t ps_mode) {
 
   T1CON |= 0b1; // TMR1ON = 1;
 
-  PIR1 &= ~0b1; //  TMR1IF = 0;
+ /* PIR1 &= ~0b1; //  TMR1IF = 0;
 
   PIE1 &= ~0b1;
-  PIE1 |= !!(ps_mode & TIMER1_FLAGS_INTR);
+  PIE1 |= !!(ps_mode & TIMER1_FLAGS_INTR);*/
+  if(ps_mode & TIMER1_FLAGS_INTR)
+    TMR1IE=1;
 }
 
 #endif // USE_TIMER1
