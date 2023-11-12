@@ -156,8 +156,7 @@ lcd_send(uint8_t a, uint8_t cmd) {
 void
 lcd_init(void) {
   LCD_TRIS();
-  for(char i = 0; i < 20; i++)
-    delay_ms(1);
+  for(char i = 0; i < 20; i++) delay_ms(1);
   // delay10ms(20);
   LCD_NOP();
   LCD_CLK = 0;
@@ -170,8 +169,7 @@ lcd_init(void) {
   LCD_NOP();
   // reset LCD
   LCD_RESET = 0;
-  for(char i = 0; i < 20; i++)
-    delay_ms(1);
+  for(char i = 0; i < 20; i++) delay_ms(1);
   // delay10ms(20);
   LCD_RESET = 1;
 #if 1
