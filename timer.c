@@ -95,7 +95,7 @@ timer0_init(uint8_t ps_mode) {
   T0CON |= 0x80;
 #endif
 
-  /* INTCON &= ~0x40; //*/ TMR0IF = 0;
+  /* INTCON &= ~0x40;  TMR0IF = 0;*/
   T0IE = (ps_mode & TIMER0_FLAGS_INTR) ? 1 : 0;
 #endif
 }
