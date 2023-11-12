@@ -1,19 +1,24 @@
 #ifndef PICLIB_SOFTPWM_H
-#define PICLIB_SOFTPWM_H
+#define PICLIB_SOFTPWM_H 1
 
 #include "timer.h"
 
+#ifndef SOFTPWM_TIMER
 #define SOFTPWM_TIMER 1
+#endif
+
 #ifndef SOFTPWM_RANGE
 #define SOFTPWM_RANGE 100
 #endif
 
+#ifndef SOFTPWM_CHANNELS
 #define SOFTPWM_CHANNELS 24
+#endif
 
 #if defined(__12f1840)
 #define SOFTPWM_PORT LATA
 #define SOFTPWM_TRIS TRISA
-#define SOFTPWM_MASK 0b11111111
+//#define SOFTPWM_MASK 0b11111111
 
 #define SOFTPWM_TIMER_VALUE TMR0
 #define SOFTPWM_INTERRUPT_FLAG /*INTCONbits.*/ TMR0IF
@@ -47,10 +52,14 @@
 
 #ifndef SOFTPWM_TRIS3
 #define SOFTPWM_TRIS3 TRISA
+<<<<<<< HEAD
 #endif
 #ifndef SOFTPWM_MASK3
 #define SOFTPWM_MASK3 0b11111111
 #endif
+=======
+#define SOFTPWM_MASK3 0b11101111
+>>>>>>> 42c150a1f2f00d4b81d792177d63809ea20e4dc8
 
 #ifndef SOFTPWM_PORT
 

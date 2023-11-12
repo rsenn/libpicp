@@ -30,8 +30,9 @@
    elementary functions_, Englewood Cliffs, N.J.:Prentice-Hall, 1980. */
 
 #include <float.h>
-//#include <math.h>
 #include <errno.h>
+
+extern float frexpf(float, int*);
 
 /*Constans for 24 bits or less (8 decimal digits)*/
 #define A0 -0.5527074855E+0
@@ -43,13 +44,11 @@
 #define C1 0.693359375 /*355.0/512.0*/
 #define C2 -2.121944400546905827679E-4
 
-extern float frexpf(float, int*);
-
 float
 logf(float x) {
   float Rz;
   float f, z, w, znum, zden, xn;
-  static int n;
+  /*static*/ int n;
 
   if(x <= 0.0) {
     errno = EDOM;
