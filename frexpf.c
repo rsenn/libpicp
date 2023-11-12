@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------------------
-   logf.c - Computes the natural log of a 32 bit float as outlined in [1].
+   frexpf.c - Returns the exponent and mantisa of a 32 bit float.
 
-   Copyright (C) 2001,2002, Jesus Calvino-Fraga, jesusc@ieee.org
+   Copyright (C) 2001, 2002, Jesus Calvino-Fraga, jesusc@ieee.org
 
    This library is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -10,7 +10,7 @@
 
    This library is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
@@ -26,48 +26,24 @@
    might be covered by the GNU General Public License.
 -------------------------------------------------------------------------*/
 
-/* [1] William James Cody and W.  M.  Waite.  _Software manual for the
-   elementary functions_, Englewood Cliffs, N.J.:Prentice-Hall, 1980. */
+union float_long {
+  float f;
+  long l;
+};
 
-#include <float.h>
-//#include <math.h>
-#include <errno.h>
-
-/*Constans for 24 bits or less (8 decimal digits)*/
-#define A0 -0.5527074855E+0
-#define B0 -0.6632718214E+1
-#define A(w) (A0)
-#define B(w) (w + B0)
-
-#define C0 0.70710678118654752440
-#define C1 0.693359375 /*355.0/512.0*/
-#define C2 -2.121944400546905827679E-4
-
-extern float frexpf(float, int*);
+/* Version 1.0 - Initial release */
 
 float
-logf(float x) {
-  float Rz;
-  float f, z, w, znum, zden, xn;
-  static int n;
+frexpf(float x, int* pw2) {
+  union float_long fl;
+  long int i;
 
-  if(x <= 0.0) {
-    errno = EDOM;
-    return 0.0;
-  }
-  f = frexpf(x, &n);
-  znum = f - 0.5;
-  if(f > C0) {
-    znum -= 0.5;
-    zden = (f * 0.5) + 0.5;
-  } else {
-    n--;
-    zden = znum * 0.5 + 0.5;
-  }
-  z = znum / zden;
-  w = z * z;
-
-  Rz = z + z * (w * A(w) / B(w));
-  xn = n;
-  return ((xn * C2 + Rz) + xn * C1);
+  fl.f = x;
+  /* Find the exponent (power of 2) */
+  i = (fl.l >> 23) & 0x000000ff;
+  i -= 0x7e;
+  *pw2 = i;
+  fl.l &= 0x807fffff; /* strip all exponent bits */
+  fl.l |= 0x3f000000; /* mantissa between 0.5 and 1 */
+  return (fl.f);
 }

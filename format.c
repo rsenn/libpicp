@@ -2,12 +2,17 @@
 #include "format.h"
 #include "device.h"
 #include "buffer.h"
-#include <math.h>
 #include <float.h>
 
 #ifndef DBL_EPSILON
 #define DBL_EPSILON FLT_EPSILON
 #endif
+
+extern float log10f(float);
+extern float floorf(float);
+extern float powf(float, float);
+extern double floor(double);
+extern double pow(double, double);
 
 static void
 format_putchar(char c) {

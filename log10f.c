@@ -26,10 +26,9 @@
    might be covered by the GNU General Public License.
 -------------------------------------------------------------------------*/
 
-#include <math.h>
-#include <errno.h>
+extern float logf(float);
 
 float
-log10f(float x) _MATH_REENTRANT {
+log10f(float x) {
   return logf(x) * 0.4342944819;
 }
