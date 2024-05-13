@@ -82,7 +82,11 @@ timer0_init(uint8_t ps_mode) {
 
   if(prescaler > 0) {
     PSA = 0;
+
+#if !defined(__18f2550) && !defined(__18f252) && !defined(__18f2455) && !defined(__18f25k50) &&                        \
+    !defined(__18f25k22) && !defined(__18f14k50)
     PS = (prescaler - 1) & 0b111;
+#endif
   } else {
     PSA = 1;
   }
@@ -151,7 +155,7 @@ timer1_init(uint8_t ps_mode) {
   TMR1CS = !!(ps_mode & TIMER1_FLAGS_EXTCLK); // Internal clock source
 
 #if defined(__12f1840) || defined(__16f628a)
-  nT1SYNC =  (ps_mode & TIMER1_FLAGS_SYNC);
+  nT1SYNC = (ps_mode & TIMER1_FLAGS_SYNC);
 #else
   T1SYNC = !(ps_mode & TIMER1_FLAGS_SYNC);
 #endif

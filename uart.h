@@ -77,8 +77,10 @@
 
 #if _XTAL_FREQ == 20000000
 #if UART_BAUD == 38400
+#ifndef UART_BRG
 #define UART_BRG 66 // (5Mhz/2/38400 baud) = 66
 #define HIGH_SPEED 0
+#endif
 #endif
 #endif
 

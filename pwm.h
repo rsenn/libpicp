@@ -8,14 +8,12 @@ void pwm_init(char ps);
 
 #ifdef PIC12
 #define PWM_start(ccp)                                                                                                 \
-  {                                                                                                                    \
-    PWM_setduty(ccp, 0);                                                                                               \
-   }
+  { PWM_setduty(ccp, 0); }
 
 #define PWM_setduty(ccp, duty)                                                                                         \
   {                                                                                                                    \
-       CCP##ccp##CONbits. DC1B = duty & 0b11;                                                                           \
-   CCPR##ccp##L = (duty) >> 2;                                                                                        \
+    CCP##ccp##CONbits.DC1B = duty & 0b11;                                                                              \
+    CCPR##ccp##L = (duty) >> 2;                                                                                        \
   }
 #else
 #define PWM_start(ccp)                                                                                                 \
