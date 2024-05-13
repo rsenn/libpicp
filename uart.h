@@ -75,10 +75,10 @@
 
 #define NINE 0 /** Use 9bit communication? 0=8bit */
 
-#if 0 // OSC_4 == 5000000
+#if _XTAL_FREQ == 20000000
 #if UART_BAUD == 38400
-#define UART_BRG 31
-#define HIGH_SPEED 1 // (5Mhz/2/38400 baud) = 66
+#define UART_BRG 66 // (5Mhz/2/38400 baud) = 66
+#define HIGH_SPEED 0
 #endif
 #endif
 
@@ -88,23 +88,36 @@
 
 #ifdef __12f1840
 #define TX_PIN OUTA0
-#define TX_TRIS TRISA0
+#define TX_TRIS() TRISA0 = 0
 #define RX_PIN OUTA1
-#define RX_TRIS TRISA1
+#define RX_TRIS() TRISA1 = 1
+
+#define TX_SET(b)                                                                                                      \
+  if(b)                                                                                                                \
+    OUTA |= 0b00000001;                                                                                                \
+  else                                                                                                                 \
+    OUTA &= ~0b00000001;
 #elif defined(__16f628a)
 #define TX_PIN OUTB2
-#define TX_TRIS TRISB2
+#define TX_TRIS() TRISB2 = 0
 #define RX_PIN OUTB1
-#define RX_TRIS TRISB1
+#define RX_TRIS() TRISB1 = 1
+
+#define TX_SET(b)                                                                                                      \
+  if(b)                                                                                                                \
+    OUTB |= 0b00000100;                                                                                                \
+  else                                                                                                                 \
+    OUTB &= ~0b00000100;
 #else
+#define TX_TRIS() TRISC &= ~0b01000000
+#define RX_PIN OUTC7
+#define RX_TRIS() TRISC |= 0b10000000
+
 #define TX_SET(b)                                                                                                      \
   if(b)                                                                                                                \
     OUTC |= 0b01000000;                                                                                                \
   else                                                                                                                 \
     OUTC &= 0b01000000;
-#define TX_TRIS() TRISC &= ~0b01000000
-#define RX_PIN OUTC7
-#define RX_TRIS() TRISC |= 0b10000000
 #endif
 
 extern const uint8_t uart_brg;

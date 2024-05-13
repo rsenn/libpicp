@@ -48,6 +48,15 @@ ser_rxsize(void) {
   return ret;
 }
 
+unsigned char
+ser_txsize(void) {
+  unsigned char ret;
+  INTERRUPT_DISABLE();
+  ret = ser_txiptr < ser_txoptr ? SER_BUFFER_SIZE - ser_txiptr + ser_txoptr : ser_txiptr - ser_txoptr;
+  INTERRUPT_ENABLE();
+  return ret;
+}
+
 uint8_t
 ser_rxat(unsigned char at) {
   return ser_rxfifo[at & SER_FIFO_MASK];
@@ -132,7 +141,7 @@ ser_init(void) {
   SPEN = 1;
   CREN = 1;
   TXIE = 0;
-  //  RCIE = 1;
+  RCIE = 1;
   TXEN = 1;
   PEIE = 1;
 

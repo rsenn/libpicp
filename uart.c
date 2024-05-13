@@ -25,6 +25,7 @@ uart_putch(uint8_t byte) {
     /* set when register is empty */
     continue;
   }
+
   TXREG = (uint8_t)byte;
 }
 
@@ -45,10 +46,12 @@ char
 uart_poll(uint8_t bauds) {
   // TMR0 -= UART_BRG;            // load corrected baud value
   TMR0 = (256 - UART_BRG_FN(bauds));
+
   while(TMR0 & (1 << 7)) {
     if((PIR1 & 0b00100000))
       return 1;
   }
+
   return 0;
 }
 
@@ -63,6 +66,7 @@ uart_isr(void) {
     PIR1 &= ~0b00100000; //  RCIF = 0;
     return RCREG;
   }
+
   return 0;
 }
 

@@ -6,7 +6,6 @@
 #ifdef USE_SOFTPWM
 
 #define SOFTPWM_EVAL(x) x
-#define SOFTPWM_TIMER_SETUP timer1_init
 
 uint8_t volatile softpwm_counter;
 uint8_t volatile softpwm_values[SOFTPWM_CHANNELS];
@@ -56,8 +55,8 @@ softpwm_init(void) {
 #endif
 
   softpwm_counter = 0;
-
-  SOFTPWM_TIMER_SETUP(PRESCALE_1_1);
+  SOFTPWM_TIMER_VALUE = SOFTPWM_TIMER_INITIAL;
+  SOFTPWM_TIMER_SETUP(PRESCALE_1_32);
 
   softpwm_enable();
 }

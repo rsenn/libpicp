@@ -71,12 +71,12 @@ adc_read(uint8_t ch) {
   if(ADIE)
     ADIF = 0;
 
-  GO_DONE = 1;
+  GO_nDONE = 1;
 
   if(!ADIE) {
     uint16_t result;
 
-    while(GO_DONE)
+    while(GO_nDONE)
       ;
 
     result = (ADRESH << 8) | ADRESL;

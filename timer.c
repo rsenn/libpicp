@@ -26,12 +26,12 @@ void
 timer0_init(uint8_t ps_mode) {
   uint8_t prescaler = ps_mode & PRESCALE_MASK;
 
-#ifdef TIMER0_VALUE
-  TIMER0_VALUE = 0;
-#else
-  TIMER0_VALUE_L = 0;
-  TIMER0_VALUE_H = 0;
-#endif
+  /*#ifdef TIMER0_VALUE
+    TIMER0_VALUE = 0;
+  #else
+    TIMER0_VALUE_L = 0;
+    TIMER0_VALUE_H = 0;
+  #endif*/
 
 #ifdef __18f16q41
   T0CON0 = 0;
@@ -81,14 +81,11 @@ timer0_init(uint8_t ps_mode) {
   T0CON &= ~0b111;
 
   if(prescaler > 0) {
-    T0CON |= (prescaler - 1) & 0b111;
-    //#if TIMER0_PRESCALER != 0
-    /*  --prescaler;
-      PS0 = prescaler&1;   prescaler >>= 1;
-      PS1 = prescaler&1;   prescaler >>= 1;
-      PS2 = prescaler&1; */
+    PSA = 0;
+    PS = (prescaler - 1) & 0b111;
+  } else {
+    PSA = 1;
   }
-  //  T0PS = prescaler - 1;
   //#endif
 #endif
 
@@ -143,32 +140,30 @@ timer0_read_ps(void) {
 
 void
 timer1_init(uint8_t ps_mode) {
+  T1OSCEN = 0;
+  TMR1ON = 0;
+  TMR1IE = 0;
 
-  T1CON &= ~0b00111110;
+  // T1CON &= ~0b00111110;
 
-  T1CON |= (ps_mode & PRESCALE_MASK) << 4;
+  T1CONbits.T1CKPS = (ps_mode & PRESCALE_MASK);
 
-  T1CON |= (!!(ps_mode & TIMER1_FLAGS_EXTCLK)) << 1; // Internal clock source
+  TMR1CS = !!(ps_mode & TIMER1_FLAGS_EXTCLK); // Internal clock source
 
-  if(T1CON & 0b00000010) {
 #if defined(__12f1840) || defined(__16f628a)
-    T1CON |= (!(ps_mode & TIMER1_FLAGS_SYNC)) << 2;
+  nT1SYNC =  (ps_mode & TIMER1_FLAGS_SYNC);
 #else
-    T1CON |= (!(ps_mode & TIMER1_FLAGS_SYNC)) << 2;
+  T1SYNC = !(ps_mode & TIMER1_FLAGS_SYNC);
 #endif
-  }
 
-  TMR1H = 0;
-  TMR1L = 0;
+  /*  TMR1H = 0;
+    TMR1L = 0;  */
+  T1OSCEN = 1;
+  TMR1ON = 1;
+  TMR1IF = 0;
 
-  T1CON |= 0b1; // TMR1ON = 1;
-
- /* PIR1 &= ~0b1; //  TMR1IF = 0;
-
-  PIE1 &= ~0b1;
-  PIE1 |= !!(ps_mode & TIMER1_FLAGS_INTR);*/
   if(ps_mode & TIMER1_FLAGS_INTR)
-    TMR1IE=1;
+    TMR1IE = 1;
 }
 
 #endif // USE_TIMER1

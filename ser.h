@@ -7,14 +7,14 @@
 
 #ifdef __12f1840
 #define SER_TX_PIN OUTA0
-#define SER_TX_TRIS TRISA0
+#define SER_TX_TRIS() TRISA0 = 0
 #define SER_RX_PIN OUTA1
-#define SER_RX_TRIS TRISA1
+#define SER_RX_TRIS() TRISA1 = 1
 #elif defined(__16f628a)
 #define SER_TX_PIN OUTB2
-#define SER_TX_TRIS TRISB2
+#define SER_TX_TRIS() TRISB2 = 0
 #define SER_RX_PIN OUTB1
-#define SER_RX_TRIS TRISB1
+#define SER_RX_TRIS() TRISB1 = 1
 #else
 #define SER_TX_PIN OUTC6
 #define SER_TX_TRIS() TRISC &= ~0x40
@@ -53,6 +53,7 @@ extern uint8_t ser_tmp;
 
 char ser_isrx(void);
 unsigned char ser_rxsize(void);
+unsigned char ser_txsize(void);
 uint8_t ser_getch(void);
 void ser_putch(char byte);
 void ser_put(const char* s, unsigned n);
