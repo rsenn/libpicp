@@ -69,6 +69,34 @@
 #define GET_TIMER0() ((TMR0H << 8) | TMR0L)
 #define TIMER0_BITS 8
 
+/* Shared extended-tick counter (see lib/TODO.md's "Prerequisite" section
+   for the design rationale): the accumulation logic lives here once, so
+   any number of independent consumers (a project's own BPM/decisecond
+   math, lib/ser_ioc.c, ...) can read the same wide, monotonic tick count
+   instead of each maintaining a private Bresenham-style accumulator.
+   Ownership of the timer itself (init, prescaler, enabling its
+   interrupt) is unchanged -- still entirely up to the calling project. */
+extern volatile uint32_t timer0_ext_ticks;
+
+/* Call from the project's own ISR, same call site as
+   TIMER0_INTERRUPT_CLEAR() today -- this replaces a hand-written
+   "if(flag) { clear; accumulator += 256; }" with the shared version. */
+#define TIMER0_EXTEND()                                                                                               \
+  do {                                                                                                                \
+    if(TIMER0_INTERRUPT_FLAG) {                                                                                       \
+      TIMER0_INTERRUPT_CLEAR();                                                                                       \
+      timer0_ext_ticks += 256;                                                                                        \
+    }                                                                                                                 \
+  } while(0)
+
+/* Combines the accumulated high bits with a live low-byte read -- an
+   accurate wide tick count at any instant, not just at overflow
+   boundaries. Safe to call from the same ISR that calls TIMER0_EXTEND()
+   (no reentrancy); NOT safe from main-loop/non-interrupt context without
+   an explicit GIE guard around the read (the accumulator or TMR0 could
+   change mid-read) -- deferred for now, see lib/TODO.md open question 5b. */
+#define TIMER0_TICKS32() (timer0_ext_ticks + TMR0)
+
 void timer0_init(unsigned char);
 
 /* Read Timer 0:
@@ -94,6 +122,7 @@ unsigned short timer0_read_ps(void);
 #define TIMER1_INTERRUPT_CLEAR() TMR1IF = 0;
 #else
 #define TIMER1_INTERRUPT_FLAG (!!(PIR1 & 0x01))
+#define TIMER1_INTERRUPT_CLEAR() PIR1 &= ~0x01;
 #endif
 
 #ifdef TMR1IE
@@ -116,6 +145,18 @@ void timer1_init(unsigned char ps_mode);
 #define TIMER1_VALUE ((TMR1H << 8) | TMR1L)
 #endif
 #define TIMER1_BITS 16
+
+/* see TIMER0_EXTEND()/TIMER0_TICKS32() above -- same shared-tick-counter
+   pattern, 16-bit timer so the accumulator advances by 65536/overflow */
+extern volatile uint32_t timer1_ext_ticks;
+#define TIMER1_EXTEND()                                                                                               \
+  do {                                                                                                                \
+    if(TIMER1_INTERRUPT_FLAG) {                                                                                       \
+      TIMER1_INTERRUPT_CLEAR();                                                                                       \
+      timer1_ext_ticks += 65536;                                                                                      \
+    }                                                                                                                 \
+  } while(0)
+#define TIMER1_TICKS32() (timer1_ext_ticks + TIMER1_VALUE)
 
 //#endif // USE_TIMER1
 
@@ -195,6 +236,17 @@ void timer3_init(uint8_t ps_mode);
 #define TIMER3_VALUE ((TMR3H << 8) | TMR3L)
 #endif
 #define TIMER3_BITS 16
+
+/* see TIMER0_EXTEND()/TIMER0_TICKS32() above */
+extern volatile uint32_t timer3_ext_ticks;
+#define TIMER3_EXTEND()                                                                                               \
+  do {                                                                                                                \
+    if(TIMER3_INTERRUPT_FLAG) {                                                                                       \
+      TIMER3_INTERRUPT_CLEAR();                                                                                       \
+      timer3_ext_ticks += 65536;                                                                                      \
+    }                                                                                                                 \
+  } while(0)
+#define TIMER3_TICKS32() (timer3_ext_ticks + TIMER3_VALUE)
 
 //#endif // USE_TIMER3
 

@@ -22,6 +22,8 @@ extern volatile unsigned char T0CON @0xFD5;
 
 #if USE_TIMER0
 
+volatile uint32_t timer0_ext_ticks = 0;
+
 void
 timer0_init(uint8_t ps_mode) {
   uint8_t prescaler = ps_mode & PRESCALE_MASK;
@@ -108,6 +110,8 @@ timer0_read_ps(void) {
 /* ----------------------- Timer 1 ----------------------- */
 #if USE_TIMER1
 
+volatile uint32_t timer1_ext_ticks = 0;
+
 void
 timer1_init(uint8_t ps_mode) {
 
@@ -164,6 +168,8 @@ timer2_init(uint8_t ps_mode) {
 
 /* ----------------------- Timer 3 ----------------------- */
 #if USE_TIMER3
+
+volatile uint32_t timer3_ext_ticks = 0;
 
 void
 timer3_init(uint8_t ps_mode) {
