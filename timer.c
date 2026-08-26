@@ -161,3 +161,32 @@ timer2_init(uint8_t ps_mode) {
   PIE1 = (!!(ps_mode & TIMER2_FLAGS_INTR)) << 1;
 }
 #endif // USE_TIMER2
+
+/* ----------------------- Timer 3 ----------------------- */
+#if USE_TIMER3
+
+void
+timer3_init(uint8_t ps_mode) {
+
+  T3CON &= ~0b00111110;
+
+  T3CON |= (ps_mode & PRESCALE_MASK) << 4;
+
+  T3CON |= (!!(ps_mode & TIMER3_FLAGS_EXTCLK)) << 1; // Internal clock source
+
+  if(T3CON & 0b00000010) {
+    T3CON |= (!(ps_mode & TIMER3_FLAGS_SYNC)) << 2;
+  }
+
+  TMR3H = 0;
+  TMR3L = 0;
+
+  T3CON |= 0b1; // TMR3ON = 1;
+
+  PIR2 &= ~0b10; //  TMR3IF = 0;
+
+  PIE2 &= ~0b10;
+  PIE2 |= (!!(ps_mode & TIMER3_FLAGS_INTR)) << 1;
+}
+
+#endif // USE_TIMER3

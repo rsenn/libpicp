@@ -153,4 +153,49 @@ void timer2_init(uint8_t ps_mode);
 
 //#endif // USE_TIMER2
 
+/* ----------------------- Timer 3 ----------------------- */
+//#if USE_TIMER3
+
+// only present on PIC18F252/PIC18F2550/PIC18F25K50 in this project's
+// target chip list -- absent on PIC12F1840 and PIC16F876A. USE_TIMER3
+// simply shouldn't be set for those, same as any other timer whose
+// hardware a given chip doesn't have.
+
+#define TIMER3_FREQ (OSC_4 / (1 << (TIMER3_PRESCALER)))
+#define TIMER3_TICK_US (1000000 / TIMER3_FREQ)
+#define TIMER3_INTERVAL_US (1000000 * 65536 / TIMER3_FREQ)
+#define TIMER3_INTERVAL_MS (1000 * 65536 / TIMER3_FREQ)
+
+#ifdef TMR3IF
+#define TIMER3_INTERRUPT_FLAG TMR3IF
+#define TIMER3_INTERRUPT_SET() TMR3IF = 1;
+#define TIMER3_INTERRUPT_CLEAR() TMR3IF = 0;
+#else
+#define TIMER3_INTERRUPT_FLAG (!!(PIR2 & 0x02))
+#define TIMER3_INTERRUPT_CLEAR() PIR2 &= ~0x02;
+#endif
+
+#ifdef TMR3IE
+#define TIMER3_INTERRUPT_ENABLE() TMR3IE = 1;
+#define TIMER3_INTERRUPT_DISABLE() TMR3IE = 0;
+#else
+#define TIMER3_INTERRUPT_ENABLE() PIE2 |= 0x02;
+#define TIMER3_INTERRUPT_DISABLE() PIE2 &= ~0x02;
+#endif
+
+#define TIMER3_FLAGS_INTR 0x80
+#define TIMER3_FLAGS_EXTCLK 0x40
+#define TIMER3_FLAGS_SYNC 0x20
+
+void timer3_init(uint8_t ps_mode);
+
+#ifdef TMR3
+#define TIMER3_VALUE TMR3
+#else
+#define TIMER3_VALUE ((TMR3H << 8) | TMR3L)
+#endif
+#define TIMER3_BITS 16
+
+//#endif // USE_TIMER3
+
 #endif // defined PICLIB_TIMER_H

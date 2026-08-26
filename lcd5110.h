@@ -4,12 +4,51 @@
 #include "device.h"
 #include "typedef.h"
 
+// pin assignment -- override any of these from the build (e.g. a
+// project's *_DEFS in build/vars.mk) to rewire without editing this file.
+// RB0/RB1/RB3 are avoided by default since they have no alternate-pin
+// option on some chips (e.g. 18F25K50) and are commonly needed for
+// hardware SPI -- LCD_RESET defaults to RA3 instead of RB3 for that reason.
+#ifndef LCD_CE
 #define LCD_CE OUTB2
-#define LCD_RESET OUTB3
+#endif
+#ifndef LCD_CE_TRIS
+#define LCD_CE_TRIS TRISB2
+#endif
+#ifndef LCD_RESET
+#define LCD_RESET OUTA3
+#endif
+#ifndef LCD_RESET_TRIS
+#define LCD_RESET_TRIS TRISA3
+#endif
+#ifndef LCD_DC
 #define LCD_DC OUTB4
+#endif
+#ifndef LCD_DC_TRIS
+#define LCD_DC_TRIS TRISB4
+#endif
+#ifndef LCD_DATA
 #define LCD_DATA OUTB5
+#endif
+#ifndef LCD_DATA_TRIS
+#define LCD_DATA_TRIS TRISB5
+#endif
+#ifndef LCD_CLK
 #define LCD_CLK OUTB6
-#define LCD_TRIS() TRISB &= 0x00
+#endif
+#ifndef LCD_CLK_TRIS
+#define LCD_CLK_TRIS TRISB6
+#endif
+
+// each bit is set individually -- if LCD_CE/RESET/DC/DATA/CLK are
+// overridden to a non-default pin, override the matching *_TRIS macro
+// too (they're independent so the whole port isn't forced to output)
+#define LCD_TRIS()                                                                                                     \
+  LCD_CE_TRIS = 0;                                                                                                     \
+  LCD_DC_TRIS = 0;                                                                                                     \
+  LCD_DATA_TRIS = 0;                                                                                                   \
+  LCD_CLK_TRIS = 0;                                                                                                    \
+  LCD_RESET_TRIS = 0
 
 #define BIT7 0b10000000
 #define BIT6 0b01000000

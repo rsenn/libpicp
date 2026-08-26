@@ -10,9 +10,9 @@ typedef struct {
   unsigned char data[QUEUE_SIZE];
 } queue;
 
-void queue_put(queue*, unsigned char);
+void enqueue(queue*, unsigned char);
 
-unsigned char queue_get(queue*);
+unsigned char dequeue(queue*);
 
 #define queue_count(q) ((q)->count)
 

@@ -121,4 +121,56 @@ typedef void (*putch_ptr)(uint8_t);
 
 void midi_send(const putch_ptr putch, uint8_t cmd, uint8_t d1, uint8_t d2, uint8_t chan);
 
+#include "queue.h"
+
+#define MIDI_BAUD 31250
+
+#if defined(UART_BAUD) && UART_BAUD != MIDI_BAUD
+#warning "UART_BAUD does not match MIDI_BAUD (31250) -- MIDI requires exactly 31250 baud"
+#endif
+#ifndef UART_BAUD
+#define UART_BAUD MIDI_BAUD
+#endif
+
+// note number -> chromatic position within its octave (0=C .. 11=B)
+#define MIDI_NOTE_HALFTONE(note) ((note) % 12)
+
+// note number -> octave, matching the MIDI_NOTE_* table above
+// (note 60 = C4, note 0 = C-1)
+#define MIDI_NOTE_OCTAVE(note) ((note) / 12 - 1)
+
+// received-byte buffer filled by midi_int(), drained by midi_getch()
+extern queue midi_rxq;
+
+// Configures the UART for MIDI_BAUD (per _XTAL_FREQ, via lib/uart.h) and
+// enables its receive interrupt. Requires USE_UART to be defined for the
+// build (same requirement lib/uart.c already has).
+//
+// IMPORTANT: UART_BRG is a compile-time constant baked into lib/uart.c's
+// own translation unit from _XTAL_FREQ/UART_BAUD -- this header's
+// UART_BAUD default only takes effect for translation units that include
+// midi.h before uart.h. To guarantee lib/uart.c itself is compiled for
+// 31250 baud, build the whole project with the existing BAUD_RATE
+// Makefile variable set to 31250 (e.g. `make BAUD_RATES=31250 ...`).
+void midi_init(void);
+
+// Call from inside the project's own interrupt handler (see
+// lib/interrupt.h's INTERRUPT_FN()) to service a MIDI UART receive
+// interrupt, e.g.:
+//
+//   INTERRUPT_FN() {
+//     midi_int();
+//     // ...other peripherals' ISR macros...
+//   }
+#define midi_int()                                                                                                     \
+  do {                                                                                                                 \
+    if(PIR1 & 0b00100000) {                                                                                           \
+      PIR1 &= ~0b00100000;                                                                                            \
+      enqueue(&midi_rxq, RCREG);                                                                                      \
+    }                                                                                                                 \
+  } while(0)
+
+// pull one received MIDI byte off midi_rxq, or -1 if none pending
+int midi_getch(void);
+
 #endif

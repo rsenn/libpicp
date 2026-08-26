@@ -6,6 +6,7 @@ V1.0 11/23/04   Created.
 */
 
 #include "lcd5110.h"
+#include "delay.h"
 
 #if USE_NOKIA5110_LCD
 
