@@ -7,19 +7,9 @@ V1.0 11/23/04   Created.
 
 #include "lcd5110.h"
 #include "delay.h"
+#include "spi.h"
 
 #if USE_NOKIA5110_LCD
-
-#define CLK_IN(data, bitnum)                                                                                           \
-  NOP();                                                                                                               \
-  LCD_CLK = 0;                                                                                                         \
-  NOP();                                                                                                               \
-  LCD_DATA = 0;                                                                                                        \
-  if((data) & (bitnum)) {                                                                                              \
-    LCD_DATA = 1;                                                                                                      \
-  }                                                                                                                    \
-  NOP();                                                                                                               \
-  LCD_CLK = 1
 
 const char lcd_font[][5] = {
     {0x00, 0x00, 0x00, 0x00, 0x00}, // sp
@@ -143,15 +133,7 @@ lcd_send(uint8_t a, uint8_t cmd) {
   }
   NOP();
   LCD_CE = 0;
-  // clock in data in A
-  CLK_IN(a, BIT7);
-  CLK_IN(a, BIT6);
-  CLK_IN(a, BIT5);
-  CLK_IN(a, BIT4);
-  CLK_IN(a, BIT3);
-  CLK_IN(a, BIT2);
-  CLK_IN(a, BIT1);
-  CLK_IN(a, BIT0);
+  spi_transfer(a);
   NOP();
   LCD_CE = 1;
 }
@@ -160,12 +142,9 @@ lcd_send(uint8_t a, uint8_t cmd) {
 void
 lcd_init(void) {
   LCD_TRIS();
+  spi_init();
   __delay_ms(20);
   // delay10ms(20);
-  NOP();
-  LCD_CLK = 0;
-  NOP();
-  LCD_DATA = 1;
   NOP();
   LCD_DC = 0;
   NOP();

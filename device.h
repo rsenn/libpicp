@@ -371,6 +371,14 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define RCIF PIR1bits.RCIF
 #define S SSPSTATbits.S
 #define SSPEN SSPCONbits.SSPEN
+#define CKP SSPCONbits.CKP
+#define SSPM0 SSPCONbits.SSPM0
+#define SSPM1 SSPCONbits.SSPM1
+#define SSPM2 SSPCONbits.SSPM2
+#define SSPM3 SSPCONbits.SSPM3
+#define BF SSPSTATbits.BF
+#define CKE SSPSTATbits.CKE
+#define SMP SSPSTATbits.SMP
 #define T0IE INTCONbits.T0IE
 #define T0IF INTCONbits.T0IF
 #define T1CKPS0 T1CONbits.T1CKPS0
@@ -553,6 +561,13 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #define OUTC7 RC7
 #endif
 
+#if defined(__16f876a)
+// this chip's SSP registers have no "1" suffix (unlike the PIC18 family
+// aliased above, or the PIC12F1840's SSP1CON1) -- alias the uniform name
+// so shared code (e.g. lib/spi.c) can use SSPCON1/SSPCON1bits everywhere
+#define SSPCON1 SSPCON
+#define SSPCON1bits SSPCONbits
+#endif
 
 #define CFGS EECON1bits.CFGS
 #define EEPGD EECON1bits.EEPGD
