@@ -6,8 +6,7 @@ V1.0 11/23/04   Created.
 */
 
 #include "lcd5110.h"
-#include "delay.h"
-#include "spi.h"
+#include "pcd8544.h"
 
 #if USE_NOKIA5110_LCD
 
@@ -126,42 +125,24 @@ lcd_str_width(const char* c) {
 // -------------------------------------------------------------------------
 void
 lcd_send(uint8_t a, uint8_t cmd) {
-  // set if data or command byte
-  LCD_DC = 1;
   if(cmd == LCD_TCMD) {
-    LCD_DC = 0;
+    pcd8544_command(a);
+  } else {
+    pcd8544_data(a);
   }
-  NOP();
-  LCD_CE = 0;
-  spi_transfer(a);
-  NOP();
-  LCD_CE = 1;
 }
 
 // -------------------------------------------------------------------------
 void
 lcd_init(void) {
-  LCD_TRIS();
-  spi_init();
-  __delay_ms(20);
-  // delay10ms(20);
-  NOP();
-  LCD_DC = 0;
-  NOP();
-  LCD_CE = 1;
-  NOP();
-  // reset LCD
-  LCD_RESET = 0;
-  __delay_ms(20);
-  // delay10ms(20);
-  LCD_RESET = 1;
+  pcd8544_init();
 #if 1
-  lcd_send(0x21, LCD_TCMD); // extended commands
-  lcd_send(0xC8, LCD_TCMD); // Vop (contrast)
-  lcd_send(0x06, LCD_TCMD); // Temp coefficient
-  lcd_send(0x13, LCD_TCMD); // LCD bias mode 1:48
-  lcd_send(0x20, LCD_TCMD); // LCD standard, Horiz addressing
-  lcd_send(0x0C, LCD_TCMD); // display control LCD normal mode
+  pcd8544_function_set(0, 0, 1); // extended commands
+  pcd8544_set_vop(0x48);         // Vop (contrast)
+  pcd8544_set_temp_coeff(2);     // Temp coefficient
+  pcd8544_set_bias(3);           // LCD bias mode 1:48
+  pcd8544_function_set(0, 0, 0); // LCD standard, Horiz addressing
+  pcd8544_set_display_mode(PCD8544_DISPLAY_NORMAL);
 // lcd_send(0b00001101,LCD_TCMD);  //display control LCD invert mode
 // lcd_send(0b00001001, LCD_TCMD);  //turn on all segments
 #else
@@ -203,8 +184,8 @@ lcd_clear(void) {
 // -------------------------------------------------------------------------
 void
 lcd_gotoxy(uint8_t x, unsigned y) {
-  lcd_send(x | 0b10000000, LCD_TCMD);
-  lcd_send((y & 0b00000111) | 0b01000000, LCD_TCMD);
+  pcd8544_set_x(x);
+  pcd8544_set_y(y & 0x07);
 }
 
 // -------------------------------------------------------------------------
