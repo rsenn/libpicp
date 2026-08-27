@@ -799,7 +799,13 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 #endif
     #endif
 
-#if defined(__SDCC) && defined(PIC16)
+// DEVICE_EMIT_CONFIG_WORD is an opt-in: device.h is #included by every
+// .c file in a build (including every lib/*.c), so an unguarded
+// emission here would place an absolute __config_word at 0x2007 in
+// every one of them -- gputils' linker then fails ("More absolute
+// sections use same address") on any multi-file link. Only a
+// top-level program's own config-bits.h (never lib/*.c) defines this.
+#if defined(__SDCC) && defined(PIC16) && defined(DEVICE_EMIT_CONFIG_WORD)
 
 #ifndef _CONFIG
 #define _CONFIG 0x2007
