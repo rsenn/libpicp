@@ -62,7 +62,7 @@ format_xint32(putch_t fn, /*putchar_fn* putchar,*/ uint32_t x) {
 
 void
 format_float(putch_t fn,  float num) {
-  short m = (int)log10f(num);
+  short m = (int)log10(num);
   char digit;
   //  float tolerance = .0001;
 
@@ -78,10 +78,10 @@ format_float(putch_t fn,  float num) {
 }
 
 // -------------------------------------------------------------------------
-#ifndef SDCC
+#ifndef __SDCC
 void
 format_double(putch_t fn, double num) {
-  short m = (short)log10f(num);
+  short m = (short)log10(num);
   short digit;
   //  double tolerance = .0001;
 

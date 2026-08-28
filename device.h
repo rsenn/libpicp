@@ -805,6 +805,10 @@ volatile bit nRBPU               @((unsigned)&OPTION_REG * 8) + 7;
 // every one of them -- gputils' linker then fails ("More absolute
 // sections use same address") on any multi-file link. Only a
 // top-level program's own config-bits.h (never lib/*.c) defines this.
+// PIC16 here means "is a PIC16-series (pic14) chip", per this
+// project's own naming (the single-word 0x2007 config scheme below is
+// pic14-only; PIC18 uses a different multi-word config layout) - kept
+// alongside the opt-in gate, not replaced by it.
 #if defined(__SDCC) && defined(PIC16) && defined(DEVICE_EMIT_CONFIG_WORD)
 
 #ifndef _CONFIG

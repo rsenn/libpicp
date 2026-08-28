@@ -9,8 +9,15 @@
 #define INTERRUPT_HANDLER() void isr()
 #else
 #if defined(__SDCC) || __SDCC__
+// Priority-numbered `__interrupt N` is a PIC18 (pic16 target) feature only -
+// pic14 (baseline/mid-range: PIC10/12/16) has a single interrupt vector and
+// SDCC rejects a priority number there ("syntax error: token -> '1'").
+#if PIC18
 #define INTERRUPT_FN() void isr() __interrupt(1)
 //#  define INTERRUPT_FN() void isr(); char interrupt_fn() { isr(); return 0; } __interrupt 0; void isr()
+#else
+#define INTERRUPT_FN() void isr() __interrupt
+#endif
 #else
 #define INTERRUPT_FN()                                                                                                 \
   void isr();                                                                                                          \
