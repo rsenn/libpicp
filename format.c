@@ -19,7 +19,7 @@ format_putchar(char c) {
 // -------------------------------------------------------------------------
 void
 format_number(putch_t fn, uint16_t n, uint8_t base, int8_t pad /*, int8_t pointpos*/) {
-  char buf[8 * sizeof(long)]; // Assumes 8-bit chars.
+  char buf[16]; // enough for 16 binary digits
   uint8_t di;
   int8_t i = 0;
   char padchar = ' ';
@@ -29,26 +29,18 @@ format_number(putch_t fn, uint16_t n, uint8_t base, int8_t pad /*, int8_t pointp
     padchar = '0';
   }
 
-  /*  if(n == 0) {
-      lcd_putch('0');
-      return;
-    }*/
-
+  /* digits are generated least significant first */
   do {
-    /*    if(i == pointpos)
-          buf[i++] = '.';
-    */
     di = n % base;
     buf[i++] = (di < 10 ? (uint8_t)'0' + di : (uint8_t)'A' + di - 10);
 
     n /= base;
   } while(n > 0);
 
-  while(pad-- > i) buffer_putch(padchar);
+  while(pad-- > i) (*fn)(padchar);
 
-  for(unsigned j = 0; j < i; j++)
-    (*fn)(buf[j]);
-    // buffer_putch((buf[i - 1] < 10 ?(char)'0' + buf[i - 1] : (char)'A' + buf[i - 1] - 10));
+  /* ...and printed most significant first */
+  while(i > 0) (*fn)(buf[--i]);
 }
 
 // -------------------------------------------------------------------------
@@ -60,25 +52,48 @@ format_xint32(putch_t fn, /*putchar_fn* putchar,*/ uint32_t x) {
   format_number(fn, (uint16_t)(x & 0xffff), 16, -4);
 }
 
+#ifndef USE_FIXED
+/*
+ * Print a float as <integer part>[.<up to 4 decimals>] using only integer
+ * conversions and one multiply per decimal - no log10/pow/floor, so none of
+ * those libm routines (several hundred words each) get linked in.
+ */
 void
-format_float(putch_t fn,  float num) {
-  short m = (int)log10(num);
-  char digit;
-  //  float tolerance = .0001;
+format_float(putch_t fn, float num) {
+  uint32_t ip;
+  uint8_t i, n = 0, frac[4];
+  char digits[10];
 
-  while(num > 0 + FLT_EPSILON) {
-    float weight = pow(10.0l, m);
-    digit = (char)floor(num / weight);
-    num -= (digit * weight);
-    fn('0' + digit);
-    if(m == 0)
-      fn('.');
-    m--;
+  if(num < 0) {
+    fn('-');
+    num = -num;
+  }
+  ip = (uint32_t)num;
+  num -= (float)ip;
+
+  i = 0;
+  do {
+    digits[i++] = '0' + (uint8_t)(ip % 10);
+    ip /= 10;
+  } while(ip > 0 && i < sizeof(digits));
+  while(i > 0) fn(digits[--i]);
+
+  for(i = 0; i < 4; i++) {
+    num *= 10;
+    frac[i] = (uint8_t)num;
+    num -= frac[i];
+    if(frac[i])
+      n = i + 1;
+  }
+  if(n) {
+    fn('.');
+    for(i = 0; i < n; i++) fn('0' + frac[i]);
   }
 }
+#endif /* !USE_FIXED */
 
 // -------------------------------------------------------------------------
-#ifndef __SDCC
+#if !defined(__SDCC) && !defined(USE_FIXED)
 void
 format_double(putch_t fn, double num) {
   short m = (short)log10(num);

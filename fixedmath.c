@@ -34,11 +34,12 @@ mul_u32_wide(uint32_t a, uint32_t b, uint32_t *hi, uint32_t *lo) {
 static uint32_t
 div_wide_u32(uint32_t hi, uint32_t lo, uint32_t c, uint8_t *fault) {
   uint32_t rem, quot, bitval;
+  uint8_t carry;
   int8_t i;
 
   if (fault)
     *fault = 0;
-  if (c == 0 || c >= 0x80000000uL || hi >= c) {
+  if (c == 0 || hi >= c) {
     if (fault)
       *fault = 1;
     return 0;
@@ -47,9 +48,10 @@ div_wide_u32(uint32_t hi, uint32_t lo, uint32_t c, uint8_t *fault) {
   quot = 0;
   for (i = 63; i >= 0; i--) {
     bitval = (i >= 32) ? ((hi >> (i - 32)) & 1uL) : ((lo >> i) & 1uL);
+    carry = (uint8_t)(rem >> 31); /* c may be >= 2^31: rem<<1 can need a 33rd bit */
     rem = (rem << 1) | bitval;
     quot <<= 1;
-    if (rem >= c) {
+    if (carry || rem >= c) {
       rem -= c;
       quot |= 1uL;
     }
@@ -67,12 +69,12 @@ muldiv_u32(uint32_t a, uint32_t b, uint32_t c, uint8_t *fault) {
 void
 fixed_div_u32(uint32_t num, uint32_t den, qval_t *r) {
   uint32_t whole, rem, t, result, bitval;
-  uint8_t whole_bits, fb, i;
+  uint8_t whole_bits, fb, i, carry;
 
   r->m = 0;
   r->fb = 0;
   r->fault = 0;
-  if (den == 0 || den >= 0x80000000uL) {
+  if (den == 0) {
     r->fault = 1;
     return;
   }
@@ -91,9 +93,10 @@ fixed_div_u32(uint32_t num, uint32_t den, qval_t *r) {
   fb = (uint8_t)(31 - whole_bits);
   result = whole << fb;
   for (i = 0; i < fb; i++) {
+    carry = (uint8_t)(rem >> 31); /* den may be >= 2^31 */
     rem <<= 1;
     bitval = 0;
-    if (rem >= den) {
+    if (carry || rem >= den) {
       rem -= den;
       bitval = 1;
     }

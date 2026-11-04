@@ -45,7 +45,8 @@ timer0_init(uint8_t ps_mode) {
   T0SE = (ps_mode & EDGE_HIGH_LOW) ? 1 : 0;
 
   if(prescaler > 0) {
-    /*OPTION_REGbits.*/ PSA = prescaler > 0;
+    /* PSA = 0 assigns the prescaler to Timer0, PSA = 1 to the watchdog */
+    /*OPTION_REGbits.*/ PSA = 0;
     /*OPTION_REGbits.*/ OPTION_REGbits.PS = prescaler - 1;
   }
 #else

@@ -14,7 +14,7 @@
  * bits. Implemented via a 16x16->32 partial-product widening multiply
  * (a*b held as an explicit hi:lo 32+32 bit pair) followed by a 64-step
  * restoring long division - never needs a native 64-bit type. Sets
- * *fault (if non-NULL) and returns 0 if c==0, c>=2^31, or the true
+ * *fault (if non-NULL) and returns 0 if c==0 or the true
  * quotient wouldn't fit in 32 bits. */
 uint32_t muldiv_u32(uint32_t a, uint32_t b, uint32_t c, uint8_t *fault);
 
@@ -31,7 +31,7 @@ typedef struct {
  * fraction after leaving just enough integer headroom for the whole
  * part - so a small quotient (the common case for this project's
  * (F1/Fx)^2-1 terms) gets far more relative precision than a fixed
- * Q16.16 budget would give it. Sets r->fault on den==0, den>=2^31, or
+ * Q16.16 budget would give it. Sets r->fault on den==0 or
  * a whole part needing >=31 bits. */
 void fixed_div_u32(uint32_t num, uint32_t den, qval_t *r);
 
